@@ -1,0 +1,190 @@
+/* General Theme */
+
+*{
+    margin: 0;
+    padding: 0;
+    box-sizing: border-box;
+}
+body {
+    margin: 0;
+    font-family: Arial, sans-serif;
+    background: #000;
+    color: white;
+  
+}
+
+/* Navbar */
+.navbar {
+    width: 100%;
+    padding: 18px 25px;
+    background: #0d0d0d;
+    border-bottom: 1px solid #222;
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+}
+
+.logo {
+    border: 2px solid white;
+    width: 42px;
+    height: 42px;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    font-weight: bold;
+    font-size: 20px;
+    border-radius: 10px;
+}
+
+.nav-links {
+    display: flex;
+    list-style: none;
+    gap: 25px;
+}
+
+.nav-links a {
+    text-decoration: none;
+    color: white;
+    transition: 0.2s;
+}
+
+.nav-links a.active {
+    color: #ccc;
+}
+
+.nav-links a:hover {
+    color: #aaa;
+}
+
+/* Container */
+.container {
+    width: 90%;
+    max-width: 900px;
+    margin: auto;
+    padding: 40px 0;
+}
+
+/* Titles */
+.page-title {
+    font-size: 32px;
+    text-align: center;
+    margin-bottom: 30px;
+}
+
+.section-title {
+    font-size: 22px;
+    margin: 25px 0 15px;
+}
+
+/* Filter */
+.filter-box {
+    background: #111;
+    padding: 15px;
+    border: 1px solid #222;
+    border-radius: 10px;
+    margin-bottom: 25px;
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+}
+
+.filter-box select {
+    background: #000;
+    color: white;
+    border: 1px solid #333;
+    padding: 8px;
+    border-radius: 6px;
+}
+
+/* Order Cards */
+.order-card {
+    display: flex;
+    justify-content: space-between;
+    background: #0f0f0f;
+    border: 1px solid #222;
+    padding: 15px;
+    border-radius: 12px;
+    margin-bottom: 20px;
+    transition: 0.2s;
+}
+
+.order-card:hover {
+    border-color: white;
+}
+
+.order-left {
+    display: flex;
+    gap: 15px;
+}
+
+.img-box {
+    width: 80px;
+    height: 80px;
+    background: #222;
+    border-radius: 10px;
+}
+
+.item-name {
+    font-size: 16px;
+    font-weight: bold;
+}
+
+.price {
+    color: #ccc;
+    margin: 5px 0;
+}
+
+.order-date {
+    color: #777;
+    font-size: 14px;
+}
+
+/* Status Tags */
+.status {
+    padding: 6px 12px;
+    border-radius: 6px;
+    font-size: 13px;
+    font-weight: bold;
+    display: inline-block;
+}
+
+.packed {
+    background: #333;
+}
+
+.shipped {
+    background: #004aad;
+}
+
+.delivered {
+    background: #007f3f;
+}
+
+/* Buttons */
+.track-btn, .view-btn {
+    padding: 8px 14px;
+    margin-top: 10px;
+    border: none;
+    background: white;
+    color: black;
+    font-weight: bold;
+    border-radius: 6px;
+    cursor: pointer;
+    transition: 0.2s;
+}
+
+.track-btn:hover, .view-btn:hover {
+    background: #ddd;
+}
+
+/* Mobile Responsive */
+@media (max-width: 650px) {
+    .order-card {
+        flex-direction: column;
+        align-items: flex-start;
+    }
+
+    .order-right {
+        margin-top: 10px;
+    }
+}

@@ -1,0 +1,133 @@
+/* Reset */
+* {
+  margin: 0;
+  padding: 0;
+  box-sizing: border-box;
+  font-family: "Poppins", sans-serif;
+}
+
+body {
+  background: #0f0f0f; /* deep black-grey */
+  color: #e4e4e4;
+}
+
+/* ---------------- NAVBAR ---------------- */
+/* Navbar */
+.navbar {
+    width: 100%;
+    padding: 18px 25px;
+    background: #0d0d0d;
+    border-bottom: 1px solid #222;
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+}
+
+.logo {
+    border: 2px solid white;
+    width: 42px;
+    height: 42px;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    font-weight: bold;
+    font-size: 20px;
+    border-radius: 10px;
+}
+
+.nav-links {
+    list-style: none;
+    display: flex;
+    gap: 25px;
+}
+
+.nav-links a {
+    text-decoration: none;
+    color: white;
+}
+
+.btn {
+    padding: 8px 16px;
+    border: 1px solid white;
+    border-radius: 6px;
+    transition: 0.2s;
+}
+
+.btn:hover {
+    background: white;
+    color: black;
+}
+
+/* ---------------- WRAPPER ---------------- */
+.wrapper {
+  max-width: 900px;
+  margin: 25px auto;
+  padding: 0 15px;
+}
+
+/* ---------------- TITLE ---------------- */
+.title {
+  text-align: center;
+  font-size: 30px;
+  margin-bottom: 22px;
+  font-weight: 600;
+  color: #fff;
+}
+
+/* ---------------- CARD (Dark Mode) ---------------- */
+.card {
+  background: #1a1a1a; /* dark grey card */
+  padding: 22px;
+  border-radius: 12px;
+  margin-bottom: 20px;
+  box-shadow: 0 0 12px rgba(255,255,255,0.04);
+}
+
+.card h2 {
+  font-size: 20px;
+  color: #fff;
+  margin-bottom: 12px;
+}
+
+.card ul {
+  margin-left: 20px;
+  line-height: 1.6;
+  color: #cfcfcf;
+}
+
+.card p {
+  color: #cfcfcf;
+}
+
+.lead {
+  font-size: 15px;
+  color: #d0d0d0;
+  line-height: 1.7;
+}
+
+/* ---------------- FOOTER ---------------- */
+.footer {
+  text-align: center;
+  padding: 25px 0;
+  font-size: 14px;
+  color: #aaa;
+}
+
+/* ---------------- RESPONSIVE ---------------- */
+@media (max-width: 600px) {
+  .title {
+    font-size: 26px;
+  }
+
+  .card {
+    padding: 18px;
+  }
+
+  .navbar {
+    padding: 12px 15px;
+  }
+
+  .nav-links {
+    gap: 10px;
+  }
+}

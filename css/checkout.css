@@ -1,0 +1,149 @@
+body {
+    margin: 0;
+    font-family: Arial, sans-serif;
+    background: #000;
+    color: white;
+}
+
+/* NAVBAR */
+.navbar {
+    padding: 16px 24px;
+    background: #000;
+    border-bottom: 1px solid #333;
+}
+
+.logo {
+    margin: 0;
+    font-size: 1.6rem;
+}
+
+/* LAYOUT */
+.container {
+    display: flex;
+    gap: 20px;
+    padding: 20px;
+}
+
+/* LEFT SIDE */
+.left-column {
+    flex: 2;
+    display: flex;
+    flex-direction: column;
+    gap: 22px;
+}
+
+/* SECTION BOXES */
+.section {
+    background: #0e0e0e;
+    padding: 20px;
+    border-radius: 10px;
+    border: 1px solid #333;
+}
+
+.section-title {
+    margin: 0 0 12px 0;
+    font-size: 1.2rem;
+}
+
+/* ADDRESS BOX */
+.address-box p {
+    margin: 3px 0;
+    color: #ccc;
+}
+
+.edit-btn {
+    margin-top: 12px;
+    padding: 8px 16px;
+    background: none;
+    border: 1px solid #fff;
+    color: white;
+    border-radius: 6px;
+    cursor: pointer;
+}
+
+.edit-btn:hover {
+    background: white;
+    color: black;
+}
+
+/* ORDER SUMMARY ITEMS */
+.summary-item {
+    display: flex;
+    gap: 15px;
+    align-items: center;
+    margin-bottom: 16px;
+}
+
+.item-img {
+    width: 80px;
+    height: 80px;
+    border-radius: 8px;
+}
+
+.price {
+    margin-top: 5px;
+    font-weight: bold;
+}
+
+/* PAYMENT OPTIONS */
+.radio-option {
+    display: flex;
+    align-items: center;
+    gap: 10px;
+    margin: 10px 0;
+    color: #ddd;
+}
+
+/* RIGHT SIDE PRICE BOX */
+.price-column {
+    flex: 1;
+}
+
+.price-box {
+    background: #0e0e0e;
+    padding: 20px;
+    border-radius: 10px;
+    border: 1px solid #333;
+}
+
+.price-box h3 {
+    margin-top: 0;
+    padding-bottom: 10px;
+    border-bottom: 1px solid #333;
+}
+
+.row {
+    display: flex;
+    justify-content: space-between;
+    margin: 8px 0;
+    color: #ccc;
+}
+
+.total {
+    margin-top: 14px;
+    font-weight: bold;
+    color: #fff;
+}
+
+.pay-btn {
+    width: 100%;
+    padding: 14px;
+    background: white;
+    color: black;
+    border: none;
+    border-radius: 8px;
+    margin-top: 20px;
+    font-weight: bold;
+    cursor: pointer;
+}
+
+.pay-btn:hover {
+    opacity: 0.85;
+}
+
+/* RESPONSIVE */
+@media (max-width: 768px) {
+    .container {
+        flex-direction: column;
+    }
+}

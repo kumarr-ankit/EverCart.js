@@ -1,0 +1,132 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>UPI Payment</title>
+
+    <style>
+        body {
+            margin: 0;
+            padding: 0;
+            font-family: Arial, sans-serif;
+            background: #121212;
+            color: #fff;
+        }
+
+        .container {
+            max-width: 450px;
+            margin: 40px auto;
+            background: #1E1E1E;
+            padding: 25px;
+            border-radius: 15px;
+            border: 1px solid #2c2c2c;
+        }
+
+        .title {
+            font-size: 22px;
+            font-weight: bold;
+            margin-bottom: 20px;
+            text-align: center;
+        }
+
+        .order-box {
+            background: #232323;
+            padding: 18px;
+            border-radius: 10px;
+            margin-bottom: 20px;
+            border: 1px solid #333;
+        }
+
+        .row {
+            display: flex;
+            justify-content: space-between;
+            margin: 10px 0;
+            font-size: 15px;
+        }
+
+        .amount {
+            font-size: 26px;
+            font-weight: bold;
+            color: #4caf50;
+            text-align: center;
+            margin: 20px 0;
+        }
+
+        .upi-apps {
+            display: flex;
+            justify-content: space-between;
+            margin: 20px 0;
+        }
+
+        .upi-apps img {
+            width: 60px;
+            height: 60px;
+            border-radius: 12px;
+            cursor: pointer;
+            border: 1px solid #333;
+        }
+
+        button {
+            width: 100%;
+            padding: 14px;
+            background: #2874f0;
+            border: none;
+            color: #fff;
+            font-size: 17px;
+            border-radius: 8px;
+            cursor: pointer;
+            margin-top: 10px;
+        }
+
+        button:hover {
+            background: #1a5fc9;
+        }
+    </style>
+</head>
+
+<body>
+
+<div class="container">
+    <div class="title">UPI Payment</div>
+
+    <div class="order-box">
+        <div class="row">
+            <span>Order ID:</span>
+            <span>#ORD123456</span>
+        </div>
+
+        <div class="row">
+            <span>Total Items:</span>
+            <span>3</span>
+        </div>
+
+        <div class="row">
+            <span>GST:</span>
+            <span>₹19</span>
+        </div>
+
+        <div class="row">
+            <span>Delivery:</span>
+            <span>FREE</span>
+        </div>
+    </div>
+
+    <div class="amount">₹ 1,299.00</div>
+
+    <div class="title" style="font-size: 18px;">Pay Using</div>
+
+    <div class="upi-apps">
+        <img src="https://upload.wikimedia.org/wikipedia/commons/9/95/Google_Pay_Logo.png">
+        <img src="https://upload.wikimedia.org/wikipedia/commons/f/f3/PhonePe_Logo.png">
+        <img src="https://upload.wikimedia.org/wikipedia/commons/4/46/Paytm_Logo.png">
+    </div>
+
+    <button onclick="window.location.href='order_success.html'">
+        Pay Now
+    </button>
+
+</div>
+
+</body>
+</html>

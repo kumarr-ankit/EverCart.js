@@ -1,0 +1,258 @@
+/* FIX: Remove horizontal scroll */
+* {
+    margin: 0;
+    padding: 0;
+    box-sizing: border-box;
+}
+
+/* General Theme */
+body {
+    font-family: Arial, sans-serif;
+    background: #000;
+    color: white;
+    overflow-x: hidden;
+}
+
+/* Navbar */
+.navbar {
+    width: 100%;
+    padding: 18px 20px;
+    /* reduced from 25px */
+    background: #0d0d0d;
+    border-bottom: 1px solid #222;
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+}
+
+.logo {
+    border: 2px solid white;
+    width: 42px;
+    height: 42px;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    font-weight: bold;
+    font-size: 20px;
+    border-radius: 10px;
+}
+
+.nav-links {
+    list-style: none;
+    display: flex;
+    gap: 20px;
+    /* reduced from 25px */
+}
+
+.nav-links a {
+    text-decoration: none;
+    color: white;
+    transition: 0.2s;
+}
+
+.nav-links a:hover {
+    color: #bbb;
+}
+
+.btn {
+    padding: 8px 16px;
+    border: 1px solid white;
+    border-radius: 6px;
+    transition: 0.2s;
+}
+
+.btn:hover {
+    background: white;
+    color: black !important;
+}
+
+/* Mobile Navbar */
+@media (max-width: 600px) {
+    .navbar {
+        flex-direction: column;
+        gap: 15px;
+    }
+
+    .nav-links {
+        flex-wrap: wrap;
+        justify-content: center;
+    }
+}
+
+/* Hero Section */
+.hero {
+    text-align: center;
+    padding: 60px 20px;
+}
+
+.hero h1 {
+    font-size: 34px;
+    margin-bottom: 10px;
+}
+
+.hero p {
+    color: #ccc;
+}
+
+/* Product Section */
+.section-title {
+    text-align: center;
+    font-size: 26px;
+    margin-bottom: 30px;
+}
+
+.card-container {
+    display: grid;
+    grid-template-columns: repeat(auto-fit, minmax(220px, 1fr));
+    gap: 20px;
+    padding: 0 15px 60px;
+    /* reduced from 20px */
+}
+
+/* Product Card */
+.card {
+    background: #111;
+    border: 1px solid #222;
+    padding: 20px;
+    border-radius: 12px;
+    text-align: center;
+    transition: 0.3s;
+}
+
+.card:hover {
+    border-color: white;
+    transform: translateY(-5px);
+}
+
+.img-box {
+    width: 100%;
+    height: 150px;
+    background: #222;
+    border-radius: 10px;
+    margin-bottom: 15px;
+}
+
+.item-name {
+    font-size: 16px;
+    margin-bottom: 8px;
+}
+
+.price {
+    color: #ccc;
+    margin-bottom: 15px;
+}
+
+.buy-btn {
+    padding: 10px 20px;
+    width: 100%;
+    background: white;
+    border: none;
+    color: black;
+    font-weight: bold;
+    border-radius: 6px;
+    cursor: pointer;
+    transition: 0.2s;
+}
+
+.buy-btn:hover {
+    background: #ddd;
+}
+
+/* Very small mobile */
+@media (max-width: 380px) {
+    .card {
+        padding: 15px;
+    }
+
+    .img-box {
+        height: 120px;
+    }
+}
+
+
+/* Product Card Enhanced */
+.card {
+    background: #111;
+    border: 1px solid #222;
+    padding: 0;
+    border-radius: 14px;
+    overflow: hidden;
+    cursor: pointer;
+    transition: 0.3s ease;
+    position: relative;
+}
+
+.card:hover {
+    border-color: white;
+    transform: translateY(-6px);
+    box-shadow: 0px 8px 20px rgba(255, 255, 255, 0.1);
+}
+
+/* Wishlist Heart */
+.wishlist {
+    position: absolute;
+    top: 10px;
+    right: 12px;
+    font-size: 20px;
+    color: white;
+    opacity: 0.7;
+    transition: 0.2s;
+}
+
+.wishlist:hover {
+    opacity: 1;
+}
+
+/* Image Box Improved */
+.img-box {
+    width: 100%;
+    height: 170px;
+    background: linear-gradient(145deg, #1a1a1a, #222);
+    border-bottom: 1px solid #222;
+}
+
+/* Card Content */
+.card-content {
+    padding: 15px;
+    text-align: left;
+}
+
+/* Product Name */
+.item-name {
+    font-size: 17px;
+    margin-bottom: 6px;
+}
+
+/* Rating */
+.rating {
+    font-size: 14px;
+    color: #f5c518;
+    /* Gold-like rating color */
+    margin-bottom: 6px;
+}
+
+/* Price */
+.price {
+    color: #ddd;
+    font-size: 16px;
+    font-weight: bold;
+    margin-bottom: 12px;
+}
+
+/* Add to Cart Button */
+.add-cart {
+    width: 100%;
+    padding: 10px 15px;
+    background: white;
+    border: none;
+    color: black;
+    font-weight: bold;
+    font-size: 15px;
+    border-radius: 6px;
+    cursor: pointer;
+    transition: 0.2s;
+}
+
+.add-cart:hover {
+    background: #dcdcdc;
+}

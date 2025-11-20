@@ -1,0 +1,95 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>EverCart - Orders</title>
+    <link rel="stylesheet" href="../css/orders.css" />
+</head>
+
+<body>
+
+    <!-- Navbar -->
+    <nav class="navbar">
+        <div class="logo">EC</div>
+        <ul class="nav-links">
+            <li><a href="home.html">Home</a></li>
+            <li><a href="#" class="active">Orders</a></li>
+            <li><a href="account.html">Account</a></li>
+            <li><a href="cart.html">Cart</a></li>
+        </ul>
+    </nav>
+
+    <div class="container">
+
+        <h1 class="page-title">Your Orders</h1>
+
+        <!-- Filter Section -->
+        <div class="filter-box">
+            <label for="month">Filter by Month:</label>
+            <select id="month">
+                <option>January 2025</option>
+                <option>February 2025</option>
+                <option>March 2025</option>
+                <option selected>All Orders</option>
+            </select>
+        </div>
+
+        <!-- ACTIVE ORDERS -->
+        <h2 class="section-title">Active Orders</h2>
+
+        <div class="order-card">
+            <div class="order-left">
+                <div class="img-box"></div>
+                <div>
+                    <h3 class="item-name">Wireless Bluetooth Headphones</h3>
+                    <p class="price">$59.99 • Qty: 1</p>
+                    <p class="order-date">Ordered on: 12 Feb 2025</p>
+                </div>
+            </div>
+
+            <div class="order-right">
+                <span class="status shipped">Shipped</span>
+                <button class="track-btn">Track Order</button>
+            </div>
+        </div>
+
+        <div class="order-card">
+            <div class="order-left">
+                <div class="img-box"></div>
+                <div>
+                    <h3 class="item-name">Smart Fitness Watch</h3>
+                    <p class="price">$89.99 • Qty: 1</p>
+                    <p class="order-date">Ordered on: 11 Feb 2025</p>
+                </div>
+            </div>
+
+            <div class="order-right">
+                <span class="status packed">Packed</span>
+                <button class="track-btn">Track Order</button>
+            </div>
+        </div>
+
+        <!-- PAST ORDERS -->
+        <h2 class="section-title">Past Orders</h2>
+
+        <div class="order-card">
+            <div class="order-left">
+                <div class="img-box"></div>
+                <div>
+                    <h3 class="item-name">Bluetooth Speaker</h3>
+                    <p class="price">$39.99 • Qty: 1</p>
+                    <p class="order-date">Delivered on: 30 Jan 2025</p>
+                </div>
+            </div>
+
+            <div class="order-right">
+                <span class="status delivered">Delivered</span>
+                <button class="view-btn">View Details</button>
+            </div>
+        </div>
+
+    </div>
+
+</body>
+</html>

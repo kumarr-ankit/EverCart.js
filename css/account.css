@@ -1,0 +1,233 @@
+/* ---------- GLOBAL THEME ---------- */
+*{
+  margin: 0;
+    padding: 0;
+    box-sizing: border-box;
+}
+body {
+  
+    background: #000;
+    color: #fff;
+    font-family: "Inter", Arial, sans-serif;
+}
+
+/* ---------- NAVBAR ---------- */
+.navbar {
+    width: 100%;
+    padding: 18px 25px;
+    background: #0d0d0d;
+    border-bottom: 1px solid #222;
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+}
+
+.logo {
+    border: 2px solid white;
+    width: 42px;
+    height: 42px;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    font-weight: bold;
+    font-size: 20px;
+    border-radius: 10px;
+}
+
+.nav-links {
+    list-style: none;
+    display: flex;
+    gap: 25px;
+}
+
+.nav-links a {
+    text-decoration: none;
+    color: white;
+    transition: 0.2s;
+}
+
+.nav-links a:hover,
+.nav-links .active {
+    color: #bbb;
+}
+
+/* ---------- PAGE WRAPPER ---------- */
+.container {
+    max-width: 700px;
+    margin: auto;
+    padding: 25px;
+}
+
+/* Title */
+.page-title {
+    font-size: 28px;
+    font-weight: 700;
+    margin-bottom: 25px;
+}
+
+/* ---------- SECTION BOX ---------- */
+.section {
+    background: #0d0d0d;
+    border: 1px solid #1a1a1a;
+    padding: 22px;
+    border-radius: 14px;
+    margin-bottom: 22px;
+}
+
+.section-title {
+    font-size: 20px;
+    font-weight: 600;
+    margin-bottom: 18px;
+    border-left: 4px solid white;
+    padding-left: 10px;
+}
+
+/* ---------- PROFILE SECTION ---------- */
+.profile-top {
+    display: flex;
+    align-items: center;
+    gap: 20px;
+}
+
+.profile-pic {
+    width: 85px;
+    height: 85px;
+    border-radius: 50%;
+    object-fit: cover;
+    border: 2px solid #333;
+}
+
+.edit-photo-btn {
+    padding: 8px 14px;
+    background: white;
+    color: black;
+    border: none;
+    border-radius: 7px;
+    font-weight: 600;
+    cursor: pointer;
+    transition: 0.2s;
+}
+
+.edit-photo-btn:hover {
+    background: #ccc;
+}
+
+/* Profile Info */
+.profile-info {
+    margin-top: 20px;
+}
+
+.profile-row {
+    display: flex;
+    justify-content: space-between;
+    padding: 10px 0;
+    border-bottom: 1px solid #1f1f1f;
+}
+
+.profile-row:last-child {
+    border-bottom: none;
+}
+
+.label {
+    color: #aaa;
+    font-size: 14px;
+}
+
+.value {
+    font-size: 15px;
+    font-weight: 600;
+}
+
+/* Buttons */
+.edit-btn,
+.copy-btn,
+.logout-btn {
+    padding: 12px;
+    width: 100%;
+    background: white;
+    color: black;
+    border-radius: 8px;
+    border: none;
+    margin-top: 20px;
+    font-weight: 600;
+    cursor: pointer;
+    transition: 0.2s;
+}
+
+.edit-btn:hover,
+.copy-btn:hover,
+.logout-btn:hover {
+    background: #ccc;
+}
+
+/* ---------- ADDRESS BOX ---------- */
+.address-box {
+    padding: 15px 0;
+}
+
+.address-text {
+    color: #ccc;
+    margin-bottom: 12px;
+}
+
+/* ---------- REFERRAL ---------- */
+.referral-box {
+    text-align: center;
+}
+
+.referral-code {
+    font-size: 22px;
+    font-weight: 700;
+    margin: 10px 0;
+}
+
+/* ---------- SETTINGS ---------- */
+.settings-list {
+    display: flex;
+    flex-direction: column;
+    gap: 12px;
+}
+
+.settings-item {
+    color: white;
+    text-decoration: none;
+    background: #111;
+    padding: 12px;
+    border-radius: 10px;
+    border: 1px solid #1a1a1a;
+    transition: 0.2s;
+}
+
+.settings-item:hover {
+    border-color: white;
+}
+
+/* ---------- RESPONSIVE FIXES ---------- */
+
+@media (max-width: 600px) {
+    .container {
+        padding: 15px;
+    }
+
+    .profile-top {
+        flex-direction: column;
+        text-align: center;
+    }
+
+    .profile-row {
+        flex-direction: column;
+        align-items: flex-start;
+        gap: 5px;
+    }
+
+    .nav-links {
+        flex-wrap: wrap;
+        justify-content: center;
+        gap: 15px;
+    }
+
+    .navbar {
+        flex-direction: column;
+        gap: 12px;
+    }
+}

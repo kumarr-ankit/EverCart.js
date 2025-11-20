@@ -1,0 +1,105 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Checkout - EverCart</title>
+    <link rel="stylesheet" href="../css/checkout.css" />
+</head>
+<body>
+
+    <!-- Navbar -->
+    <nav class="navbar">
+        <h2 class="logo">EC</h2>
+    </nav>
+
+    <div class="container">
+
+        <!-- LEFT SIDE: Delivery + Payment -->
+        <div class="left-column">
+
+            <!-- SECTION 1 - DELIVERY ADDRESS -->
+            <div class="section">
+                <h3 class="section-title">Delivery Address</h3>
+                <div class="address-box">
+                    <p><strong>Ankit Kumar</strong></p>
+                    <p>123 MG Road, Patna, Bihar - 800001</p>
+                    <p>Phone: +91 98765 43210</p>
+
+                    <button class="edit-btn">Change / Edit</button>
+                </div>
+            </div>
+
+            <!-- SECTION 2 - ORDER SUMMARY -->
+            <div class="section">
+                <h3 class="section-title">Order Summary</h3>
+
+                <div class="summary-item">
+                    <img src="https://via.placeholder.com/80" class="item-img" />
+                    <div>
+                        <h4>Wireless Headphones</h4>
+                        <p class="price">₹1,799</p>
+                    </div>
+                </div>
+
+                <div class="summary-item">
+                    <img src="https://via.placeholder.com/80" class="item-img" />
+                    <div>
+                        <h4>Laptop Stand</h4>
+                        <p class="price">₹749</p>
+                    </div>
+                </div>
+
+            </div>
+
+            <!-- SECTION 3 - PAYMENT OPTIONS -->
+            <div class="section">
+                <h3 class="section-title">Payment Options</h3>
+
+                <label class="radio-option">
+                    <input type="radio" name="payment" checked />
+                    <span>UPI (Recommended)</span>
+                </label>
+
+                <label class="radio-option">
+                    <input type="radio" name="payment" />
+                    <span>Debit/Credit Card</span>
+                </label>
+
+                <label class="radio-option">
+                    <input type="radio" name="payment" />
+                    <span>Cash on Delivery</span>
+                </label>
+            </div>
+        </div>
+
+        <!-- RIGHT SIDE: PRICE BOX -->
+        <div class="price-column">
+
+            <div class="price-box">
+                <h3>Price Details</h3>
+
+                <div class="row">
+                    <span>Subtotal</span>
+                    <span>₹2,548</span>
+                </div>
+
+                <div class="row">
+                    <span>GST</span>
+                    <span>₹120</span>
+                </div>
+
+                <div class="row total">
+                    <span>Total Amount</span>
+                    <span>₹2,668</span>
+                </div>
+
+                <button class="pay-btn">Place Order</button>
+            </div>
+
+        </div>
+
+    </div>
+
+</body>
+</html>

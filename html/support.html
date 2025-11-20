@@ -1,0 +1,95 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>EverCart - Support</title>
+    <link rel="stylesheet" href="../css/support.css" />
+</head>
+
+<body>
+
+    <!-- Navbar -->
+    <nav class="navbar">
+        <div class="logo">EC</div>
+        <ul class="nav-links">
+            <li><a href="home.html">Home</a></li>
+            <li><a href="orders.html">Orders</a></li>
+            <li><a href="account.html">Account</a></li>
+            <li><a href="cart.html">Cart</a></li>
+        </ul>
+    </nav>
+
+    <div class="container">
+
+        <h1 class="page-title">Help & Support</h1>
+
+        <!-- Contact Cards -->
+        <div class="support-grid">
+
+            <div class="support-card">
+                <h3>🚚 Order Help</h3>
+                <p>Track orders, manage returns, or get delivery assistance.</p>
+                <button class="btn">View Order Support</button>
+            </div>
+
+            <div class="support-card">
+                <h3>💬 Chat Support</h3>
+                <p>Talk directly with our support assistant.</p>
+                <button class="btn">Start Chat</button>
+            </div>
+
+            <div class="support-card">
+                <h3>📦 Return & Refund</h3>
+                <p>Return an item or check refund status.</p>
+                <button class="btn">Manage Returns</button>
+            </div>
+
+            <div class="support-card">
+                <h3>📞 Contact Us</h3>
+                <p>Email: support@evercart.com<br>Phone: +91 9000000000</p>
+                <button class="btn">Send Email</button>
+            </div>
+
+        </div>
+
+        <!-- FAQ Section -->
+        <div class="faq-section">
+            <h2>Frequently Asked Questions</h2>
+
+            <div class="faq-item">
+                <button class="faq-question">How do I track my order?</button>
+                <div class="faq-answer">Go to Orders → Select Your Order → Track.</div>
+            </div>
+
+            <div class="faq-item">
+                <button class="faq-question">What if my order is delayed?</button>
+                <div class="faq-answer">You can contact support or request a refund if delayed.</div>
+            </div>
+
+            <div class="faq-item">
+                <button class="faq-question">How do I return an item?</button>
+                <div class="faq-answer">Go to Orders → Choose Item → Click “Return”.</div>
+            </div>
+
+            <div class="faq-item">
+                <button class="faq-question">How can I change my phone/email?</button>
+                <div class="faq-answer">Go to Account → Edit Profile.</div>
+            </div>
+
+        </div>
+
+    </div>
+
+<script>
+    // Toggle FAQ Answers
+    document.querySelectorAll(".faq-question").forEach((btn) => {
+        btn.addEventListener("click", () => {
+            const answer = btn.nextElementSibling;
+            answer.classList.toggle("show");
+        });
+    });
+</script>
+
+</body>
+</html>

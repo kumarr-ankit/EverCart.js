@@ -1,0 +1,169 @@
+body {
+  margin: 0;
+  font-family: Arial, sans-serif;
+  background: #000; /* DARK THEME */
+  color: #fff;
+}
+
+.navbar {
+  padding: 16px 24px;
+  background: #000;
+  border-bottom: 1px solid #333;
+  color: #fff;
+}
+
+.logo {
+  margin: 0;
+  font-size: 1.6rem;
+}
+
+.container {
+  display: flex;
+  gap: 20px;
+  padding: 20px;
+}
+
+/* LEFT CART ITEMS */
+.cart-items {
+  flex: 2;
+  display: flex;
+  flex-direction: column;
+  gap: 20px;
+}
+
+.item-card {
+  display: flex;
+  gap: 16px;
+  background: #0e0e0e; /* Dark Card */
+  padding: 16px;
+  border: 1px solid #333;
+  border-radius: 8px;
+}
+
+.item-img {
+  width: 140px;
+  height: 140px;
+  border-radius: 8px;
+}
+
+.item-info {
+  flex: 1;
+}
+
+.item-title {
+  margin: 0;
+  font-size: 1.2rem;
+  color: #fff;
+}
+
+.seller {
+  font-size: 0.9rem;
+  color: #ccc;
+}
+
+.price-row {
+  margin-top: 10px;
+  display: flex;
+  align-items: center;
+  gap: 15px;
+}
+
+.price {
+  font-weight: bold;
+  font-size: 1.2rem;
+  color: #fff;
+}
+
+.qty {
+  padding: 5px;
+  background: #000;
+  color: #fff;
+  border: 1px solid #444;
+  border-radius: 4px;
+}
+
+.actions {
+  margin-top: 10px;
+  display: flex;
+  gap: 20px;
+}
+
+.link-btn {
+  background: none;
+  border: none;
+  color: #aaa;
+  text-decoration: underline;
+  cursor: pointer;
+  font-size: 0.9rem;
+}
+
+.link-btn:hover {
+  color: #fff;
+}
+
+/* PRICE BOX RIGHT SIDE */
+.price-box {
+  flex: 1;
+  background: #0e0e0e;
+  padding: 20px;
+  border-radius: 8px;
+  border: 1px solid #333;
+  height: fit-content;
+  color: #fff;
+}
+
+.price-box h3 {
+  margin-top: 0;
+  border-bottom: 1px solid #333;
+  padding-bottom: 10px;
+}
+
+.price-row-line,
+.price-total {
+  display: flex;
+  justify-content: space-between;
+  margin: 10px 0;
+  color: #ccc;
+}
+
+.price-total span:last-child {
+  font-weight: bold;
+  color: #fff;
+}
+
+.order-btn {
+  width: 100%;
+  padding: 12px;
+  background: #fff;
+  color: #000;
+  border: none;
+  margin-top: 15px;
+  border-radius: 6px;
+  cursor: pointer;
+  font-weight: bold;
+}
+
+.order-btn:hover {
+  opacity: 0.8;
+}
+
+/* RESPONSIVE */
+@media (max-width: 768px) {
+  .container {
+    flex-direction: column;
+  }
+
+  .item-card {
+    flex-direction: column;
+    align-items: center;
+    text-align: center;
+  }
+
+  .item-info {
+    text-align: center;
+  }
+
+  .actions {
+    justify-content: center;
+  }
+}

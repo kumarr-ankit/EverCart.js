@@ -1,0 +1,125 @@
+/* General Layout */
+body {
+    margin: 0;
+    font-family: Arial, sans-serif;
+    background: #0d0d0d;
+    color: white;
+}
+
+/* Navbar */
+.navbar {
+    background: #111;
+    padding: 15px 25px;
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+}
+
+.logo {
+    font-size: 24px;
+    font-weight: bold;
+}
+
+.nav-links {
+    list-style: none;
+    display: flex;
+    gap: 20px;
+}
+
+.nav-links a {
+    text-decoration: none;
+    color: #aaa;
+    font-size: 15px;
+}
+
+.nav-links a:hover,
+.nav-links .active {
+    color: white;
+}
+
+/* Page Container */
+.container {
+    width: 90%;
+    max-width: 900px;
+    margin: 30px auto;
+}
+
+.page-title {
+    text-align: center;
+    margin-bottom: 25px;
+    font-size: 30px;
+}
+
+/* Support Cards */
+.support-grid {
+    display: grid;
+    grid-template-columns: repeat(auto-fit, minmax(230px, 1fr));
+    gap: 20px;
+}
+
+.support-card {
+    background: #1a1a1a;
+    padding: 20px;
+    border-radius: 10px;
+    border: 1px solid #333;
+}
+
+.support-card h3 {
+    margin: 0 0 10px;
+}
+
+.btn {
+    margin-top: 10px;
+    background: white;
+    color: black;
+    border: none;
+    padding: 10px 15px;
+    border-radius: 6px;
+    cursor: pointer;
+    font-weight: bold;
+}
+
+.btn:hover {
+    background: #d9d9d9;
+}
+
+/* FAQ Section */
+.faq-section {
+    margin-top: 40px;
+}
+
+.faq-item {
+    margin-bottom: 15px;
+}
+
+.faq-question {
+    width: 100%;
+    background: #1a1a1a;
+    border: 1px solid #333;
+    color: white;
+    padding: 12px;
+    border-radius: 6px;
+    text-align: left;
+    cursor: pointer;
+    font-size: 16px;
+}
+
+.faq-answer {
+    display: none;
+    background: #222;
+    padding: 10px;
+    border-radius: 6px;
+    margin-top: 5px;
+    border: 1px solid #444;
+}
+
+.faq-answer.show {
+    display: block;
+}
+
+/* Responsive */
+@media (max-width: 480px) {
+    .page-title {
+        font-size: 22px;
+    }
+}

@@ -1,0 +1,121 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>Notifications</title>
+
+  <style>
+    body {
+      margin: 0;
+      font-family: "Poppins", sans-serif;
+      background: #0d0d0d;
+      color: #e5e5e5;
+    }
+
+    .container {
+      max-width: 720px;
+      margin: auto;
+      padding: 20px;
+    }
+
+    h2 {
+      text-align: center;
+      margin-bottom: 20px;
+      color: #ffffff;
+    }
+
+    .notification-card {
+      background: #1a1a1a;
+      border: 1px solid #2c2c2c;
+      padding: 16px;
+      margin: 12px 0;
+      border-radius: 14px;
+      display: flex;
+      gap: 15px;
+      transition: 0.2s;
+    }
+
+    .notification-card:hover {
+      background: #222;
+      transform: scale(1.01);
+    }
+
+    .icon {
+      width: 45px;
+      height: 45px;
+      background: #242424;
+      border-radius: 12px;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      font-size: 22px;
+    }
+
+    .text-box {
+      flex: 1;
+    }
+
+    .title {
+      font-size: 16px;
+      margin-bottom: 6px;
+      color: #fff;
+      font-weight: 600;
+    }
+
+    .desc {
+      font-size: 14px;
+      color: #b5b5b5;
+    }
+
+    .time {
+      font-size: 12px;
+      margin-top: 8px;
+      color: #888;
+    }
+  </style>
+</head>
+
+<body>
+  <div class="container">
+    <h2>Notifications</h2>
+
+    <div class="notification-card">
+      <div class="icon">📦</div>
+      <div class="text-box">
+        <div class="title">Order Shipped</div>
+        <div class="desc">Your order #1293 is out for delivery!</div>
+        <div class="time">2 hours ago</div>
+      </div>
+    </div>
+
+    <div class="notification-card">
+      <div class="icon">🎉</div>
+      <div class="text-box">
+        <div class="title">Exclusive Offer</div>
+        <div class="desc">Flat 20% off on your next purchase. Limited time!</div>
+        <div class="time">1 day ago</div>
+      </div>
+    </div>
+
+    <div class="notification-card">
+      <div class="icon">⚠️</div>
+      <div class="text-box">
+        <div class="title">Payment Reminder</div>
+        <div class="desc">Your payment attempt failed. Try again.</div>
+        <div class="time">3 days ago</div>
+      </div>
+    </div>
+
+    <div class="notification-card">
+      <div class="icon">🔔</div>
+      <div class="text-box">
+        <div class="title">Welcome!</div>
+        <div class="desc">Your account has been successfully created.</div>
+        <div class="time">5 days ago</div>
+      </div>
+    </div>
+
+  </div>
+</body>
+</html>
