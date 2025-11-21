@@ -4,14 +4,69 @@
   <meta charset="UTF-8" />
   <meta name="viewport" content="width=device-width, initial-scale=1.0" />
   <title>EverCart Login</title>
-      <link rel="shortcut icon" href="https://img.icons8.com/?size=100&id=j3XI41kBOIXY&format=png&color=636363"
-        type="image/x-icon">
+
+  <link rel="shortcut icon" 
+        href="https://img.icons8.com/?size=100&id=j3XI41kBOIXY&format=png&color=636363">
+
   <link rel="stylesheet" href="../css/login.css" />
+
+  <style>
+    /* PREMIUM DARK THEME SWITCH */
+    .switch-wrapper {
+      display: flex;
+      justify-content: center;
+      background: rgba(255, 255, 255, 0.05);
+      backdrop-filter: blur(8px);
+      padding: 8px;
+      border-radius: 50px;
+      margin-bottom: 25px;
+      border: 1px solid rgba(255,255,255,0.1);
+      gap: 5px;
+    }
+
+    .switch-btn {
+      padding: 10px 22px;
+      border-radius: 40px;
+      cursor: pointer;
+      border: none;
+      font-size: 15px;
+      color: #aaa;
+      background: transparent;
+      transition: 0.3s ease;
+      letter-spacing: 0.3px;
+    }
+
+    .switch-btn.active {
+     background: linear-gradient(135deg, #a9acb8, #47474b);
+          color: #111111;
+          box-shadow: 0 0 10px rgba(11, 11, 11, 0.5);
+    }
+
+  
+  </style>
 </head>
+
 <body>
   <div class="container">
     <div class="card">
-      <div class="logo"><img src="https://img.icons8.com/?size=100&id=j3XI41kBOIXY&format=png&color=636363" alt="" srcset=""></div>
+
+      <div class="logo">
+        <img src="https://img.icons8.com/?size=100&id=j3XI41kBOIXY&format=png&color=636363">
+      </div>
+
+      <!-- PREMIUM SWITCH -->
+      <div class="switch-wrapper">
+        <button class="switch-btn active"
+                onclick="location.href='login.html'">
+          Customer
+        </button> 
+
+        <button class="switch-btn"
+                onclick="location.href='partner-login.html'">
+          Partner
+        </button>
+      </div>
+
       <h1 class="title">Welcome Back</h1>
 
       <form>
@@ -25,9 +80,9 @@
       </form>
 
       <p class="footer-text">
-        New to EverCart?
-        <a href="../html/signup.html">Create Account</a>
+        New to EverCart? <a href="../html/signup.html">Create Account</a>
       </p>
+
     </div>
   </div>
 </body>
