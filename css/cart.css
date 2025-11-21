@@ -17,6 +17,10 @@ body {
   font-size: 1.6rem;
 }
 
+.logo img{
+  height: 42px;
+}
+
 .container {
   display: flex;
   gap: 20px;

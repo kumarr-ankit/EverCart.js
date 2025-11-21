@@ -25,7 +25,7 @@ body {
 }
 
 .logo {
-    border: 2px solid white;
+  
     width: 42px;
     height: 42px;
     display: flex;
@@ -34,6 +34,9 @@ body {
     font-weight: bold;
     font-size: 20px;
     border-radius: 10px;
+}
+.logo img{
+    height : 42px;
 }
 
 .nav-links {

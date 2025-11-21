@@ -4,6 +4,9 @@
     padding: 0;
     box-sizing: border-box;
 }
+a{
+    text-decoration: none;
+}
 
 /* General Theme */
 body {
@@ -26,7 +29,7 @@ body {
 }
 
 .logo {
-    border: 2px solid white;
+  box-sizing: border-box;
     width: 42px;
     height: 42px;
     display: flex;
@@ -35,6 +38,10 @@ body {
     font-weight: bold;
     font-size: 20px;
     border-radius: 10px;
+}
+
+.logo img{
+    height: 42px;
 }
 
 .nav-links {
@@ -95,6 +102,12 @@ body {
 }
 
 /* Product Section */
+.products{
+display: flex;
+flex-wrap: wrap;
+padding-left: 80px;
+gap: 22px;
+}
 .section-title {
     text-align: center;
     font-size: 26px;
@@ -179,7 +192,12 @@ body {
     overflow: hidden;
     cursor: pointer;
     transition: 0.3s ease;
+   
     position: relative;
+    text-decoration:solid;
+    color: azure;
+    
+    
 }
 
 .card:hover {

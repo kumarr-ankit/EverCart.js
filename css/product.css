@@ -23,7 +23,7 @@ body {
 }
 
 .logo {
-    border: 2px solid white;
+   
     width: 42px;
     height: 42px;
     display: flex;
@@ -71,6 +71,11 @@ body {
     flex: 1;
     display: flex;
     justify-content: center;
+}
+.image-box img{
+    max-height: fit-content;
+    width: fit-content;
+    background-size: cover;
 }
 
 .main-img {
@@ -125,6 +130,7 @@ body {
 
 .qty-select {
     padding: 10px;
+    
     width: 100%;
     background: #111;
     color: white;

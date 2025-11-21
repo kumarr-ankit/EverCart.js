@@ -1,4 +1,11 @@
 /* Page Setup */
+* {
+  margin: 0;
+  padding: 0;
+  box-sizing: border-box;
+  font-family: "Poppins", sans-serif;
+}
+
 body {
   margin: 0;
   font-family: Arial, sans-serif;
@@ -34,7 +41,7 @@ body {
 .logo {
   width: 48px;
   height: 48px;
-  border: 2px solid #ffffff;
+ 
   display: flex;
   align-items: center;
   justify-content: center;

@@ -16,6 +16,9 @@ body {
     margin: 0;
     font-size: 1.6rem;
 }
+.logo img{
+    height: 42px;
+}
 
 /* LAYOUT */
 .container {
