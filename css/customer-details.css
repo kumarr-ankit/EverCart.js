@@ -1,0 +1,126 @@
+* {
+    margin: 0;
+    padding: 0;
+    box-sizing: border-box;
+    font-family: "Poppins", sans-serif;
+}
+body {
+    margin: 0;
+    padding: 0;
+    font-family: Arial;
+    background: #0d0d0d;
+    color: white;
+}
+
+/* Layout */
+.container {
+    display: flex;
+    gap: 30px;
+    padding: 40px;
+}
+
+/* Profile Card */
+.profile-card {
+    width: 320px;
+    background: #1a1a1a;
+    padding: 25px;
+    border-radius: 12px;
+    text-align: center;
+    box-shadow: 0 0 10px #000;
+}
+
+.avatar {
+    width: 120px;
+    height: 120px;
+    border-radius: 50%;
+}
+
+.name {
+    font-size: 22px;
+    margin-top: 10px;
+}
+
+.email {
+    font-size: 14px;
+    color: #ccc;
+}
+
+.stats {
+    display: flex;
+    justify-content: space-between;
+    margin: 20px 0;
+}
+
+.stat-box {
+    background: #111;
+    padding: 10px;
+    width: 48%;
+    border-radius: 10px;
+    text-align: center;
+}
+
+.stat-box h3 {
+    margin: 5px 0;
+}
+
+/* Buttons */
+.btn, .btn-outline {
+    width: 100%;
+    padding: 12px;
+    margin-top: 12px;
+    cursor: pointer;
+    border-radius: 6px;
+    border: none;
+}
+
+.btn {
+    background: white;
+    color: black;
+    font-weight: bold;
+}
+
+.btn-outline {
+    background: transparent;
+    border: 1px solid #555;
+    color: white;
+}
+
+/* Right Section */
+.details-section {
+    flex: 1;
+}
+
+.details-section h1 {
+    margin-bottom: 20px;
+}
+
+.detail-box {
+    background: #1a1a1a;
+    padding: 20px;
+    margin-bottom: 20px;
+    border-radius: 10px;
+}
+
+/* Orders */
+.order-item {
+    display: flex;
+    justify-content: space-between;
+    padding: 12px;
+    background: #111;
+    border-radius: 8px;
+    margin-bottom: 12px;
+}
+
+.status {
+    padding: 5px 10px;
+    border-radius: 5px;
+    font-size: 12px;
+}
+
+.shipped {
+    background: #0047ff;
+}
+
+.delivered {
+    background: green;
+}

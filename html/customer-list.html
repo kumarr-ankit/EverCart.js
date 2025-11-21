@@ -1,0 +1,82 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Customer List</title>
+    <link rel="stylesheet" href="../css/customer-list.css">
+        <link rel="shortcut icon" href="https://img.icons8.com/?size=100&id=j3XI41kBOIXY&format=png&color=636363"
+        type="image/x-icon">
+</head>
+<body>
+
+<header class="header">
+    <h2>Partner Panel – Customer List</h2>
+</header>
+
+<section class="container">
+
+    <div class="top-bar">
+        <input type="text" placeholder="Search customers...">
+        <select>
+            <option>All Customers</option>
+            <option>Active</option>
+            <option>Inactive</option>
+            <option>High Spenders</option>
+            <option>Newly Joined</option>
+        </select>
+    </div>
+
+    <div class="table-container">
+        <table>
+            <thead>
+                <tr>
+                    <th>Customer</th>
+                    <th>Email</th>
+                    <th>Orders</th>
+                    <th>Total Spend</th>
+                    <th>Last Order</th>
+                    <th>Status</th>
+                    <th>Action</th>
+                </tr>
+            </thead>
+
+            <tbody>
+                <tr>
+                    <td>Rahul Verma</td>
+                    <td>rahul@example.com</td>
+                    <td>5</td>
+                    <td>₹8,230</td>
+                    <td>12 Jan 2025</td>
+                    <td><span class="status active">Active</span></td>
+                   <td><button class="view-btn" onclick="window.location=`customer-details.html`">View</button></td>
+                </tr>
+
+                <tr>
+                    <td>Priya Sharma</td>
+                    <td>priya@example.com</td>
+                    <td>2</td>
+                    <td>₹1,540</td>
+                    <td>3 Jan 2025</td>
+                    <td><span class="status active">Active</span></td>
+                    <td><button class="view-btn" onclick="window.location=`customer-details.html`">View</button></td>
+                </tr>
+
+                <tr>
+                    <td>Amit Soni</td>
+                    <td>amit@example.com</td>
+                    <td>0</td>
+                    <td>₹0</td>
+                    <td>—</td>
+                    <td><span class="status inactive">Inactive</span></td>
+                    <td><button class="view-btn" onclick="window.location=`customer-details.html`">View</button></td>
+                </tr>
+
+            </tbody>
+        </table>
+    </div>
+
+</section>
+
+</body>
+</html>

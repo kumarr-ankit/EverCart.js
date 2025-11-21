@@ -150,3 +150,18 @@ body {
         flex-direction: column;
     }
 }
+
+
+.gstbreakdown{
+
+color: white;
+
+margin-top: 12px;
+text-decoration: none;
+font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+color: yellow;
+font-size: small;
+}
+.gstbreakdown:focus{
+    color: red;
+}

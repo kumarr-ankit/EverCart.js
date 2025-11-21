@@ -1,16 +1,25 @@
 <!DOCTYPE html>
 <html lang="en">
+
 <head>
     <meta charset="UTF-8" />
     <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-    <title>Checkout - EverCart</title>
+    <title>Checkout</title>
     <link rel="stylesheet" href="../css/checkout.css" />
+        <link rel="shortcut icon" href="https://img.icons8.com/?size=100&id=j3XI41kBOIXY&format=png&color=636363"
+        type="image/x-icon">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.x/css/all.min.css">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.0/css/all.min.css">
+
+
 </head>
+
 <body>
 
     <!-- Navbar -->
     <nav class="navbar">
-        <h2 class="logo"><img src="https://img.icons8.com/?size=100&id=j3XI41kBOIXY&format=png&color=636363" alt="" srcset=""></h2>
+        <h2 class="logo"><img src="https://img.icons8.com/?size=100&id=j3XI41kBOIXY&format=png&color=636363" alt=""
+                srcset=""></h2>
     </nav>
 
     <div class="container">
@@ -26,7 +35,7 @@
                     <p>123 MG Road, Patna, Bihar - 800001</p>
                     <p>Phone: +91 98765 43210</p>
 
-                    <button class="edit-btn">Change / Edit</button>
+                    <button class="edit-btn">  <i class="fa-solid fa-pen"></i> Change</button>
                 </div>
             </div>
 
@@ -35,7 +44,8 @@
                 <h3 class="section-title">Order Summary</h3>
 
                 <div class="summary-item">
-                    <img src="https://encrypted-tbn0.gstatic.com/shopping?q=tbn:ANd9GcQOlrMLsUaFuj5OQBslO6Bubk5b0ExUI1TZJTan_rK-2MV04iQTSRaLvLwT5238zoQBwKR9eod9kMfa9REkFX02OjTS-Xe9eVgj_xUXcGbdcBmmPttRLwm5" class="item-img" />
+                    <img src="https://encrypted-tbn0.gstatic.com/shopping?q=tbn:ANd9GcQOlrMLsUaFuj5OQBslO6Bubk5b0ExUI1TZJTan_rK-2MV04iQTSRaLvLwT5238zoQBwKR9eod9kMfa9REkFX02OjTS-Xe9eVgj_xUXcGbdcBmmPttRLwm5"
+                        class="item-img" />
                     <div>
                         <h4>Wireless Headphones</h4>
                         <p class="price">₹1,799</p>
@@ -43,7 +53,8 @@
                 </div>
 
                 <div class="summary-item">
-                    <img src="https://encrypted-tbn3.gstatic.com/shopping?q=tbn:ANd9GcQGk4JX-6NHHW9GDbq_341hfv4Di01tQgWzYqjQu39tJ9N6-_WapOf65CuRE5oV1gTjCvtGREIlvePO3uceXSun2PFcatm7g5V_7jYI7pbqIYAJ4bWODoIVtpA" class="item-img" />
+                    <img src="https://encrypted-tbn3.gstatic.com/shopping?q=tbn:ANd9GcQGk4JX-6NHHW9GDbq_341hfv4Di01tQgWzYqjQu39tJ9N6-_WapOf65CuRE5oV1gTjCvtGREIlvePO3uceXSun2PFcatm7g5V_7jYI7pbqIYAJ4bWODoIVtpA"
+                        class="item-img" />
                     <div>
                         <h4>Laptop Stand</h4>
                         <p class="price">₹749</p>
@@ -93,8 +104,11 @@
                     <span>Total Amount</span>
                     <span>₹2,668</span>
                 </div>
+                <a href="gst.html" class="gstbreakdown"> GST Breakdown <i class="fa-solid fa-up-right-from-square"></i></a>
 
                 <button class="pay-btn" onclick="window.location=`../html/upi_payment.html`">Place Order</button>
+
+
             </div>
 
         </div>
@@ -102,4 +116,5 @@
     </div>
 
 </body>
+
 </html>

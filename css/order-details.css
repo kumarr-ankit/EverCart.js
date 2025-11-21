@@ -1,0 +1,167 @@
+/* Dark Theme Base */
+
+* {
+    margin: 0;
+    padding: 0;
+    box-sizing: border-box;
+    font-family: "Poppins", sans-serif;
+}
+body {
+    background: #0d0d0d;
+    margin: 0;
+    padding: 0;
+    font-family: Arial, sans-serif;
+    color: white;
+}
+
+.header {
+    background: #111;
+    padding: 20px;
+    text-align: center;
+    border-bottom: 1px solid #222;
+}
+
+.container {
+    width: 90%;
+    max-width: 900px;
+    margin: 40px auto;
+}
+
+/* Order Header */
+.order-header {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    margin-bottom: 25px;
+}
+
+.status {
+    padding: 6px 12px;
+    border-radius: 6px;
+    font-size: 14px;
+}
+
+.status.shipped {
+    background: #1c552b;
+}
+
+/* Section */
+.section {
+    background: #111;
+    padding: 18px;
+    border-radius: 10px;
+    margin-bottom: 25px;
+    border: 1px solid #1f1f1f;
+}
+
+.section-title {
+    margin-bottom: 15px;
+    font-weight: 600;
+    border-left: 4px solid white;
+    padding-left: 10px;
+}
+
+/* Info Rows */
+.info-row {
+    display: flex;
+    justify-content: space-between;
+    padding: 8px 0;
+    border-bottom: 1px dashed #333;
+}
+
+.info-row:last-child {
+    border-bottom: 0;
+}
+
+.info-row span {
+    color: #ccc;
+}
+
+.total span {
+    color: #fff;
+    font-weight: bold;
+}
+
+/* Product Cards */
+.product-card {
+    display: flex;
+    align-items: center;
+    padding: 15px 0;
+    border-bottom: 1px dashed #333;
+}
+
+.product-card:last-child {
+    border-bottom: none;
+}
+
+.product-card img {
+    width: 70px;
+    height: 70px;
+    background: #222;
+    border-radius: 8px;
+    margin-right: 15px;
+}
+
+.p-info h4 {
+    margin: 0;
+    font-size: 16px;
+}
+
+/* Timeline */
+.timeline {
+    list-style: none;
+    padding-left: 0;
+}
+
+.timeline li {
+    padding: 8px 0;
+    border-bottom: 1px dashed #333;
+}
+
+.timeline li span {
+    color: #ccc;
+}
+
+/* Buttons */
+.btn-row {
+    display: flex;
+    justify-content: space-between;
+    margin-top: 30px;
+}
+
+.back-btn,
+.download-btn {
+    padding: 12px 18px;
+    border: none;
+    border-radius: 8px;
+    cursor: pointer;
+    font-weight: 600;
+}
+
+.back-btn {
+    background: #333;
+    color: white;
+}
+
+.download-btn {
+    background: white;
+    color: black;
+}
+
+.download-btn:hover,
+.back-btn:hover {
+    opacity: 0.85;
+}
+
+/* Responsive */
+@media (max-width: 600px) {
+    .info-row {
+        flex-direction: column;
+        align-items: flex-start;
+    }
+
+    .product-card {
+        flex-direction: column;
+        align-items: flex-start;
+    }
+}

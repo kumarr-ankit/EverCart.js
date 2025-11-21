@@ -1,0 +1,146 @@
+* {
+  margin: 0;
+  padding: 0;
+  box-sizing: border-box;
+  font-family: "Poppins", sans-serif;
+}
+/* Global */
+body {
+  font-family: "Poppins", sans-serif;
+  margin: 0;
+  background: #0c0c0f;
+  color: #fff;
+}
+
+/* Header */
+.header {
+  text-align: center;
+  padding: 30px 20px;
+  background: linear-gradient(135deg, #13131a, #0a0a0d);
+  border-bottom: 1px solid #1f1f1f;
+}
+
+.header h1 {
+  margin: 0;
+  font-size: 32px;
+  letter-spacing: 1px;
+}
+
+.sub {
+  margin-top: 5px;
+  color: #aaa;
+  font-size: 14px;
+}
+
+/* Container */
+.container {
+  padding: 30px 40px;
+}
+
+/* Stats */
+.stats-grid {
+  display: grid;
+  grid-template-columns: repeat(4, 1fr);
+  gap: 25px;
+}
+
+.stat-card {
+  padding: 22px;
+  background: rgba(255, 255, 255, 0.06);
+  backdrop-filter: blur(12px);
+  border-radius: 14px;
+  border: 1px solid rgba(255, 255, 255, 0.09);
+  box-shadow: 0 0 20px rgba(0, 0, 0, 0.4);
+  transition: .3s ease;
+}
+
+.stat-card:hover {
+  transform: translateY(-6px);
+  box-shadow: 0 0 25px rgba(0, 150, 255, 0.25);
+}
+
+.stat-card h2 {
+  margin: 10px 0 0 0;
+  font-size: 26px;
+  color: #42aaff;
+}
+
+.label {
+  color: #bbb;
+  font-size: 14px;
+}
+
+/* Analytics Grid */
+.main-grid {
+  display: grid;
+  grid-template-columns: 2fr 1fr;
+  gap: 25px;
+  margin-top: 30px;
+}
+
+/* Box Components */
+.box {
+  background: rgba(255, 255, 255, 0.07);
+  padding: 20px;
+  border-radius: 14px;
+  border: 1px solid rgba(255, 255, 255, 0.1);
+  backdrop-filter: blur(14px);
+  transition: .3s ease;
+}
+
+.box:hover {
+  transform: translateY(-5px);
+  box-shadow: 0 0 20px rgba(0, 150, 255, 0.15);
+}
+
+.box.big {
+  grid-column: span 2;
+}
+
+.placeholder {
+  height: 230px;
+  margin-top: 10px;
+  border-radius: 10px;
+  background: #0f0f14;
+  border: 1px dashed #333;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  color: #777;
+  font-size: 14px;
+}
+
+/* Lists */
+.list {
+  list-style: none;
+  padding: 0;
+  margin-top: 15px;
+}
+
+.list li {
+  background: rgba(255, 255, 255, 0.04);
+  margin-bottom: 12px;
+  padding: 12px 14px;
+  border-radius: 10px;
+  border: 1px solid #222;
+  display: flex;
+  justify-content: space-between;
+}
+
+.list span {
+  font-weight: bold;
+  color: #49a6ff;
+}
+
+/* Responsive */
+@media (max-width: 900px) {
+  .stats-grid {
+    grid-template-columns: repeat(2, 1fr);
+  }
+  .main-grid {
+    grid-template-columns: 1fr;
+  }
+  .box.big {
+    grid-column: span 1;
+  }
+}

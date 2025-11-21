@@ -1,0 +1,124 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Partner Settings — EverCart</title>
+    <link rel="stylesheet" href="../css/partner-settings.css" />
+        <link rel="shortcut icon" href="https://img.icons8.com/?size=100&id=j3XI41kBOIXY&format=png&color=636363"
+        type="image/x-icon">
+</head>
+
+<body>
+
+    <!-- Navbar -->
+    <nav class="navbar">
+        <div class="logo">EC Partner</div>
+        <ul class="nav-links">
+            <li><a href="partner-home.html">Dashboard</a></li>
+            <li><a href="partner-orders.html">Orders</a></li>
+            <li><a href="partner-customers.html">Customers</a></li>
+            <li><a href="#" class="active">Settings</a></li>
+        </ul>
+    </nav>
+
+    <!-- Wrapper -->
+    <main class="container">
+
+        <h1 class="title">Partner Settings</h1>
+
+        <!-- Profile -->
+        <section class="card">
+            <h2 class="section-title">Profile Settings</h2>
+
+            <div class="profile-row">
+                <img src="https://img.icons8.com/?size=100&id=r_Vph1MWIfJQ&format=png&color=000000" class="profile-pic" alt="Profile" />
+                <button class="btn-outline">Change Photo</button>
+            </div>
+
+            <div class="field">
+                <label>Partner Name</label>
+                <input type="text" value="Rohit Enterprises">
+            </div>
+
+            <div class="field">
+                <label>Business Email</label>
+                <input type="email" value="partner@rohit.com">
+            </div>
+
+            <div class="field">
+                <label>Phone Number</label>
+                <input type="text" value="+91 9876543210">
+            </div>
+
+            <button class="btn-primary">Save Changes</button>
+        </section>
+
+        <!-- Business Info -->
+        <section class="card">
+            <h2 class="section-title">Business Information</h2>
+
+            <div class="field">
+                <label>Partner Code</label>
+                <input type="text" disabled value="EC-PTR-49831">
+            </div>
+
+            <div class="field">
+                <label>Business Address</label>
+                <textarea>123 Market Road, Delhi</textarea>
+            </div>
+
+            <button class="btn-primary">Update Business Info</button>
+        </section>
+
+        <!-- Password -->
+        <section class="card">
+            <h2 class="section-title">Security</h2>
+
+            <div class="field">
+                <label>Current Password</label>
+                <input type="password" placeholder="Enter current password">
+            </div>
+
+            <div class="field">
+                <label>New Password</label>
+                <input type="password" placeholder="Create new password">
+            </div>
+
+            <button class="btn-primary">Update Password</button>
+        </section>
+
+        <!-- Notifications -->
+        <section class="card">
+            <h2 class="section-title">Notifications</h2>
+
+            <div class="toggle-row">
+                <label>Order Updates</label>
+                <input type="checkbox" checked />
+            </div>
+
+            <div class="toggle-row">
+                <label>Customer Joined Alerts</label>
+                <input type="checkbox" checked />
+            </div>
+
+            <div class="toggle-row">
+                <label>Performance Reports</label>
+                <input type="checkbox" />
+            </div>
+        </section>
+
+        <!-- Legal -->
+        <section class="card">
+            <h2 class="section-title">Legal</h2>
+
+            <a class="link" href="privacy.html">Privacy Policy</a>
+            <a class="link" href="terms.html">Terms & Conditions</a>
+        </section>
+
+        <button class="logout-btn">Logout</button>
+
+    </main>
+
+</body>
+</html>

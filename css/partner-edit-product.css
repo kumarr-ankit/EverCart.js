@@ -1,0 +1,154 @@
+* {
+    margin: 0;
+    padding: 0;
+    box-sizing: border-box;
+    font-family: Arial, sans-serif;
+}
+
+body {
+    display: flex;
+    background: #0d0d0d;
+    color: #fff;
+}
+
+/* Sidebar */
+.sidebar {
+    width: 240px;
+    height: 100vh;
+    background: #111;
+    padding: 20px;
+    border-right: 1px solid #222;
+}
+
+.logo {
+    text-align: center;
+    font-size: 22px;
+    margin-bottom: 25px;
+}
+
+.menu {
+    list-style: none;
+}
+
+.menu li {
+    margin-bottom: 15px;
+}
+
+.menu a {
+    text-decoration: none;
+    color: #ccc;
+    padding: 10px;
+    border-radius: 6px;
+    display: flex;
+    align-items: center;
+    gap: 10px;
+}
+
+.menu a:hover,
+.menu .active {
+    background: #222;
+    color: #fff;
+}
+
+/* Main Section */
+.main {
+    flex: 1;
+    padding: 35px;
+}
+
+.page-title {
+    font-size: 30px;
+    margin-bottom: 20px;
+}
+
+.card {
+    background: #151515;
+    border: 1px solid #222;
+    padding: 25px;
+    border-radius: 12px;
+    display: flex;
+    justify-content: center;
+}
+
+.form {
+    display: flex;
+    gap: 40px;
+    width: 100%;
+}
+
+/* Image Section */
+.img-section {
+    width: 35%;
+    text-align: center;
+}
+
+.preview-img {
+    width: 100%;
+    max-width: 260px;
+    border-radius: 12px;
+    margin-bottom: 15px;
+    border: 1px solid #333;
+}
+
+.upload-btn {
+    background: #222;
+    padding: 12px 18px;
+    display: inline-block;
+    border-radius: 8px;
+    cursor: pointer;
+    border: 1px solid #444;
+}
+
+/* Fields */
+.fields {
+    width: 60%;
+}
+
+label {
+    display: block;
+    margin: 12px 0 5px;
+    color: #ccc;
+}
+
+input, textarea, select {
+    width: 100%;
+    padding: 12px;
+    background: #111;
+    border: 1px solid #333;
+    color: #fff;
+    border-radius: 8px;
+}
+
+textarea {
+    resize: none;
+}
+
+/* Buttons */
+.btn-group {
+    display: flex;
+    gap: 15px;
+    margin-top: 25px;
+}
+
+.btn {
+    flex: 1;
+    padding: 14px;
+    border: none;
+    font-weight: bold;
+    border-radius: 8px;
+    cursor: pointer;
+}
+
+.update {
+    background: #fff;
+    color: #000;
+}
+
+.delete {
+    background: #c00000;
+    color: #fff;
+}
+
+.delete:hover {
+    background: #e00000;
+}

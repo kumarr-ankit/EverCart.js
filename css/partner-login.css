@@ -1,0 +1,135 @@
+/* Reset */
+* {
+    margin: 0;
+    padding: 0;
+    box-sizing: border-box;
+    font-family: "Poppins", sans-serif;
+}
+
+body {
+    background: #0d0d0d;
+    color: #fff;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    height: 100vh;
+}
+
+.container {
+    width: 100%;
+    max-width: 420px;
+    padding: 20px;
+}
+
+.login-card {
+    background: #111;
+    padding: 35px;
+    border-radius: 15px;
+    box-shadow: 0 0 20px rgba(255,255,255,0.05);
+}
+
+.title {
+    font-size: 28px;
+    margin-bottom: 5px;
+    text-align: center;
+}
+
+.subtitle {
+    font-size: 14px;
+    color: #aaa;
+    margin-bottom: 25px;
+    text-align: center;
+}
+
+/* INPUT FIELDS */
+.input-group {
+    margin-bottom: 20px;
+}
+
+.input-group label {
+    display: block;
+    font-size: 14px;
+    color: #ccc;
+    margin-bottom: 6px;
+}
+
+.input-group input {
+    width: 100%;
+    padding: 12px;
+    border: 1px solid #444;
+    background: #1a1a1a;
+    color: #fff;
+    border-radius: 8px;
+    font-size: 15px;
+    outline: none;
+    transition: 0.3s;
+}
+
+.input-group input:focus {
+    border-color: #fff;
+}
+
+/* BUTTON */
+.login-btn {
+    width: 100%;
+    padding: 12px;
+    background: #fff;
+    color: #000;
+    font-size: 16px;
+    font-weight: 600;
+    border: none;
+    border-radius: 8px;
+    cursor: pointer;
+    margin-top: 10px;
+    transition: 0.3s;
+}
+
+.login-btn:hover {
+    background: #e6e6e6;
+}
+
+/* Forgot link */
+.forgot {
+    display: block;
+    text-align: center;
+    margin-top: 15px;
+    color: #aaa;
+    font-size: 14px;
+    text-decoration: none;
+    transition: 0.3s;
+}
+
+.forgot:hover {
+    color: #fff;
+}
+
+/* RESPONSIVE */
+@media (max-width: 480px) {
+    .login-card {
+        padding: 25px;
+    }
+
+    .title {
+        font-size: 24px;
+    }
+}
+
+
+.new-account {
+    margin-top: 25px;
+    text-align: center;
+    font-size: 14px;
+    color: #aaa;
+}
+
+.new-account a {
+    color: #fff;
+    font-weight: 600;
+    text-decoration: none;
+    margin-left: 5px;
+    transition: 0.3s;
+}
+
+.new-account a:hover {
+    color: #ccc;
+}

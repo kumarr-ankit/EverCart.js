@@ -73,9 +73,10 @@ body {
     justify-content: center;
 }
 .image-box img{
-    max-height: fit-content;
+  height: fit-content;
     width: fit-content;
-    background-size: cover;
+    background-size: contain;
+   
 }
 
 .main-img {
@@ -185,4 +186,177 @@ body {
     .buttons {
         flex-direction: column;
     }
+}
+
+
+/* ------------------------------
+   Improved Reviews Section
+--------------------------------*/
+.reviews-section {
+  margin-top: 40px;
+  border-radius: 4px;
+  overflow: hidden;
+  background: transparent;
+  margin: 12px;
+  border-top: 1px solid #1f1f1f;
+}
+
+/* top area: summary and form side-by-side */
+.reviews-top {
+  display: grid;
+  grid-template-columns: 360px 1fr;
+  gap: 20px;
+  padding: 22px;
+  align-items: start;
+}
+
+/* rating summary left column */
+.rating-summary {
+  display: flex;
+  gap: 18px;
+  align-items: flex-start;
+}
+
+.avg-block {
+  text-align: center;
+  min-width: 120px;
+}
+
+.avg-rating {
+  font-size: 44px;
+  font-weight: 700;
+  color: #ffffff;
+  line-height: 1;
+}
+
+.stars.big { color: #ffbf00; font-size: 20px; margin-top: 6px; }
+
+.total-reviews { color: #a9a9a9; margin-top: 6px; font-size: 13px; }
+
+/* distribution bars */
+.dist-block { flex: 1; min-width: 160px; }
+
+.dist-row {
+  display: flex;
+  align-items: center;
+  gap: 10px;
+  margin: 8px 0;
+}
+
+.dist-label {
+  width: 18px;
+  text-align: right;
+  color: #cfcfcf;
+  font-size: 13px;
+}
+
+.dist-bar {
+  flex: 1;
+  height: 9px;
+  background: rgba(255,255,255,0.03);
+  border-radius: 6px;
+  overflow: hidden;
+  box-shadow: inset 0 1px 0 rgba(255,255,255,0.02);
+}
+
+.dist-bar span {
+  display: block;
+  height: 100%;
+  background: linear-gradient(90deg,#ffd54f,#ffb300);
+  border-radius: 6px 0 0 6px;
+}
+
+/* dist count */
+.dist-count { width: 36px; text-align: right; color: #9f9f9f; font-size: 13px; }
+
+/* Write review column */
+.write-review {
+  background: #0f0f0f;
+  border: 1px solid #202020;
+  padding: 16px;
+  border-radius: 10px;
+}
+
+.write-title { margin: 0 0 8px 0; font-size: 18px; color: #fff; }
+
+.star-input { display:flex; align-items:center; gap:8px; margin-bottom: 10px; }
+.star-btn {
+  background: transparent;
+  border: none;
+  font-size: 22px;
+  color: #444;
+  cursor: pointer;
+  transition: transform .12s ease, color .12s ease;
+  padding: 4px 6px;
+}
+.star-btn:hover { transform: translateY(-3px); color: #ffbf00; }
+.star-btn.active { color: #ffbf00; transform: translateY(-2px); }
+
+.selected-value { color:#9f9f9f; font-size:13px; margin-left:6px; }
+
+/* textarea and actions */
+.review-input {
+  width: 100%;
+  min-height: 90px;
+  padding: 12px;
+  background: #0b0b0b;
+  color: #fff;
+  border-radius: 8px;
+  border: 1px solid #232323;
+  resize: vertical;
+  margin-bottom: 10px;
+}
+
+.write-actions { display:flex; gap:10px; justify-content:flex-end; align-items:center; }
+.submit-review {
+  background: #fff;
+  color: #000;
+  padding: 10px 16px;
+  border-radius: 8px;
+  border: none;
+  font-weight: 600;
+  cursor: pointer;
+}
+.clear-review {
+  background: transparent;
+  color: #cfcfcf;
+  border: 1px solid #2a2a2a;
+  padding: 9px 14px;
+  border-radius: 8px;
+  cursor: pointer;
+}
+.note { color:#8f8f8f; font-size:12px; margin-top:10px; }
+
+/* reviews list */
+.reviews-list {
+  padding: 18px 22px 26px;
+  display: grid;
+  gap: 14px;
+  border-top: 1px solid #151515;
+}
+
+.review-card {
+  background: #0f0f0f;
+  border: 1px solid #1f1f1f;
+  padding: 14px;
+  border-radius: 10px;
+}
+
+.review-meta { display:flex; justify-content:space-between; align-items:center; margin-bottom:8px; }
+.user { font-weight:600; font-size:14px; }
+.review-date { color:#9a9a9a; font-size:12px; margin-top:4px; }
+.stars.small { color:#ffbf00; font-size:14px; }
+
+/* review text */
+.review-text { color:#d0d0d0; font-size:14px; line-height:1.5; }
+
+/* responsive: stack columns */
+@media (max-width: 880px) {
+  .reviews-top { grid-template-columns: 1fr; }
+  .rating-summary { flex-direction:column; gap:14px; }
+  .dist-block { order: 2; }
+  .avg-block { order: 1; display:flex; gap:14px; align-items:center; }
+  .avg-rating { font-size:34px; }
+  .dist-count { font-size:12px; width: 34px; }
+  .dist-label { font-size:12px; width: 16px; }
 }

@@ -1,0 +1,100 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Edit Product | Partner Panel</title>
+    <link rel="shortcut icon" href="https://img.icons8.com/?size=100&id=j3XI41kBOIXY&format=png&color=636363"
+        type="image/x-icon">
+    <link rel="stylesheet" href="../css/partner-edit-product.css">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0/css/all.min.css">
+</head>
+
+<body>
+
+<!-- Sidebar -->
+<aside class="sidebar">
+    <h2 class="logo">Partner</h2>
+    <ul class="menu">
+        <li><a href="partner-home.html"><i class="fa fa-home"></i> Dashboard</a></li>
+        <li><a href="partner-orders.html"><i class="fa fa-box"></i> Orders</a></li>
+        <li><a href="partner-customers.html"><i class="fa fa-users"></i> Customers</a></li>
+        <li><a href="partner-analytics.html"><i class="fa fa-chart-line"></i> Analytics</a></li>
+        <li><a href="partner-notifications.html"><i class="fa fa-bell"></i> Notifications</a></li>
+        <li><a href="partner-earnings.html"><i class="fa fa-wallet"></i> Earnings</a></li>
+        <li><a href="partner-payouts.html"><i class="fa fa-money-bill"></i> Payouts</a></li>
+        <li><a href="product-list.html"><i class="fa fa-list"></i> Product List</a></li>
+        <li><a class="active" href="edit-product.html"><i class="fa fa-edit"></i> Edit Product</a></li>
+        <li><a href="partner-settings.html"><i class="fa fa-cog"></i> Settings</a></li>
+    </ul>
+</aside>
+
+<!-- Main -->
+<main class="main">
+
+    <h1 class="page-title">Edit Product</h1>
+
+    <div class="card">
+
+        <form class="form">
+
+            <!-- Image Preview -->
+            <div class="img-section">
+                <img src="https://i.imgur.com/8Km9tLL.png" id="preview" class="preview-img">
+
+                <label class="upload-btn">
+                    <i class="fa fa-upload"></i> Change Image
+                    <input type="file" id="imgInput" accept="image/*" hidden>
+                </label>
+            </div>
+
+            <!-- Product Fields -->
+            <div class="fields">
+
+                <label>Product Name</label>
+                <input type="text" value="Wireless Headphones">
+
+                <label>Category</label>
+                <input type="text" value="Electronics">
+
+                <label>Price (₹)</label>
+                <input type="number" value="1499">
+
+                <label>Stock</label>
+                <input type="number" value="34">
+
+                <label>Description</label>
+                <textarea rows="5">High-quality wireless headphones with noise isolation and deep bass.</textarea>
+
+                <label>Status</label>
+                <select>
+                    <option selected>In Stock</option>
+                    <option>Out of Stock</option>
+                </select>
+
+                <div class="btn-group">
+                    <button type="submit" class="btn update"><i class="fa fa-save"></i> Update Product</button>
+                    <button type="button" class="btn delete"><i class="fa fa-trash"></i> Delete Product</button>
+                </div>
+
+            </div>
+
+        </form>
+
+    </div>
+
+</main>
+
+<script>
+    // image preview
+    const imgInput = document.getElementById("imgInput");
+    const preview = document.getElementById("preview");
+
+    imgInput.addEventListener("change", () => {
+        const file = imgInput.files[0];
+        if (file) preview.src = URL.createObjectURL(file);
+    });
+</script>
+
+</body>
+</html>
