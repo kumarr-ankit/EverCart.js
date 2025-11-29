@@ -114,3 +114,7 @@ textarea {
 .btn-submit:hover {
     background: #dedede;
 }
+.preview{
+    border-radius: 16px;
+    margin: 20px;
+}

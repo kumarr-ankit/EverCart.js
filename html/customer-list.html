@@ -3,80 +3,353 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Customer List</title>
-    <link rel="stylesheet" href="../css/customer-list.css">
-        <link rel="shortcut icon" href="https://img.icons8.com/?size=100&id=j3XI41kBOIXY&format=png&color=636363"
-        type="image/x-icon">
+    <title>Customer List | EverCart</title>
+    <link rel="shortcut icon" href="https://img.icons8.com/?size=100&id=j3XI41kBOIXY&format=png&color=636363" type="image/x-icon">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.0/css/all.min.css">
+    <style>
+        /* RESET */
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+            font-family: "Poppins", sans-serif;
+        }
+
+        body {
+            background: #000;
+            color: white;
+            display: flex;
+        }
+
+        /* SIDEBAR */
+        .sidebar {
+            width: 240px;
+            height: 100vh;
+            background: #0d0d0d;
+            border-right: 1px solid #222;
+            padding: 25px 18px;
+            position: fixed;
+            overflow-y: auto;
+        }
+
+        .logo {
+            text-align: center;
+            margin-bottom: 25px;
+            font-size: 22px;
+        }
+
+        .menu {
+            list-style: none;
+        }
+
+        .menu li {
+            margin: 18px 0;
+        }
+
+        .menu a {
+            text-decoration: none;
+            color: #bbb;
+            display: flex;
+            gap: 12px;
+            align-items: center;
+            padding: 10px;
+            border-radius: 6px;
+            transition: 0.3s;
+        }
+
+        .menu a:hover,
+        .menu a.active {
+            background: #1a1a1a;
+            color: #fff;
+        }
+
+        .logout {
+            margin-top: 30px;
+            color: #ff4d4d !important;
+        }
+
+        /* CONTENT */
+        .content {
+            margin-left: 240px;
+            width: calc(100% - 240px);
+            padding: 0;
+        }
+
+        /* Header */
+        .header {
+            background: #111;
+            padding: 20px;
+            text-align: center;
+            border-bottom: 1px solid #222;
+        }
+
+        .header h2 {
+            margin: 0;
+            font-weight: 600;
+        }
+
+        /* Page Container */
+        .container {
+            width: 90%;
+            max-width: 1100px;
+            margin: 40px auto;
+        }
+
+        /* Search + Filter */
+        .top-bar {
+            display: flex;
+            gap: 15px;
+            margin-bottom: 25px;
+        }
+
+        .top-bar input,
+        .top-bar select {
+            padding: 12px;
+            border: 1px solid #444;
+            background: #111;
+            color: white;
+            border-radius: 6px;
+            flex: 1;
+        }
+
+        .top-bar input {
+            flex: 2;
+        }
+
+        /* Table */
+        .table-container {
+            overflow-x: auto;
+            border: 1px solid #222;
+            border-radius: 10px;
+            background: #111;
+        }
+
+        table {
+            width: 100%;
+            border-collapse: collapse;
+        }
+
+        thead {
+            background: #141414;
+        }
+
+        thead th {
+            padding: 14px;
+            text-align: left;
+            border-bottom: 1px solid #222;
+            font-weight: 600;
+        }
+
+        tbody td {
+            padding: 14px;
+            border-bottom: 1px solid #1c1c1c;
+        }
+
+        tbody tr:hover {
+            background: #151515;
+        }
+
+        tbody tr:last-child td {
+            border-bottom: none;
+        }
+
+        /* Status */
+        .status {
+            padding: 5px 10px;
+            border-radius: 5px;
+            font-size: 13px;
+            font-weight: 500;
+            display: inline-block;
+        }
+
+        .status.active {
+            background: #0f722c;
+            color: #90ee90;
+        }
+
+        .status.inactive {
+            background: #702d2d;
+            color: #ffb3b3;
+        }
+
+        /* View Button */
+        .view-btn {
+            padding: 8px 14px;
+            background: white;
+            color: black;
+            border: none;
+            border-radius: 6px;
+            cursor: pointer;
+            font-weight: 600;
+            transition: 0.3s;
+        }
+
+        .view-btn:hover {
+            background: #ddd;
+        }
+
+        /* Responsive */
+        @media (max-width: 768px) {
+            .sidebar {
+                width: 200px;
+            }
+
+            .content {
+                margin-left: 200px;
+                width: calc(100% - 200px);
+            }
+        }
+
+        @media (max-width: 600px) {
+            body {
+                flex-direction: column;
+            }
+
+            .sidebar {
+                width: 100%;
+                height: auto;
+                position: relative;
+            }
+
+            .content {
+                margin-left: 0;
+                width: 100%;
+            }
+
+            .top-bar {
+                flex-direction: column;
+            }
+
+            .top-bar input,
+            .top-bar select {
+                width: 100%;
+                margin-bottom: 12px;
+            }
+
+            table {
+                font-size: 13px;
+            }
+
+            thead th,
+            tbody td {
+                padding: 10px 8px;
+            }
+        }
+    </style>
 </head>
 <body>
 
-<header class="header">
-    <h2>Partner Panel – Customer List</h2>
-</header>
+    <!-- Sidebar -->
+    <aside class="sidebar">
+        <h2 class="logo">EC Partner</h2>
 
-<section class="container">
+        <ul class="menu">
+            <li><a href="partner-home.html"><i class="fas fa-home"></i> Dashboard</a></li>
+            <li><a href="customer-list.html" class="active"><i class="fas fa-users"></i> Customers</a></li>
+            <li><a href="partner-orders.html"><i class="fas fa-box"></i> Orders</a></li>
+            <li><a href="partner-notifications.html"><i class="fas fa-bell"></i> Notifications</a></li>
+            <li><a href="analytics.html"><i class="fas fa-chart-line"></i> Analytics</a></li>
+            <li><a href="partner-settings.html"><i class="fas fa-cog"></i> Settings</a></li>
+         </ul>
+    </aside>
 
-    <div class="top-bar">
-        <input type="text" placeholder="Search customers...">
-        <select>
-            <option>All Customers</option>
-            <option>Active</option>
-            <option>Inactive</option>
-            <option>High Spenders</option>
-            <option>Newly Joined</option>
-        </select>
-    </div>
+    <!-- Main Content -->
+    <main class="content">
+        <header class="header">
+            <h2>Partner Panel – Customer List</h2>
+        </header>
 
-    <div class="table-container">
-        <table>
-            <thead>
-                <tr>
-                    <th>Customer</th>
-                    <th>Email</th>
-                    <th>Orders</th>
-                    <th>Total Spend</th>
-                    <th>Last Order</th>
-                    <th>Status</th>
-                    <th>Action</th>
-                </tr>
-            </thead>
+        <section class="container">
+            <div class="top-bar">
+                <input type="text" placeholder="Search customers...">
+                <select>
+                    <option>All Customers</option>
+                    <option>Active</option>
+                    <option>Inactive</option>
+                    <option>High Spenders</option>
+                    <option>Newly Joined</option>
+                </select>
+            </div>
 
-            <tbody>
-                <tr>
-                    <td>Rahul Verma</td>
-                    <td>rahul@example.com</td>
-                    <td>5</td>
-                    <td>₹8,230</td>
-                    <td>12 Jan 2025</td>
-                    <td><span class="status active">Active</span></td>
-                   <td><button class="view-btn" onclick="window.location=`customer-details.html`">View</button></td>
-                </tr>
+            <div class="table-container">
+                <table>
+                    <thead>
+                        <tr>
+                            <th>Customer</th>
+                            <th>Email</th>
+                            <th>Orders</th>
+                            <th>Total Spend</th>
+                            <th>Last Order</th>
+                            <th>Status</th>
+                            <th>Action</th>
+                        </tr>
+                    </thead>
 
-                <tr>
-                    <td>Priya Sharma</td>
-                    <td>priya@example.com</td>
-                    <td>2</td>
-                    <td>₹1,540</td>
-                    <td>3 Jan 2025</td>
-                    <td><span class="status active">Active</span></td>
-                    <td><button class="view-btn" onclick="window.location=`customer-details.html`">View</button></td>
-                </tr>
+                    <tbody>
+                        <tr>
+                            <td>Rahul Verma</td>
+                            <td>rahul@example.com</td>
+                            <td>5</td>
+                            <td>₹8,230</td>
+                            <td>12 Jan 2025</td>
+                            <td><span class="status active">Active</span></td>
+                            <td><button class="view-btn" onclick="window.location='customer-details.html'">View</button></td>
+                        </tr>
 
-                <tr>
-                    <td>Amit Soni</td>
-                    <td>amit@example.com</td>
-                    <td>0</td>
-                    <td>₹0</td>
-                    <td>—</td>
-                    <td><span class="status inactive">Inactive</span></td>
-                    <td><button class="view-btn" onclick="window.location=`customer-details.html`">View</button></td>
-                </tr>
+                        <tr>
+                            <td>Priya Sharma</td>
+                            <td>priya@example.com</td>
+                            <td>2</td>
+                            <td>₹1,540</td>
+                            <td>3 Jan 2025</td>
+                            <td><span class="status active">Active</span></td>
+                            <td><button class="view-btn" onclick="window.location='customer-details.html'">View</button></td>
+                        </tr>
 
-            </tbody>
-        </table>
-    </div>
+                        <tr>
+                            <td>Amit Soni</td>
+                            <td>amit@example.com</td>
+                            <td>0</td>
+                            <td>₹0</td>
+                            <td>—</td>
+                            <td><span class="status inactive">Inactive</span></td>
+                            <td><button class="view-btn" onclick="window.location='customer-details.html'">View</button></td>
+                        </tr>
 
-</section>
+                        <tr>
+                            <td>Neha Gupta</td>
+                            <td>neha@example.com</td>
+                            <td>8</td>
+                            <td>₹12,450</td>
+                            <td>15 Jan 2025</td>
+                            <td><span class="status active">Active</span></td>
+                            <td><button class="view-btn" onclick="window.location='customer-details.html'">View</button></td>
+                        </tr>
+
+                        <tr>
+                            <td>Vikram Singh</td>
+                            <td>vikram@example.com</td>
+                            <td>3</td>
+                            <td>₹4,200</td>
+                            <td>8 Jan 2025</td>
+                            <td><span class="status active">Active</span></td>
+                            <td><button class="view-btn" onclick="window.location='customer-details.html'">View</button></td>
+                        </tr>
+
+                        <tr>
+                            <td>Anjali Patel</td>
+                            <td>anjali@example.com</td>
+                            <td>1</td>
+                            <td>₹890</td>
+                            <td>20 Dec 2024</td>
+                            <td><span class="status inactive">Inactive</span></td>
+                            <td><button class="view-btn" onclick="window.location='customer-details.html'">View</button></td>
+                        </tr>
+                    </tbody>
+                </table>
+            </div>
+        </section>
+    </main>
 
 </body>
 </html>

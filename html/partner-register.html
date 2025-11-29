@@ -1,11 +1,14 @@
 <!DOCTYPE html>
 <html lang="en">
+
 <head>
     <meta charset="UTF-8" />
     <meta name="viewport" content="width=device-width, initial-scale=1.0" />
     <title>Partner Registration — EverCart</title>
+
     <link rel="stylesheet" href="../css/partner-register.css" />
-        <link rel="shortcut icon" href="https://img.icons8.com/?size=100&id=j3XI41kBOIXY&format=png&color=636363"
+    <link rel="shortcut icon"
+        href="https://img.icons8.com/?size=100&id=j3XI41kBOIXY&format=png&color=636363"
         type="image/x-icon">
 </head>
 
@@ -18,36 +21,38 @@
             <h1 class="title">Create Partner Account</h1>
             <p class="subtitle">Register to become an EverCart Business Partner</p>
 
-            <form>
+            <!-- FORM START -->
+            <form onsubmit="registerPartner(event)">
 
                 <div class="input-group">
                     <label>Full Name</label>
-                    <input type="text" placeholder="John Sharma" required />
+                    <input type="text" name="fullName" placeholder="John Sharma" required />
                 </div>
 
                 <div class="input-group">
                     <label>Email</label>
-                    <input type="email" placeholder="you@example.com" required />
+                    <input type="email" name="email" placeholder="you@example.com" required />
                 </div>
 
                 <div class="input-group">
                     <label>Phone Number</label>
-                    <input type="tel" placeholder="+91 9876543210" required />
+                    <input type="tel" name="phone" placeholder="+91 9876543210" required />
                 </div>
 
                 <div class="input-group">
                     <label>Create Partner ID</label>
-                    <input type="text" placeholder="EC-P12345" required />
+                    <input type="text" name="partnerId" placeholder="EC-P12345" required />
                 </div>
 
                 <div class="input-group">
                     <label>Password</label>
-                    <input type="password" placeholder="••••••••" required />
+                    <input type="password" name="password" placeholder="••••••••" required />
                 </div>
 
                 <button class="register-btn">Register</button>
 
             </form>
+            <!-- FORM END -->
 
             <div class="login-link">
                 <p>Already have an account?</p>
@@ -58,5 +63,12 @@
 
     </div>
 
+    <!-- AXIOS -->
+    <script src="https://cdn.jsdelivr.net/npm/axios/dist/axios.min.js"></script>
+
+    <!-- YOUR JS FILE -->
+    <script src="../js/partner-register.js"></script>
+
 </body>
+
 </html>

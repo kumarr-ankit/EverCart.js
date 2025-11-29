@@ -1,24 +1,31 @@
 <!DOCTYPE html>
 <html lang="en">
+
 <head>
     <meta charset="UTF-8" />
     <meta name="viewport" content="width=device-width, initial-scale=1.0" />
     <title>EverCart - Support</title>
     <link rel="stylesheet" href="../css/support.css" />
-        <link rel="shortcut icon" href="https://img.icons8.com/?size=100&id=j3XI41kBOIXY&format=png&color=636363"
+    <link rel="shortcut icon" href="https://img.icons8.com/?size=100&id=j3XI41kBOIXY&format=png&color=636363"
         type="image/x-icon">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/7.0.1/css/all.min.css"
+        integrity="sha512-2SwdPD6INVrV/lHTZbO2nodKhrnDdJK9/kg2XD1r9uGqPo1cUbujc+IYdlYdEErWNu69gVcYgdxlmVmzTWnetw=="
+        crossorigin="anonymous" referrerpolicy="no-referrer" />
 </head>
 
 <body>
 
     <!-- Navbar -->
     <nav class="navbar">
-        <div class="logo"><img src="https://img.icons8.com/?size=100&id=j3XI41kBOIXY&format=png&color=636363" style="height: 42px;" alt="" srcset=""></div>
+        <div class="logo"><img src="https://img.icons8.com/?size=100&id=j3XI41kBOIXY&format=png&color=636363"
+                style="height: 42px;" alt="" srcset=""></div>
         <ul class="nav-links">
-            <li><a href="home.html">Home</a></li>
-            <li><a href="orders.html">Orders</a></li>
-            <li><a href="account.html">Account</a></li>
-            <li><a href="cart.html">Cart</a></li>
+            <li><a href="../html/home.html"><i class="fa-solid fa-house fa-xl"></i>Home</a></li>
+            <li><a href="../html/notification.html"><i class="fa-solid fa-bell fa-xl"></i>Notifications</a></li>
+
+            <li><a href="../html/account.html" id="you"><i class="fa-solid fa-user fa-xl"></i>Profile</a></li>
+            <li><a href="login.html" class="btn" id="isLogged" title="Login">Login</a></li>
+        </ul>
         </ul>
     </nav>
 
@@ -49,8 +56,8 @@
 
             <div class="support-card">
                 <h3>📞 Contact Us</h3>
-                <p>Email: support@evercart.com<br>Phone: +91 9000000000</p>
-                <button class="btn">Send Email</button>
+                <p>Email: ankitkr5447@gmail.com<br>Phone: +91 9000000000</p>
+                <button class="btn" id="sendEmail">Send Email</button>
             </div>
 
         </div>
@@ -83,15 +90,59 @@
 
     </div>
 
-<script>
-    // Toggle FAQ Answers
-    document.querySelectorAll(".faq-question").forEach((btn) => {
-        btn.addEventListener("click", () => {
-            const answer = btn.nextElementSibling;
-            answer.classList.toggle("show");
+    <script>
+        // Toggle FAQ Answers
+        document.querySelectorAll(".faq-question").forEach((btn) => {
+            btn.addEventListener("click", () => {
+                const answer = btn.nextElementSibling;
+                answer.classList.toggle("show");
+            });
         });
-    });
-</script>
+    </script>
+
+    <script>
+        const container = document.querySelector(".products");
+        const loginBtn = document.getElementById("isLogged");
+        const youBtn = document.getElementById("you");
+
+        const isLogged = localStorage.getItem("everCart-isLogged");
+
+        // Handle login display
+        if (isLogged) {
+            loginBtn.style.display = "none";
+            youBtn.style.display = "block";
+        } else {
+            loginBtn.style.display = "block";
+            youBtn.style.display = "none";
+        }
+
+
+        const sendEmail = document.getElementById("sendEmail");
+
+        sendEmail.addEventListener("click", () => {
+           
+
+            // Open Gmail compose
+            try {
+
+                setTimeout(() => {
+                    window.open("https://mail.google.com/mail/?view=cm&fs=1&to=ankitkr5447@gmail.com");
+                }, 3000);
+
+                location.href = "mailto:ankitkr5447@gmail.com.com";
+            } catch (error) {
+                console.log(error);
+
+            }
+
+
+
+
+        });
+
+
+    </script>
 
 </body>
+
 </html>

@@ -3,75 +3,119 @@
 <head>
     <meta charset="UTF-8" />
     <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-    <title>Partner — Orders</title>
-    <link rel="stylesheet" href="../css/partner-orders.css" />
-        <link rel="shortcut icon" href="https://img.icons8.com/?size=100&id=j3XI41kBOIXY&format=png&color=636363"
-        type="image/x-icon">
+    <title>Partner — Orders | EverCart</title>
+    <link rel="shortcut icon" href="https://img.icons8.com/?size=100&id=j3XI41kBOIXY&format=png&color=636363" type="image/x-icon">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.0/css/all.min.css">
+    <link rel="stylesheet" href="../css/partner-orders.css">
+    <style>
+      
+    </style>
 </head>
 <body>
 
-<header class="header">
-    <h2>Partner Panel — Orders</h2>
-</header>
+    <!-- Sidebar -->
+    <aside class="sidebar">
+        <h2 class="logo">EC Partner</h2>
 
-<div class="container">
+        <ul class="menu">
+            <li><a href="partner-home.html"><i class="fas fa-home"></i> Dashboard</a></li>
+            <li><a href="customer-list.html"><i class="fas fa-users"></i> Customers</a></li>
+            <li><a href="partner-orders.html" class="active"><i class="fas fa-box"></i> Orders</a></li>
+            <li><a href="partner-notifications.html"><i class="fas fa-bell"></i> Notifications</a></li>
+            <li><a href="analytics.html"><i class="fas fa-chart-line"></i> Analytics</a></li>
+            <li><a href="partner-settings.html"><i class="fas fa-cog"></i> Settings</a></li>
+            </ul>
+    </aside>
 
-    <!-- Filters -->
-    <div class="filter-box">
-        <select>
-            <option>All Status</option>
-            <option>Pending</option>
-            <option>Packed</option>
-            <option>Shipped</option>
-            <option>Out for Delivery</option>
-            <option>Delivered</option>
-        </select>
+    <!-- Main Content -->
+    <main class="content">
+        <header class="header">
+            <h2>Partner Panel — Orders</h2>
+        </header>
 
-        <select>
-            <option>This Month</option>
-            <option>Last Month</option>
-            <option>Last 3 Months</option>
-        </select>
-    </div>
+        <div class="container">
 
-    <!-- Order List -->
-    <div class="order-card">
-        <div class="left">
-            <h3>#EC-48291</h3>
-            <p>Rahul Verma • 2 Items</p>
-            <p class="date">10 Jan 2025</p>
+            <!-- Filters -->
+            <div class="filter-box">
+                <select>
+                    <option>All Status</option>
+                    <option>Pending</option>
+                    <option>Packed</option>
+                    <option>Shipped</option>
+                    <option>Out for Delivery</option>
+                    <option>Delivered</option>
+                </select>
+
+                <select>
+                    <option>This Month</option>
+                    <option>Last Month</option>
+                    <option>Last 3 Months</option>
+                </select>
+            </div>
+
+            <!-- Order List -->
+            <div class="order-card">
+                <div class="left">
+                    <h3>#EC-48291</h3>
+                    <p>Rahul Verma • 2 Items</p>
+                    <p class="date">10 Jan 2025</p>
+                </div>
+                <div class="right">
+                    <span class="status shipped">Shipped</span>
+                    <a href="order-details.html" class="view-btn">View</a>
+                </div>
+            </div>
+
+            <div class="order-card">
+                <div class="left">
+                    <h3>#EC-48292</h3>
+                    <p>Aditi Sharma • 1 Item</p>
+                    <p class="date">12 Jan 2025</p>
+                </div>
+                <div class="right">
+                    <span class="status delivered">Delivered</span>
+                    <a href="order-details.html" class="view-btn">View</a>
+                </div>
+            </div>
+
+            <div class="order-card">
+                <div class="left">
+                    <h3>#EC-48293</h3>
+                    <p>Rohit Singh • 3 Items</p>
+                    <p class="date">13 Jan 2025</p>
+                </div>
+                <div class="right">
+                    <span class="status pending">Pending</span>
+                    <a href="order-details.html" class="view-btn">View</a>
+                </div>
+            </div>
+
+            <div class="order-card">
+                <div class="left">
+                    <h3>#EC-48294</h3>
+                    <p>Priya Mehta • 1 Item</p>
+                    <p class="date">14 Jan 2025</p>
+                </div>
+                <div class="right">
+                    <span class="status shipped">Shipped</span>
+                    <a href="order-details.html" class="view-btn">View</a>
+                </div>
+            </div>
+
+            <div class="order-card">
+                <div class="left">
+                    <h3>#EC-48295</h3>
+                    <p>Vikram Kumar • 4 Items</p>
+                    <p class="date">15 Jan 2025</p>
+                </div>
+                <div class="right">
+                    <span class="status packed">Packed</span>
+                    <a href="order-details.html" class="view-btn">View</a>
+                </div>
+            </div>
+
         </div>
-        <div class="right">
-            <span class="status shipped">Shipped</span>
-            <a href="order-details.html" class="view-btn">View</a>
-        </div>
-    </div>
-
-    <div class="order-card">
-        <div class="left">
-            <h3>#EC-48292</h3>
-            <p>Aditi Sharma • 1 Item</p>
-            <p class="date">12 Jan 2025</p>
-        </div>
-        <div class="right">
-            <span class="status delivered">Delivered</span>
-            <a href="order-details.html" class="view-btn">View</a>
-        </div>
-    </div>
-
-    <div class="order-card">
-        <div class="left">
-            <h3>#EC-48293</h3>
-            <p>Rohit Singh • 3 Items</p>
-            <p class="date">13 Jan 2025</p>
-        </div>
-        <div class="right">
-            <span class="status pending">Pending</span>
-            <a href="order-details.html" class="view-btn">View</a>
-        </div>
-    </div>
-
-</div>
+    </main>
 
 </body>
 </html>

@@ -1,0 +1,139 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Add Product | Partner Panel</title>
+    <link rel="stylesheet" href="../../css/partner-add-product.css">
+    <link rel="shortcut icon" href="https://img.icons8.com/?size=100&id=j3XI41kBOIXY&format=png&color=636363"
+        type="image/x-icon">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0/css/all.min.css">
+</head>
+
+<body>
+
+    <aside class="sidebar">
+        <h2 class="logo">Partner</h2>
+        <ul class="menu">
+            <li><a href="partner-home.html"><i class="fa fa-home"></i> Dashboard</a></li>
+            <li><a href="partner-orders.html"><i class="fa fa-box"></i> Orders</a></li>
+            <li><a href="partner-customers.html"><i class="fa fa-users"></i> Customers</a></li>
+            <li><a href="partner-analytics.html"><i class="fa fa-chart-line"></i> Analytics</a></li>
+            <li><a href="partner-notifications.html"><i class="fa fa-bell"></i> Notifications</a></li>
+            <li><a href="partner-earnings.html"><i class="fa fa-wallet"></i> Earnings</a></li>
+            <li><a href="partner-payouts.html"><i class="fa fa-money-bill"></i> Payouts</a></li>
+            <li class="active"><a href="#"><i class="fa fa-plus"></i> Add Product</a></li>
+            <li><a href="../partner-settings.html"><i class="fa fa-cog"></i> Settings</a></li>
+        </ul>
+    </aside>
+
+    <main class="main">
+
+        <h1 class="page-title">Add New Product</h1>
+
+        <div class="card">
+
+            <form class="form" id="productForm">
+
+                <div class="form-group">
+                    <label>Product Name</label>
+                    <input type="text" name="productName" required placeholder="Enter product name">
+                </div>
+
+                <div class="form-group">
+                    <label>Description</label>
+                    <textarea name="description" placeholder="Enter product description"></textarea>
+                </div>
+
+                <div class="form-row">
+                    <div class="form-group">
+                        <label>Category</label>
+                        <select name="category">
+                            <option value="">Select Category</option>
+                            <option>Electronics</option>
+                            <option>Fashion</option>
+                            <option>Grocery</option>
+                            <option>Home Appliances</option>
+                        </select>
+                    </div>
+
+                    <div class="form-group">
+                        <label>Stock</label>
+                        <input type="number" name="stock" placeholder="Available stock">
+                    </div>
+                </div>
+
+                <div class="form-row">
+                    <div class="form-group">
+                        <label>Base Price</label>
+                        <input type="number" name="basePrice" placeholder="₹ Price">
+                    </div>
+
+                    <div class="form-group">
+                        <label>GST %</label>
+                        <input type="number" name="gst" placeholder="18%">
+                    </div>
+                </div>
+
+                <div class="form-group">
+                    <label>Upload Image</label>
+                    <input type="file" name="image" accept="image/*" id="imgInput">
+                    <img id="preview" class="preview" width="200">
+
+                    <script>
+                        imgInput.onchange = evt => {
+                            const file = evt.target.files[0];
+                              if (!file) return;
+                            preview.src = URL.createObjectURL(file);
+                        };
+                    </script>
+                </div>
+
+                <button type="submit" class="btn-submit">Add Product</button>
+
+            </form>
+
+        </div>
+
+    </main>
+
+
+    <!-- ---------- JS TO SEND FORM DATA ---------- -->
+    <script src="https://cdn.jsdelivr.net/npm/axios/dist/axios.min.js"></script>
+
+    <script>
+        const form = document.getElementById("productForm");
+
+        form.addEventListener("submit", async (e) => {
+            e.preventDefault();
+
+            const formData = new FormData(form); // gathers all inputs + file
+            formData.append('sellerId',"a1b2c3d4e5f67890abcdef1234567890");
+          
+            formData.forEach(el=>{
+                console.log(el.name , el.valueOf(el.name));
+            })
+
+            try {
+                const res = await axios.post(
+                    "http://localhost:8080/product/add",
+                    formData,
+                    {
+                        headers: { "Content-Type": "multipart/form-data" }
+                    }
+                );
+
+                alert("Product added successfully!");
+                console.log(res.data);
+
+            } catch (err) {
+                console.error(err);
+                alert("Something went wrong!");
+            }
+        });
+    </script>
+
+</body>
+
+</html>

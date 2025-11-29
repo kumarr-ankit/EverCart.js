@@ -1,29 +1,297 @@
 <!DOCTYPE html>
 <html lang="en">
+
 <head>
     <meta charset="UTF-8" />
     <meta name="viewport" content="width=device-width, initial-scale=1.0" />
     <title>Partner Settings — EverCart</title>
-    <link rel="stylesheet" href="../css/partner-settings.css" />
-        <link rel="shortcut icon" href="https://img.icons8.com/?size=100&id=j3XI41kBOIXY&format=png&color=636363"
+    <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.8/dist/css/bootstrap.min.css" rel="stylesheet"
+        integrity="sha384-sRIl4kxILFvY47J16cr9ZwB07vP4J8+LH7qKQnuqkuIAvNWLzeN8tE5YBujZqJLB" crossorigin="anonymous">
+    <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.8/dist/js/bootstrap.bundle.min.js"
+        integrity="sha384-FKyoEForCGlyvwx9Hj09JcYn3nv7wiPVlz7YYwJrWVcXK/BmnVDxM+D2scQbITxI"
+        crossorigin="anonymous"></script>
+    <link rel="shortcut icon" href="https://img.icons8.com/?size=100&id=j3XI41kBOIXY&format=png&color=636363"
         type="image/x-icon">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.0/css/all.min.css">
+    <style>
+        /* RESET */
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+            font-family: "Poppins", sans-serif;
+        }
+
+        body {
+            background: #000;
+            color: white;
+            display: flex;
+        }
+
+        /* SIDEBAR */
+        .sidebar {
+            width: 240px;
+            height: 100vh;
+            background: #0d0d0d;
+            border-right: 1px solid #222;
+            padding: 25px 18px;
+            position: fixed;
+            overflow-y: auto;
+        }
+
+        .logo {
+            text-align: center;
+            margin-bottom: 25px;
+            font-size: 22px;
+        }
+
+        .menu {
+            list-style: none;
+        }
+
+        .menu li {
+            margin: 18px 0;
+        }
+
+        .menu a {
+            text-decoration: none;
+            color: #bbb;
+            display: flex;
+            gap: 12px;
+            align-items: center;
+            padding: 10px;
+            border-radius: 6px;
+            transition: 0.3s;
+        }
+
+        .menu a:hover,
+        .menu a.active {
+            background: #1a1a1a;
+            color: #fff;
+        }
+
+        .logout {
+            margin-top: 30px;
+            color: #ff4d4d !important;
+        }
+
+        /* CONTENT */
+        .content {
+            margin-left: 240px;
+            width: calc(100% - 240px);
+            padding: 40px;
+        }
+
+        .title {
+            font-size: 28px;
+            margin-bottom: 30px;
+        }
+
+        /* Card */
+        .card {
+            background: #111;
+            padding: 25px;
+            border-radius: 12px;
+            border: 1px solid #222;
+            margin-bottom: 25px;
+        }
+
+        .section-title {
+            font-size: 20px;
+            margin-bottom: 20px;
+            color: #fff;
+        }
+
+        /* Profile Row */
+        .profile-row {
+            display: flex;
+            align-items: center;
+            gap: 20px;
+            margin-bottom: 25px;
+        }
+
+        .profile-pic {
+            width: 80px;
+            height: 80px;
+            border-radius: 50%;
+            background: #1a1a1a;
+            border: 2px solid #333;
+        }
+
+        /* Field */
+        .field {
+            margin-bottom: 20px;
+        }
+
+        .field label {
+            display: block;
+            margin-bottom: 8px;
+            color: #ccc;
+            font-size: 14px;
+        }
+
+        .field input,
+        .field textarea {
+            width: 100%;
+            padding: 12px;
+            background: #1a1a1a;
+            border: 1px solid #333;
+            border-radius: 8px;
+            color: #fff;
+            font-size: 14px;
+        }
+
+        .field input:disabled {
+            opacity: 0.6;
+            cursor: not-allowed;
+        }
+
+        .field textarea {
+            resize: vertical;
+            min-height: 80px;
+        }
+
+        /* Toggle Row */
+        .toggle-row {
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            padding: 15px 0;
+            border-bottom: 1px solid #222;
+        }
+
+        .toggle-row:last-child {
+            border-bottom: none;
+        }
+
+        .toggle-row label {
+            color: #fff;
+            font-size: 15px;
+        }
+
+        .toggle-row input[type="checkbox"] {
+            width: 45px;
+            height: 24px;
+            cursor: pointer;
+        }
+
+        /* Buttons */
+        .btn-primary {
+            background: white;
+            color: black;
+            padding: 12px 24px;
+            border: none;
+            border-radius: 8px;
+            font-weight: 600;
+            cursor: pointer;
+            transition: 0.3s;
+        }
+
+        .btn-primary:hover {
+            background: #ddd;
+        }
+
+        .btn-outline {
+            background: transparent;
+            color: white;
+            padding: 10px 20px;
+            border: 1px solid #444;
+            border-radius: 8px;
+            font-weight: 500;
+            cursor: pointer;
+            transition: 0.3s;
+        }
+
+        .btn-outline:hover {
+            border-color: white;
+            background: #1a1a1a;
+        }
+
+        /* Links */
+        .link {
+            display: block;
+            color: #4d9fff;
+            text-decoration: none;
+            margin-bottom: 12px;
+            font-size: 15px;
+        }
+
+        .link:hover {
+            text-decoration: underline;
+        }
+
+        /* Logout Button */
+        .logout-btn {
+            background: #ff4d4d;
+            color: white;
+            padding: 12px 24px;
+            border: none;
+            border-radius: 8px;
+            font-weight: 600;
+            cursor: pointer;
+            transition: 0.3s;
+            margin-top: 20px;
+        }
+
+        .logout-btn:hover {
+            background: #ff3333;
+        }
+
+        /* Responsive */
+        @media (max-width: 768px) {
+            .sidebar {
+                width: 200px;
+            }
+
+            .content {
+                margin-left: 200px;
+                width: calc(100% - 200px);
+                padding: 30px 20px;
+            }
+        }
+
+        @media (max-width: 600px) {
+            body {
+                flex-direction: column;
+            }
+
+            .sidebar {
+                width: 100%;
+                height: auto;
+                position: relative;
+            }
+
+            .content {
+                margin-left: 0;
+                width: 100%;
+                padding: 20px;
+            }
+
+            .profile-row {
+                flex-direction: column;
+            }
+        }
+    </style>
 </head>
 
 <body>
 
-    <!-- Navbar -->
-    <nav class="navbar">
-        <div class="logo">EC Partner</div>
-        <ul class="nav-links">
-            <li><a href="partner-home.html">Dashboard</a></li>
-            <li><a href="partner-orders.html">Orders</a></li>
-            <li><a href="partner-customers.html">Customers</a></li>
-            <li><a href="#" class="active">Settings</a></li>
-        </ul>
-    </nav>
+    <!-- Sidebar -->
+    <aside class="sidebar">
+        <h2 class="logo">EC Partner</h2>
 
-    <!-- Wrapper -->
-    <main class="container">
+        <ul class="menu">
+            <li><a href="partner-home.html"><i class="fas fa-home"></i> Dashboard</a></li>
+            <li><a href="customer-list.html"><i class="fas fa-users"></i> Customers</a></li>
+            <li><a href="partner-orders.html"><i class="fas fa-box"></i> Orders</a></li>
+            <li><a href="partner-notifications.html"><i class="fas fa-bell"></i> Notifications</a></li>
+            <li><a href="analytics.html"><i class="fas fa-chart-line"></i> Analytics</a></li>
+            <li><a href="partner-settings.html" class="active"><i class="fas fa-cog"></i> Settings</a></li>
+        </ul>
+    </aside>
+
+    <!-- Main Content -->
+    <main class="content">
 
         <h1 class="title">Partner Settings</h1>
 
@@ -32,7 +300,8 @@
             <h2 class="section-title">Profile Settings</h2>
 
             <div class="profile-row">
-                <img src="https://img.icons8.com/?size=100&id=r_Vph1MWIfJQ&format=png&color=000000" class="profile-pic" alt="Profile" />
+                <img src="https://img.icons8.com/?size=100&id=r_Vph1MWIfJQ&format=png&color=000000" class="profile-pic"
+                    alt="Profile" />
                 <button class="btn-outline">Change Photo</button>
             </div>
 
@@ -116,9 +385,43 @@
             <a class="link" href="terms.html">Terms & Conditions</a>
         </section>
 
-        <button class="logout-btn">Logout</button>
+
+
+
+        <button type="button" class="btn btn-primary" id="liveToastBtn">Log out</button>
+
+        <div class="toast-container position-fixed bottom-0  end-4 p-3">
+            <div id="liveToast" class="toast" role="alert" aria-live="assertive" aria-atomic="true">
+                <div class="toast-header">
+                   <i class="fa-solid fa-circle-exclamation" style="color: #ffc400;"></i>
+                    <strong class="me-auto"></strong>
+                    <small>now</small>
+                    <button type="button" class="btn-close" data-bs-dismiss="toast" aria-label="Close"></button>
+                </div>
+                <div class="toast-body">
+                    Are you sure to log out ? Click below to log out.
+
+                    <button class="logout-btn" onclick="location=`partner-login.html`">Logout</button>
+
+
+                </div>
+            </div>
+        </div>
+
+        <script>
+            const toastTrigger = document.getElementById('liveToastBtn')
+            const toastLiveExample = document.getElementById('liveToast')
+
+            if (toastTrigger) {
+                const toastBootstrap = bootstrap.Toast.getOrCreateInstance(toastLiveExample)
+                toastTrigger.addEventListener('click', () => {
+                    toastBootstrap.show()
+                })
+            }
+        </script>
 
     </main>
 
 </body>
+
 </html>

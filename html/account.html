@@ -6,20 +6,25 @@
     <meta name="viewport" content="width=device-width, initial-scale=1.0" />
     <title>EverCart - Account</title>
     <link rel="stylesheet" href="../css/account.css" />
-        <link rel="shortcut icon" href="https://img.icons8.com/?size=100&id=j3XI41kBOIXY&format=png&color=636363"
+    <link rel="shortcut icon" href="https://img.icons8.com/?size=100&id=j3XI41kBOIXY&format=png&color=636363"
         type="image/x-icon">
+    <script src="https://cdn.jsdelivr.net/npm/axios/dist/axios.min.js"></script>
+      <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/7.0.1/css/all.min.css"
+        integrity="sha512-2SwdPD6INVrV/lHTZbO2nodKhrnDdJK9/kg2XD1r9uGqPo1cUbujc+IYdlYdEErWNu69gVcYgdxlmVmzTWnetw=="
+        crossorigin="anonymous" referrerpolicy="no-referrer" />
 </head>
 
 <body>
 
     <!-- Navbar -->
     <nav class="navbar">
-        <div class="logo"><img src="https://img.icons8.com/?size=100&id=j3XI41kBOIXY&format=png&color=636363" alt="" srcset=""></div>
+        <div class="logo" onclick="location=`home.html`"><img
+                src="https://img.icons8.com/?size=100&id=j3XI41kBOIXY&format=png&color=636363" alt="" srcset=""></div>
         <ul class="nav-links">
-            <li><a href="home.html">Home</a></li>
-            <li><a href="orders.html">Orders</a></li>
-            <li><a href="#" class="active">Account</a></li>
-            <li><a href="cart.html">Cart</a></li>
+            <li><a href="home.html"><i class="fa-solid fa-house fa-xl"></i>Home</a></li>
+            <li><a href="orders.html"><i class="fa-solid fa-truck fa-xl"></i>Previous Orders</a></li>
+            <li><a href="#" class="active"><i class="fa-solid fa-user fa-xl"></i>Profile</a></li>
+            <li><a href="cart.html"><i class="fa-solid fa-cart-arrow-down fa-xl"></i>Cart</a></li>
         </ul>
     </nav>
 
@@ -27,42 +32,46 @@
 
         <h1 class="page-title">Your Account</h1>
 
-   <!-- Profile Card -->
-            <div class="section">
-                <h2 class="section-title">Profile Information</h2>
+        <!-- Profile Card -->
+        <div class="section">
+            <h2 class="section-title">Profile Information</h2>
 
-                <div class="profile-top">
-                    <img src="../images/profile.png" alt="Profile" class="profile-pic" />
-                    <button class="edit-photo-btn">Change Photo</button>
-                </div>
+            <div class="profile-top">
+                <img src="../images/profile.png" alt="Profile" class="profile-pic" id="dp" />
+                <button class="edit-photo-btn" id="changeDp" hidden>Change Photo</button>
+                <input type="file" id="fileInput" accept="image/*" hidden>
 
-                <div class="profile-info">
 
-                    <div class="profile-row">
-                        <span class="label">Full Name:</span>
-                        <span class="value">John Doe</span>
-                    </div>
 
-                    <div class="profile-row">
-                        <span class="label">Email:</span>
-                        <span class="value">johndoe@example.com</span>
-                    </div>
-
-                    <div class="profile-row">
-                        <span class="label">Phone:</span>
-                        <span class="value">+91 9876543210</span>
-                    </div>
-
-                    <button class="edit-btn">Edit Profile</button>
-                </div>
             </div>
+
+            <div class="profile-info">
+
+                <div class="profile-row">
+                    <span class="label">Full Name:</span>
+                    <span class="value" id="username">John Doe</span>
+                </div>
+
+                <div class="profile-row">
+                    <span class="label">Email:</span>
+                    <span class="value" id="email">johndoe@example.com</span>
+                </div>
+
+                <div class="profile-row">
+                    <span class="label">Phone:</span>
+                    <span class="value" id="phone">+91 9876543210</span>
+                </div>
+
+                <button class="edit-btn" id="editProfile">Edit Profile</button>
+            </div>
+        </div>
 
         <!-- Address Section -->
         <div class="section">
             <h2 class="section-title">Saved Address</h2>
 
             <div class="address-box">
-                <p class="address-text">123, Green Park Colony, Delhi - 110001</p>
+                <p class="address-text" id="address">123, Green Park Colony, Delhi - 110001</p>
 
                 <button class="edit-btn">Manage Address</button>
             </div>
@@ -74,7 +83,7 @@
 
             <div class="referral-box">
                 <p>Your Referral Code:</p>
-                <h3 class="referral-code">ECX-48392</h3>
+                <h3 class="referral-code" id="code">ECX-48392</h3>
                 <button class="copy-btn">Copy Code</button>
             </div>
         </div>
@@ -93,11 +102,166 @@
         </div>
 
 
-        
+
 
         <button class="logout-btn">Logout</button>
 
     </div>
+
+    <!-- Edit Profile Modal -->
+    <div id="editModal" class="modal hidden">
+        <div class="modal-content">
+            <h2>Edit Profile</h2>
+
+            <div class="profile-top">
+                <img src="https://img.freepik.com/vecteurs-premium/icone-profil-avatar-par-defaut-image-utilisateur-medias-sociaux-icone-avatar-gris-silhouette-profil-vide-illustration-vectorielle_561158-3407.jpg?semt=ais_hybrid&w=740&q=80";
+      alt="Profile" class="profile-pic" id="dpEdit" />
+                <button class="edit-photo-btn" id="changeDp">Change Photo</button>
+                <input type="file" id="fileInput" accept="image/*" hidden>
+
+
+
+            </div>
+
+            <label>Full Name</label>
+            <input type="text" id="editName">
+
+            <label>Email</label>
+            <input type="email" id="editEmail">
+
+            <label>Phone</label>
+            <input type="text" id="editPhone">
+
+            <label>Address</label>
+            <textarea id="editAddress"></textarea>
+
+            <div class="modal-actions">
+                <button id="saveProfile" class="btn">Save</button>
+                <button id="closeModal" class="btn-secondary">Cancel</button>
+            </div>
+        </div>
+    </div>
+
+
+
+
+    <script>
+
+        // let username = document.getElementById("username");
+        axios.get('http://localhost:8080/api/customer/profile', {
+            headers: {
+                Authorization: `Bearer ${localStorage.getItem("token")}`,
+            }
+        }).then(res => {
+
+
+
+            console.log(res.data.customer.id)
+            console.log(res.data.customer)
+            showUser(res.data.customer)
+        }).catch(error => {
+
+        })
+
+
+        function showUser(userDetails) {
+
+            username.innerText = userDetails.fullName || " John Doe";
+            email.innerText = userDetails.email || " John Doe";
+            phone.innerText = userDetails.phone || "123456789";
+            address.innerText = userDetails.address || "Add a address here";
+            code.innerText = userDetails.referralCode || "";
+            dp.src = userDetails.profileImage || "https://img.freepik.com/vecteurs-premium/icone-profil-avatar-par-defaut-image-utilisateur-medias-sociaux-icone-avatar-gris-silhouette-profil-vide-illustration-vectorielle_561158-3407.jpg?semt=ais_hybrid&w=740&q=80";
+        }
+
+
+        changeDp.addEventListener("click", () => {
+            axios.get('http://localhost:8080/api/update-profile', {
+                headers: {
+                    Authorization: `Bearer ${localStorage.getItem("token")}`,
+                },
+                data: {
+                    profileImage: ''
+                }
+            }).then(res => {
+
+
+
+                console.log(res.data.customer.id)
+                console.log(res.data.customer)
+                showUser(res.data.customer)
+            }).catch(error => {
+
+            })
+        })
+    </script>
+
+    <script>
+
+
+        let editProfile = document.getElementById("editProfile");
+        editProfile.addEventListener("click", () => {
+            picker.classList.toggle = "hidden";
+        })
+
+        const picker = document.getElementById("fileInput");
+        const preview = document.getElementById("preview");
+
+        document.getElementById("changeDp").addEventListener("click", () => picker.click());
+
+        picker.onchange = e => {
+            const file = e.target.files[0];
+            dp.src = URL.createObjectURL(file);
+        };
+
+    </script>
+
+
+    <script>
+        const editModal = document.getElementById("editModal");
+        const editBtn = document.getElementById("editProfile");
+        const closeModal = document.getElementById("closeModal");
+        const saveBtn = document.getElementById("saveProfile");
+
+        editBtn.addEventListener("click", () => {
+            editName.value = username.innerText;
+            editEmail.value = email.innerText;
+            editPhone.value = phone.innerText;
+            editAddress.value = address.innerText;
+
+            editModal.classList.remove("hidden");
+        });
+
+        closeModal.addEventListener("click", () => {
+            editModal.classList.add("hidden");
+        });
+
+        // Click outside to close
+        editModal.addEventListener("click", (e) => {
+            if (e.target === editModal) editModal.classList.add("hidden");
+        });
+
+        saveBtn.addEventListener("click", () => {
+            const payload = {
+                fullName: editName.value,
+                email: editEmail.value,
+                phone: editPhone.value,
+                address: editAddress.value
+            };
+
+            axios.put("http://localhost:8080/api/customer/update", payload, {
+                headers: {
+                    Authorization: `Bearer ${localStorage.getItem("token")}`,
+                },
+            })
+                .then(res => {
+                    showUser(res.data.customer);
+                    editModal.classList.add("hidden");
+                })
+                .catch(err => console.log(err));
+        });
+    </script>
+
 
 </body>
 

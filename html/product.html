@@ -2,176 +2,203 @@
 <html lang="en">
 
 <head>
-    <meta charset="UTF-8" />
-    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-    <title>Product Details | EverCart</title>
-    <link rel="stylesheet" href="../css/product.css" />
-        <link rel="shortcut icon" href="https://img.icons8.com/?size=100&id=j3XI41kBOIXY&format=png&color=636363"
-        type="image/x-icon">
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>Product Details | EverCart</title>
+  <link rel="stylesheet" href="../css/product.css" />
+  <link rel="shortcut icon" href="https://img.icons8.com/?size=100&id=j3XI41kBOIXY&format=png&color=636363"
+    type="image/x-icon">
+  <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/7.0.1/css/all.min.css"
+    integrity="sha512-2SwdPD6INVrV/lHTZbO2nodKhrnDdJK9/kg2XD1r9uGqPo1cUbujc+IYdlYdEErWNu69gVcYgdxlmVmzTWnetw=="
+    crossorigin="anonymous" referrerpolicy="no-referrer" />
+
+  <script src="https://cdn.jsdelivr.net/npm/axios/dist/axios.min.js"></script>
+
+
+
 </head>
 
 <body>
 
-    <!-- Navbar -->
-    <nav class="navbar">
-        <div class="logo"><img src="https://img.icons8.com/?size=100&id=j3XI41kBOIXY&format=png&color=636363"
-                style="height: 42px;" alt="" srcset=""></div>
+  <!-- Navbar -->
+  <nav class="navbar">
+    <div class="logo" onclick="location=`home.html`"><img
+        src="https://img.icons8.com/?size=100&id=j3XI41kBOIXY&format=png&color=636363" style="height: 42px;" alt=""
+        srcset=""></div>
 
-        <ul class="nav-links">
-            <li><a href="home.html">Home</a></li>
-            <li><a href="#">Shop</a></li>
-            <li><a href="#">Cart</a></li>
-            <li><a href="login.html" class="btn">Login</a></li>
-        </ul>
-    </nav>
+    <ul class="nav-links">
 
-    <!-- Product Container -->
-    <section class="product-container">
+      <li><a href="../html/notification.html" title="Notifications"><i class="fa-solid fa-bell fa-xl"></i></a></li>
+      <li><a href="../html/cart.html" title="Cart"><i class="fa-solid fa-cart-arrow-down fa-xl"></i></a></li>
+      <li><a href="../html/account.html" id="you" title="profile"><i class="fa-solid fa-user fa-xl"></i></a></li>
+      <li><a href="login.html" class="btn" id="isLogged" title="Login">Login</a></li>
+    </ul>
+  </nav>
 
-        <!-- Left: Images -->
-        <div class="image-box">
-            <img src="https://encrypted-tbn3.gstatic.com/shopping?q=tbn:ANd9GcRN1XAIA2-6KDOlaP-6y5a1NH7aT24wSt5o6rfwxoIpZhbLeT4zpwHO5OBpydZvSBZSU3GoN7pPoR1lFEyv5gdjfL1WS5dazlWb7Dbp0A3sO9PhTlxziMXgQg"
-                alt="Product Image" class="main-img">
-        </div>
+  <!-- Product Container -->
+  <section class="product-container">
 
-        <!-- Right: Product Info -->
-        <div class="details">
+    <!-- Left: Images -->
+    <div class="image-box">
+      <img alt="Product Image" id="main-img" class="main-img">
+    </div>
 
-            <h1 class="title">Wireless Bluetooth Headphones</h1>
+    <!-- Right: Product Info -->
+    <div class="details">
 
-            <p class="desc">
-                High-quality wireless headphones with deep bass, long battery life,
-                and noise isolation for an immersive experience.
-            </p>
+      <h1 class="title">Wireless Bluetooth Headphones</h1>
 
-            <div class="price-box">
-                <p class="label">Price:</p>
-                <p class="price">$59.99</p>
-            </div>
+      <p class="desc">
+        High-quality wireless headphones with deep bass, long battery life,
+        and noise isolation for an immersive experience.
+      </p>
 
-            <div class="price-box">
-                <p class="label">GST (18%):</p>
-                <p class="price">$10.80</p>
-            </div>
-
-            <div class="total-box">
-                <p class="total-label">Total Price:</p>
-                <p class="total-value">$70.79</p>
-            </div>
-
-            <!-- Quantity -->
-            <label class="qty-label">Quantity</label>
-            <select class="qty-select">
-                <option>1</option>
-                <option>2</option>
-                <option>3</option>
-                <option>4</option>
-            </select>
-
-            <!-- Buttons -->
-            <div class="buttons">
-                <button class="add-cart">Add to Cart</button>
-                <button class="buy-now" onclick="window.location=`../html/checkout.html`">Buy Now</button>
-            </div>
-
-        </div>
-
-        
-
-    </section>
-<!-- Reviews Section -->
-<!-- Reviews Section (Improved) -->
-<section class="reviews-section">
-
-  <div class="reviews-top">
-    <!-- Left: Rating summary -->
-    <div class="rating-summary">
-      <div class="avg-block">
-        <div class="avg-rating">4.3</div>
-        <div class="stars big">★★★★☆</div>
-        <div class="total-reviews">124 Reviews</div>
+      <div class="price-box">
+        <p class="label">Price:</p>
+        <p class="price">$59.99</p>
       </div>
 
-      <div class="dist-block">
-        <div class="dist-row">
-          <span class="dist-label">5</span>
-          <div class="dist-bar"><span style="width:68%"></span></div>
-          <span class="dist-count">84</span>
+      <div class="price-box">
+        <p class="label">GST (<span id="gstText"></span>):</p>
+        <p class="price">$10.80</p>
+      </div>
+
+      <div class="total-box">
+        <p class="total-label">Total Price:</p>
+        <p class="total-value">$70.79</p>
+      </div>
+
+      <!-- Quantity -->
+      <label class="qty-label">Quantity</label>
+      <select class="qty-select">
+        <option>1</option>
+        <option>2</option>
+        <option>3</option>
+        <option>4</option>
+      </select>
+
+      <!-- Buttons -->
+      <div class="buttons">
+        <button class="add-cart">Add to Cart</button>
+        <button class="buy-now" onclick="window.location=`../html/checkout.html`">Buy Now</button>
+      </div>
+
+    </div>
+
+
+
+  </section>
+  <!-- Reviews Section -->
+  <!-- Reviews Section (Improved) -->
+  <section class="reviews-section">
+
+    <div class="reviews-top">
+      <!-- Left: Rating summary -->
+      <div class="rating-summary">
+        <div class="avg-block">
+          <div class="avg-rating">4.3</div>
+          <div class="stars big">★★★★☆</div>
+          <div class="total-reviews">124 Reviews</div>
         </div>
-        <div class="dist-row">
-          <span class="dist-label">4</span>
-          <div class="dist-bar"><span style="width:18%"></span></div>
-          <span class="dist-count">22</span>
+
+        <div class="dist-block">
+          <div class="dist-row">
+            <span class="dist-label">5</span>
+            <div class="dist-bar"><span style="width:68%"></span></div>
+            <span class="dist-count">84</span>
+          </div>
+          <div class="dist-row">
+            <span class="dist-label">4</span>
+            <div class="dist-bar"><span style="width:18%"></span></div>
+            <span class="dist-count">22</span>
+          </div>
+          <div class="dist-row">
+            <span class="dist-label">3</span>
+            <div class="dist-bar"><span style="width:8%"></span></div>
+            <span class="dist-count">10</span>
+          </div>
+          <div class="dist-row">
+            <span class="dist-label">2</span>
+            <div class="dist-bar"><span style="width:4%"></span></div>
+            <span class="dist-count">5</span>
+          </div>
+          <div class="dist-row">
+            <span class="dist-label">1</span>
+            <div class="dist-bar"><span style="width:2%"></span></div>
+            <span class="dist-count">3</span>
+          </div>
         </div>
-        <div class="dist-row">
-          <span class="dist-label">3</span>
-          <div class="dist-bar"><span style="width:8%"></span></div>
-          <span class="dist-count">10</span>
+      </div>
+
+
+      <!-- Right: Write review -->
+      <div class="write-review">
+
+
+        <h3 class="write-title">Write a review</h3>
+
+        <div class="star-input" aria-label="Rate this product">
+          <button class="star-btn" data-value="1">★</button>
+          <button class="star-btn" data-value="2">★</button>
+          <button class="star-btn" data-value="3">★</button>
+          <button class="star-btn" data-value="4">★</button>
+          <button class="star-btn" data-value="5">★</button>
+          <span class="selected-value">0</span>
         </div>
-        <div class="dist-row">
-          <span class="dist-label">2</span>
-          <div class="dist-bar"><span style="width:4%"></span></div>
-          <span class="dist-count">5</span>
+
+        <textarea class="review-input" placeholder="Share your experience (pros, cons, usage)..."></textarea>
+        <div class="write-actions">
+          <button class="submit-review">Submit Review</button>
+          <button class="clear-review">Clear</button>
         </div>
-        <div class="dist-row">
-          <span class="dist-label">1</span>
-          <div class="dist-bar"><span style="width:2%"></span></div>
-          <span class="dist-count">3</span>
-        </div>
+        <p class="note">Reviews are moderated — please avoid offensive language.</p>
       </div>
     </div>
 
-    <!-- Right: Write review -->
-    <div class="write-review">
-      <h3 class="write-title">Write a review</h3>
+    <!-- Reviews list -->
 
-      <div class="star-input" aria-label="Rate this product">
-        <button class="star-btn" data-value="1">★</button>
-        <button class="star-btn" data-value="2">★</button>
-        <button class="star-btn" data-value="3">★</button>
-        <button class="star-btn" data-value="4">★</button>
-        <button class="star-btn" data-value="5">★</button>
-        <span class="selected-value">0</span>
+
+    <div class="reviews-list">
+      <!-- example review -->
+      <article class="review-card">
+        <header class="review-meta">
+          <div>
+            <div class="user">Rohit Sharma</div>
+            <div class="review-date">Feb 2, 2025</div>
+          </div>
+          <div class="stars small">★★★★☆</div>
+        </header>
+        <p class="review-text">Amazing sound quality! Bass is deep and comfortable for long listening sessions. Battery
+          lasts all day.</p>
+      </article>
+
+      <article class="review-card">
+        <header class="review-meta">
+          <div>
+            <div class="user">Anjali Verma</div>
+            <div class="review-date">Jan 28, 2025</div>
+          </div>
+          <div class="stars small">★★★☆☆</div>
+        </header>
+        <p class="review-text">Good value for money. The ear pads feel a bit stiff — still worth the price.</p>
+      </article>
+
+      <!-- add more review-card blocks as needed -->
+
+      <div class="seller-box">
+        <div class="seller-title">Seller Details</div>
+
+        <div class="seller-row" id="sellerName">Sold By: <span>John Doe Store</span></div>
+        <div class="seller-row" id="soldDate">Sold On: <span>2024/12/21</span></div>
+        <div class="seller-row" id="selllerEmail">Seller Email: <span>JohnDoe@email.com</span></div>
+
+        <div class="seller-address" id="sellerAdd">
+          Seller Address: <span>12, Robert Colony, New York, USA</span>
+        </div>
       </div>
 
-      <textarea class="review-input" placeholder="Share your experience (pros, cons, usage)..."></textarea>
-      <div class="write-actions">
-        <button class="submit-review">Submit Review</button>
-        <button class="clear-review">Clear</button>
-      </div>
-      <p class="note">Reviews are moderated — please avoid offensive language.</p>
-    </div>
-  </div>
 
-  <!-- Reviews list -->
-  <div class="reviews-list">
-    <!-- example review -->
-    <article class="review-card">
-      <header class="review-meta">
-        <div>
-          <div class="user">Rohit Sharma</div>
-          <div class="review-date">Feb 2, 2025</div>
-        </div>
-        <div class="stars small">★★★★☆</div>
-      </header>
-      <p class="review-text">Amazing sound quality! Bass is deep and comfortable for long listening sessions. Battery lasts all day.</p>
-    </article>
-
-    <article class="review-card">
-      <header class="review-meta">
-        <div>
-          <div class="user">Anjali Verma</div>
-          <div class="review-date">Jan 28, 2025</div>
-        </div>
-        <div class="stars small">★★★☆☆</div>
-      </header>
-      <p class="review-text">Good value for money. The ear pads feel a bit stiff — still worth the price.</p>
-    </article>
-
-    <!-- add more review-card blocks as needed -->
-  </div>
-
-</section>
+  </section>
 
 
 
@@ -186,45 +213,107 @@
 
 
 
-
-
-
-
-<script>
-  // optional: enable simple star selection UI (no backend)
-  (function(){
-    const stars = document.querySelectorAll('.star-btn');
-    const valSpan = document.querySelector('.selected-value');
-    let current = 0;
-    stars.forEach(s=>{
-      s.addEventListener('click', ()=> {
-        current = Number(s.dataset.value);
-        stars.forEach(x => x.classList.toggle('active', Number(x.dataset.value) <= current));
-        if (valSpan) valSpan.textContent = current + ' / 5';
+  <script>
+    // optional: enable simple star selection UI (no backend)
+    (function () {
+      const stars = document.querySelectorAll('.star-btn');
+      const valSpan = document.querySelector('.selected-value');
+      let current = 0;
+      stars.forEach(s => {
+        s.addEventListener('click', () => {
+          current = Number(s.dataset.value);
+          stars.forEach(x => x.classList.toggle('active', Number(x.dataset.value) <= current));
+          if (valSpan) valSpan.textContent = current + ' / 5';
+        });
       });
-    });
-    // clear button
-    const clearBtn = document.querySelector('.clear-review');
-    if (clearBtn) clearBtn.addEventListener('click', ()=>{
-      stars.forEach(x => x.classList.remove('active'));
-      current = 0;
-      if (valSpan) valSpan.textContent = '0';
-      const ta = document.querySelector('.review-input');
-      if (ta) ta.value = '';
-    });
-    // submit (demo)
-    const submit = document.querySelector('.submit-review');
-    if (submit) submit.addEventListener('click', ()=>{
-      const ta = document.querySelector('.review-input');
-      const text = ta ? ta.value.trim() : '';
-      if (current === 0) return alert('Please give a rating (1-5 stars).');
-      if (!text) return alert('Please write a short review.');
-      alert('Thanks! Your review is submitted (demo only).');
-      // reset demo
-      clearBtn.click();
-    });
-  })();
-</script>
+      // clear button
+      const clearBtn = document.querySelector('.clear-review');
+      if (clearBtn) clearBtn.addEventListener('click', () => {
+        stars.forEach(x => x.classList.remove('active'));
+        current = 0;
+        if (valSpan) valSpan.textContent = '0';
+        const ta = document.querySelector('.review-input');
+        if (ta) ta.value = '';
+      });
+      // submit (demo)
+      const submit = document.querySelector('.submit-review');
+      if (submit) submit.addEventListener('click', () => {
+        const ta = document.querySelector('.review-input');
+        const text = ta ? ta.value.trim() : '';
+        if (current === 0) return alert('Please give a rating (1-5 stars).');
+        if (!text) return alert('Please write a short review.');
+        alert('Thanks! Your review is submitted (demo only).');
+        // reset demo
+        clearBtn.click();
+      });
+    })();
+
+
+
+
+
+
+
+
+  </script>
+
+  <script>
+    /* -------------------------
+       1) Read ?id= from URL
+    -------------------------- */
+    const params = new URLSearchParams(window.location.search);
+    const productId = params.get("id");
+
+    /* -------------------------
+       2) Fetch product details
+    -------------------------- */
+    axios.get(`http://localhost:8080/product?id=${productId}`, {
+      auth: {
+        username: "user",
+        password: "327f1964-7575-4a71-b6c4-55807f50f105"
+      }
+    })
+      .then(res => {
+        let p = res.data;
+
+        // Fallback: if array comes, take first item
+        if (Array.isArray(p)) p = p[0];
+
+        updateUI(p);
+      })
+      .catch(err => console.log(err));
+
+
+    /* -------------------------
+       3) Update the DOM
+    -------------------------- */
+    function updateUI(p) {
+
+      console.log(p)
+      // Image
+      document.querySelector("#main-img").src = p.image != "" ? p.image : "https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcSYwqMb2UZZAUNdo12xYR7vRGxmYHXXNaPhXg&s";
+
+      // Title
+      document.querySelector(".title").textContent = p.productName;
+
+      // Description
+      document.querySelector(".desc").textContent = p.desc;
+
+      // Base price
+      document.querySelector(".price").textContent = "₹" + p.basePrice;
+
+      gstText.innerText = p.gst + "%";
+
+      // GST (18%)
+      const gst = (p.basePrice * p.gst / 100).toFixed(2);
+      document.querySelectorAll(".price")[1].textContent = "₹" +
+        gst;
+
+      // Total
+      const total = (p.basePrice + Number(gst)).toFixed(2);
+      document.querySelector(".total-value").textContent = "₹" + total;
+    }
+  </script>
 
 
 </body>

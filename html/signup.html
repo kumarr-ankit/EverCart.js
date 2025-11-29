@@ -1,55 +1,157 @@
 <!DOCTYPE html>
 <html lang="en">
+
 <head>
   <meta charset="UTF-8" />
   <meta name="viewport" content="width=device-width, initial-scale=1.0" />
   <title>EverCart - Sign Up</title>
+
+  <script src="https://cdn.jsdelivr.net/npm/axios/dist/axios.min.js"></script>
+  <link rel="shortcut icon" href="https://img.icons8.com/?size=100&id=j3XI41kBOIXY&format=png&color=636363"
+    type="image/x-icon">
+
+
+
+
+
   <link rel="stylesheet" href="../css/signup.css" />
-      <link rel="shortcut icon" href="https://img.icons8.com/?size=100&id=j3XI41kBOIXY&format=png&color=636363"
-        type="image/x-icon">
 </head>
+
 <body>
 
   <div class="page">
     <div class="card">
 
-      <!-- Logo -->
       <div class="logo-box">
-        <div class="logo"><img src="https://img.icons8.com/?size=100&id=j3XI41kBOIXY&format=png&color=636363" alt="" srcset=""></div>
+        <div class="logo"><img src="https://img.icons8.com/?size=100&id=j3XI41kBOIXY&format=png&color=636363" alt="">
+        </div>
       </div>
 
-      <!-- Heading -->
       <h1 class="title">Create Account</h1>
 
-      <!-- Form -->
-      <form class="form">
-        
+      <form class="form" id="form">
+
         <div class="input-group">
           <label>Full Name</label>
-          <input type="text" placeholder="John Doe" required />
+          <input type="text" placeholder="John Doe" name="fullName" required />
         </div>
 
         <div class="input-group">
           <label>Email Address</label>
-          <input type="email" placeholder="you@example.com" required />
+          <input type="email" placeholder="you@example.com" name="email" required />
+        </div>
+
+        <div class="input-group">
+          <label>Phone</label>
+          <input type="tel" placeholder="987654321" name="phone" required />
         </div>
 
         <div class="input-group">
           <label>Password</label>
-          <input type="password" placeholder="••••••••" required />
+          <input type="password" placeholder="••••••••" name="password" required />
         </div>
 
-        <button type="submit" class="btn">Sign Up</button>
+        <div class="input-group">
+          <label>Residential Address</label>
+          <input type="text" placeholder="123 Main Street, Anytown, CA 12345" name="address" required />
+        </div>
+
+        <div class="input-group">
+          <label>Referral Code (Optional)</label>
+          <input type="text" placeholder="12F-234YZ" name="referralCode" />
+        </div>
+
+        <button type="submit" class="btn" id="signupBtn">Sign Up</button>
       </form>
 
-      <!-- Footer -->
       <p class="footer">
         Already have an account?
         <a href="login.html">Log In</a>
       </p>
 
     </div>
+
+
+    <div class="custom-toast-container"></div>
+
+
   </div>
 
+
+
+  <script>
+    let signupBtn = document.getElementById("signupBtn");
+    signupBtn.addEventListener("click", () => {
+
+      event.preventDefault();
+      let form = document.getElementById("form");
+
+      let formData = new FormData(form);
+
+      axios.post(`http://localhost:8080/api/auth/customer/register`, {
+        fullName: formData.get('fullName'),
+        email: formData.get('email'),
+        phone: formData.get('phone'),
+        address: formData.get('address'),
+        password: formData.get('password'),
+        referralCode: formData.get('referralCode')
+      }
+      ).then((res) => {
+        let data = res.data;
+        console.log(data);
+        localStorage.setItem('token', data['token']);
+
+        location.href = '/html/home.html';
+        localStorage.setItem('isLogged', true);
+      }).catch(e => {
+        console.log(e);
+        let errorObj = e.response.data;
+
+        console.log(errorObj.message)
+        showToast(errorObj.message, "Sign up Failed.")
+      })
+
+
+      function showToast(message, title = "Notification") {
+        const container = document.querySelector(".custom-toast-container");
+
+        // Create toast element
+        const toast = document.createElement("div");
+        toast.className = "custom-toast";
+
+        toast.innerHTML = `
+        <div class="custom-toast-header">
+            <span>${title}</span>
+            <span class="custom-toast-close">&times;</span>
+        </div>
+        <div class="custom-toast-body">${message}</div>
+    `;
+
+        container.appendChild(toast);
+
+        // Show animation
+        setTimeout(() => toast.classList.add("show"), 10);
+
+        // Auto hide after 4 sec
+        setTimeout(() => {
+          toast.classList.remove("show");
+          setTimeout(() => toast.remove(), 300);
+        }, 4000);
+
+        // Manual close
+        toast.querySelector(".custom-toast-close").onclick = () => {
+          toast.classList.remove("show");
+          setTimeout(() => toast.remove(), 300);
+        };
+      }
+
+    })
+
+
+
+  </script>
+
+
 </body>
+
 </html>

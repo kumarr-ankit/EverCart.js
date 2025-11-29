@@ -360,3 +360,58 @@ body {
   .dist-count { font-size:12px; width: 34px; }
   .dist-label { font-size:12px; width: 16px; }
 }
+
+
+
+/* ------------------------------
+   Seller Details Section
+--------------------------------*/
+.seller-box {
+  margin-top: 25px;
+  background: #0f0f0f;
+  border: 1px solid #1f1f1f;
+  padding: 18px 20px;
+  border-radius: 10px;
+  color: #e6e6e6;
+  line-height: 1.6;
+}
+
+.seller-title {
+  font-size: 20px;
+  margin-bottom: 12px;
+  font-weight: 600;
+  color: #ffffff;
+  border-bottom: 1px solid #1c1c1c;
+  padding-bottom: 6px;
+}
+
+.seller-row {
+  margin: 6px 0;
+  font-size: 15px;
+  color: #ccc;
+}
+
+.seller-row span {
+  color: #fff;
+  font-weight: 600;
+}
+
+.seller-address {
+  margin-top: 14px;
+  padding-top: 10px;
+  border-top: 1px solid #222;
+  color: #d0d0d0;
+  font-size: 15px;
+}
+
+.seller-address span {
+  font-weight: 600;
+  color: #fff;
+}
+
+/* mobile responsive */
+@media (max-width: 850px) {
+  .seller-box {
+    padding: 15px;
+  }
+}

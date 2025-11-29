@@ -1,119 +1,227 @@
-/* Dark Theme */
-body {
-    margin: 0;
-    padding: 0;
-    background: #0d0d0d;
-    color: #fff;
-    font-family: Arial, sans-serif;
-}
+  /* RESET */
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+            font-family: Arial, sans-serif;
+        }
 
-.header {
-    background: #111;
-    padding: 20px;
-    text-align: center;
-    border-bottom: 1px solid #222;
-}
+        body {
+            background: #000;
+            color: white;
+            display: flex;
+        }
 
-.container {
-    width: 90%;
-    max-width: 900px;
-    margin: 30px auto;
-}
+        /* SIDEBAR */
+        .sidebar {
+            width: 240px;
+            height: 100vh;
+            background: #0d0d0d;
+            border-right: 1px solid #222;
+            padding: 25px 18px;
+            position: fixed;
+            overflow-y: auto;
+        }
 
-/* Filter Box */
-.filter-box {
-    display: flex;
-    justify-content: space-between;
-    margin-bottom: 20px;
-}
+        .logo {
+            text-align: center;
+            margin-bottom: 25px;
+            font-size: 22px;
+        }
 
-.filter-box select {
-    background: #111;
-    border: 1px solid #333;
-    color: #fff;
-    padding: 10px;
-    width: 48%;
-    border-radius: 8px;
-}
+        .menu {
+            list-style: none;
+        }
 
-/* Order Card */
-.order-card {
-    background: #111;
-    padding: 18px;
-    border-radius: 10px;
-    border: 1px solid #1f1f1f;
-    margin-bottom: 18px;
-    display: flex;
-    justify-content: space-between;
-    align-items: center;
-}
+        .menu li {
+            margin: 18px 0;
+        }
 
-.order-card .left h3 {
-    margin: 0;
-}
+        .menu a {
+            text-decoration: none;
+            color: #bbb;
+            display: flex;
+            gap: 12px;
+            align-items: center;
+            padding: 10px;
+            border-radius: 6px;
+            transition: 0.3s;
+        }
 
-.order-card .left p {
-    margin: 5px 0;
-    color: #ccc;
-}
+        .menu a:hover,
+        .menu a.active {
+            background: #1a1a1a;
+            color: #fff;
+        }
 
-.date {
-    font-size: 13px;
-    color: #888;
-}
+        .logout {
+            margin-top: 30px;
+            color: #ff4d4d !important;
+        }
 
-/* Status Tags */
-.status {
-    padding: 6px 12px;
-    border-radius: 6px;
-    font-size: 14px;
-    margin-bottom: 8px;
-    display: inline-block;
-}
+        /* CONTENT */
+        .content {
+            margin-left: 240px;
+            width: calc(100% - 240px);
+            padding: 0;
+        }
 
-.status.shipped {
-    background: #1c552b;
-}
+        .header {
+            background: #111;
+            padding: 20px;
+            text-align: center;
+            border-bottom: 1px solid #222;
+        }
 
-.status.delivered {
-    background: #2e7d32;
-}
+        .container {
+            width: 90%;
+            max-width: 900px;
+            margin: 30px auto;
+        }
 
-.status.pending {
-    background: #8e6a00;
-}
+        /* Filter Box */
+        .filter-box {
+            display: flex;
+            gap: 15px;
+            margin-bottom: 25px;
+        }
 
-/* View Button */
-.view-btn {
-    background: white;
-    color: black;
-    padding: 8px 14px;
-    border-radius: 8px;
-    text-decoration: none;
-    font-weight: bold;
-}
+        .filter-box select {
+            background: #111;
+            border: 1px solid #333;
+            color: #fff;
+            padding: 10px 15px;
+            flex: 1;
+            border-radius: 8px;
+            cursor: pointer;
+        }
 
-.view-btn:hover {
-    opacity: 0.8;
-}
+        /* Order Card */
+        .order-card {
+            background: #111;
+            padding: 18px;
+            border-radius: 10px;
+            border: 1px solid #222;
+            margin-bottom: 18px;
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+        }
 
-/* Responsive */
-@media (max-width: 600px) {
-    .filter-box {
-        flex-direction: column;
-    }
+        .order-card .left h3 {
+            margin: 0 0 8px 0;
+            font-size: 18px;
+        }
 
-    .filter-box select {
-        width: 100%;
-        margin-bottom: 10px;
-    }
+        .order-card .left p {
+            margin: 5px 0;
+            color: #ccc;
+            font-size: 14px;
+        }
 
-    .order-card {
-        flex-direction: column;
-        align-items: flex-start;
-    }
+        .date {
+            font-size: 13px;
+            color: #888;
+        }
 
-    .right {
-        margin-top: 15px;
-    }
-}
+        .right {
+            display: flex;
+            flex-direction: column;
+            align-items: flex-end;
+            gap: 10px;
+        }
+
+        /* Status Tags */
+        .status {
+            padding: 6px 14px;
+            border-radius: 6px;
+            font-size: 14px;
+            font-weight: 500;
+            display: inline-block;
+        }
+
+        .status.shipped {
+            background: #1c552b;
+            color: #90ee90;
+        }
+
+        .status.delivered {
+            background: #2e7d32;
+            color: #90ee90;
+        }
+
+        .status.pending {
+            background: #8e6a00;
+            color: #ffd700;
+        }
+
+        .status.packed {
+            background: #8e6a00;
+            color: #ffd700;
+        }
+
+        /* View Button */
+        .view-btn {
+            background: white;
+            color: black;
+            padding: 8px 14px;
+            border-radius: 8px;
+            text-decoration: none;
+            font-weight: bold;
+            transition: 0.3s;
+        }
+
+        .view-btn:hover {
+            background: #ddd;
+        }
+
+        /* Responsive */
+        @media (max-width: 768px) {
+            .sidebar {
+                width: 200px;
+            }
+
+            .content {
+                margin-left: 200px;
+                width: calc(100% - 200px);
+            }
+        }
+
+        @media (max-width: 600px) {
+            body {
+                flex-direction: column;
+            }
+
+            .sidebar {
+                width: 100%;
+                height: auto;
+                position: relative;
+            }
+
+            .content {
+                margin-left: 0;
+                width: 100%;
+            }
+
+            .filter-box {
+                flex-direction: column;
+            }
+
+            .filter-box select {
+                width: 100%;
+                margin-bottom: 10px;
+            }
+
+            .order-card {
+                flex-direction: column;
+                align-items: flex-start;
+            }
+
+            .right {
+                width: 100%;
+                flex-direction: row;
+                justify-content: space-between;
+                align-items: center;
+                margin-top: 15px;
+            }
+        }

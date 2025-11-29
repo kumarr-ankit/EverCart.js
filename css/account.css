@@ -1,11 +1,12 @@
 /* ---------- GLOBAL THEME ---------- */
-*{
-  margin: 0;
+* {
+    margin: 0;
     padding: 0;
     box-sizing: border-box;
 }
+
 body {
-  
+
     background: #000;
     color: #fff;
     font-family: "Inter", Arial, sans-serif;
@@ -23,7 +24,7 @@ body {
 }
 
 .logo {
-   
+
     width: 42px;
     height: 42px;
     display: flex;
@@ -33,7 +34,8 @@ body {
     font-size: 20px;
     border-radius: 10px;
 }
-.logo img{
+
+.logo img {
     height: 42px;
 }
 
@@ -233,4 +235,101 @@ body {
         flex-direction: column;
         gap: 12px;
     }
+}
+
+.hidden {
+    display: none;
+}
+
+
+
+
+
+
+
+
+
+
+/* ---------- EDIT MODAL ---------- */
+.modal {
+    position: fixed;
+    top: 0;
+    left: 0;
+    width: 100%;
+    height: 100%;
+    background: rgba(0, 0, 0, 0.65);
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    z-index: 2000;
+    transition: 0.3s ease;
+}
+
+.modal.hidden {
+    opacity: 0;
+    pointer-events: none;
+}
+
+.modal-content {
+    width: 90%;
+    max-width: 420px;
+    background: #0e0e0e;
+    border: 1px solid #333;
+    padding: 25px;
+    border-radius: 14px;
+    animation: scaleIn 0.25s ease;
+    color: white;
+}
+
+@keyframes scaleIn {
+    0% {
+        transform: scale(0.93);
+        opacity: 0;
+    }
+
+    100% {
+        transform: scale(1);
+        opacity: 1;
+    }
+}
+
+.modal-content h2 {
+    margin-bottom: 15px;
+    font-size: 20px;
+    font-weight: 600;
+}
+
+.modal-content input,
+.modal-content textarea {
+    width: 100%;
+    margin-top: 6px;
+    padding: 10px;
+    margin-bottom: 14px;
+    background: #111;
+    color: white;
+    border: 1px solid #333;
+    border-radius: 8px;
+}
+
+.modal-actions {
+    display: flex;
+    justify-content: flex-end;
+    gap: 10px;
+}
+
+.btn {
+    background: white;
+    color: black;
+    padding: 10px 18px;
+    border-radius: 6px;
+    cursor: pointer;
+}
+
+.btn-secondary {
+    background: #222;
+    color: white;
+    border: 1px solid #444;
+    padding: 10px 18px;
+    border-radius: 6px;
+    cursor: pointer;
 }
