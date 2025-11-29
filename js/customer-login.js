@@ -1,4 +1,5 @@
 document.addEventListener("DOMContentLoaded", () => {
+    let BASE_URL = window.CONFIG.BASE_URL;
     const form = document.querySelector("form");
     const emailInput = document.querySelector("input[type='email']");
     const passwordInput = document.querySelector("input[type='password']");
@@ -13,7 +14,7 @@ document.addEventListener("DOMContentLoaded", () => {
 
         try {
             const response = await axios.post(
-                "http://localhost:8080/api/auth/login",
+                `${BASE_URL}/api/auth/login`,
                 payload,
                 {
                     headers: {
@@ -32,12 +33,12 @@ document.addEventListener("DOMContentLoaded", () => {
 
             // Save token to localStorage
             localStorage.setItem("token", token);
-            localStorage.setItem("everCart-isLogged",true);
+            localStorage.setItem("isLogged",true);
 
             // Navigate to home
             setTimeout(() => {
                  window.location.href = "./home.html";
-            }, 9000);
+            }, 2000);
 
         } catch (err) {
             console.error(err);

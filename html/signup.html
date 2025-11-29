@@ -12,7 +12,7 @@
 
 
 
-
+<script src="../config.js"></script>
 
   <link rel="stylesheet" href="../css/signup.css" />
 </head>
@@ -80,6 +80,8 @@
 
 
   <script>
+
+    let BASE_URL = window.CONFIG.BASE_URL;
     let signupBtn = document.getElementById("signupBtn");
     signupBtn.addEventListener("click", () => {
 
@@ -88,7 +90,7 @@
 
       let formData = new FormData(form);
 
-      axios.post(`http://localhost:8080/api/auth/customer/register`, {
+      axios.post(`${BASE_URL}/api/auth/customer/register`, {
         fullName: formData.get('fullName'),
         email: formData.get('email'),
         phone: formData.get('phone'),

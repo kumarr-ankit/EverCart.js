@@ -1,5 +1,5 @@
 // partner-register.js
-
+let BASE_URL = window.CONFIG.BASE_URL;
 async function registerPartner(event) {
     event.preventDefault();
 
@@ -12,7 +12,7 @@ async function registerPartner(event) {
     const data = { fullName, email, phone, partnerId, password };
 
     try {
-        const response = await axios.post("http://localhost:8080/register", data, {
+        const response = await axios.post(`${BASE_URL}/register`, data, {
             headers: { "Content-Type": "application/json" }
         });
 

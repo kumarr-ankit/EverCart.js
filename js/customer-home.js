@@ -1,8 +1,10 @@
+let BASE_URL = window.CONFIG.BASE_URL;
+
 const container = document.querySelector(".products");
 const loginBtn = document.getElementById("isLogged");
 const youBtn = document.getElementById("you");
 
-const isLogged = localStorage.getItem("everCart-isLogged");
+const isLogged = localStorage.getItem("isLogged");
 
 // Handle login display
 if (isLogged) {
@@ -15,7 +17,7 @@ if (isLogged) {
 
 // Fetch products
 axios
-  .get("https://evercart.zeabur.app/products", {
+  .get(`${BASE_URL}/products`, {
     headers: {
       Authorization: `Bearer ${localStorage.getItem("token")}`,
     },

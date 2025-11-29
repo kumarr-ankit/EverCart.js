@@ -2,24 +2,24 @@
 <html lang="en">
 
 <head>
-    <meta charset="UTF-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <!-- <meta http-equiv="refresh" content="0; url=./html/home.html"> -->
-    <script src="https://cdn.jsdelivr.net/npm/axios/dist/axios.min.js"></script>
-    <title>EverCart 🛒</title>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <meta http-equiv="refresh" content="0; url=./html/home.html">
+  <script src="https://cdn.jsdelivr.net/npm/axios/dist/axios.min.js"></script>
+  <title>EverCart 🛒</title>
 
-    
- <!-- Bootstrap CSS -->
-<link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.2/dist/css/bootstrap.min.css" rel="stylesheet">
 
-<!-- Bootstrap JS -->
-<script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.2/dist/js/bootstrap.bundle.min.js"></script>
+  <!-- Bootstrap CSS -->
+  <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.2/dist/css/bootstrap.min.css" rel="stylesheet">
+
+  <!-- Bootstrap JS -->
+  <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.2/dist/js/bootstrap.bundle.min.js"></script>
 
 
 </head>
 
-<body>
-    <input type="file" id="fileInput" multiple>
+<body hidden>
+  <input type="file" id="fileInput" multiple>
 
 
   <button type="button" class="btn btn-primary" id="liveToastBtn">Show live toast</button>
@@ -39,58 +39,58 @@
   </div>
 
 
-<script>
+  <script>
     const toastTrigger = document.getElementById('liveToastBtn')
-const toastLiveExample = document.getElementById('liveToast')
+    const toastLiveExample = document.getElementById('liveToast')
 
-if (toastTrigger) {
-  const toastBootstrap = bootstrap.Toast.getOrCreateInstance(toastLiveExample)
-  toastTrigger.addEventListener('click', () => {
-    toastBootstrap.show()
-  })
-}
-</script>
-
-
-
-    <script>
-        document.getElementById("fileInput").addEventListener("change", function () {
-            for (let file of this.files) {
-                console.log("Selected:", file.name);
-            }
-        });
-    </script>
-
-    <input type="file" id="imgInput" accept="image/*">
-    <img id="preview" width="200">
-
-    <script>
-        imgInput.onchange = evt => {
-            const file = evt.target.files[0];
-            preview.src = URL.createObjectURL(file);
-        };
-    </script>
-
-    <script>
+    if (toastTrigger) {
+      const toastBootstrap = bootstrap.Toast.getOrCreateInstance(toastLiveExample)
+      toastTrigger.addEventListener('click', () => {
+        toastBootstrap.show()
+      })
+    }
+  </script>
 
 
-        const isLogged = localStorage.getItem("everCart-isLogged");
 
-        if (isLogged) {
+  <script>
+    document.getElementById("fileInput").addEventListener("change", function () {
+      for (let file of this.files) {
+        console.log("Selected:", file.name);
+      }
+    });
+  </script>
+
+  <input type="file" id="imgInput" accept="image/*">
+  <img id="preview" width="200">
+
+  <script>
+    imgInput.onchange = evt => {
+      const file = evt.target.files[0];
+      preview.src = URL.createObjectURL(file);
+    };
+  </script>
+
+  <script>
 
 
-            axios.get(`http://localhost:8080/api/customer/my-profile`, {
-                headers: {
-                    Authorization: `Bearer ${localStorage.getItem("token")}`,
-                },
-            }).then(res => {
-                const data = res.data;
-                console.log(data);
-            }).catch(error => {
-                console.log(error);
-            })
-        }
-    </script>
+    const isLogged = localStorage.getItem("everCart-isLogged");
+
+    if (isLogged) {
+
+
+      axios.get(`http://localhost:8080/api/customer/my-profile`, {
+        headers: {
+          Authorization: `Bearer ${localStorage.getItem("token")}`,
+        },
+      }).then(res => {
+        const data = res.data;
+        console.log(data);
+      }).catch(error => {
+        console.log(error);
+      })
+    }
+  </script>
 
 
 </body>

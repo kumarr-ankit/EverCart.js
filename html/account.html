@@ -9,10 +9,11 @@
     <link rel="shortcut icon" href="https://img.icons8.com/?size=100&id=j3XI41kBOIXY&format=png&color=636363"
         type="image/x-icon">
     <script src="https://cdn.jsdelivr.net/npm/axios/dist/axios.min.js"></script>
-      <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/7.0.1/css/all.min.css"
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/7.0.1/css/all.min.css"
         integrity="sha512-2SwdPD6INVrV/lHTZbO2nodKhrnDdJK9/kg2XD1r9uGqPo1cUbujc+IYdlYdEErWNu69gVcYgdxlmVmzTWnetw=="
         crossorigin="anonymous" referrerpolicy="no-referrer" />
 </head>
+<script src="../config.js"></script>
 
 <body>
 
@@ -104,7 +105,7 @@
 
 
 
-        <button class="logout-btn">Logout</button>
+        <button class="logout-btn" id="logOut">Logout</button>
 
     </div>
 
@@ -114,8 +115,8 @@
             <h2>Edit Profile</h2>
 
             <div class="profile-top">
-                <img src="https://img.freepik.com/vecteurs-premium/icone-profil-avatar-par-defaut-image-utilisateur-medias-sociaux-icone-avatar-gris-silhouette-profil-vide-illustration-vectorielle_561158-3407.jpg?semt=ais_hybrid&w=740&q=80";
-      alt="Profile" class="profile-pic" id="dpEdit" />
+                <img src="https://img.freepik.com/vecteurs-premium/icone-profil-avatar-par-defaut-image-utilisateur-medias-sociaux-icone-avatar-gris-silhouette-profil-vide-illustration-vectorielle_561158-3407.jpg?semt=ais_hybrid&w=740&q=80"
+                    ; alt="Profile" class="profile-pic" id="dpEdit" />
                 <button class="edit-photo-btn" id="changeDp">Change Photo</button>
                 <input type="file" id="fileInput" accept="image/*" hidden>
 
@@ -146,9 +147,10 @@
 
 
     <script>
+        let BASE_URL = window.CONFIG.BASE_URL;
 
         // let username = document.getElementById("username");
-        axios.get('http://localhost:8080/api/customer/profile', {
+        axios.get(`${BASE_URL}/api/customer/profile`, {
             headers: {
                 Authorization: `Bearer ${localStorage.getItem("token")}`,
             }
@@ -174,9 +176,10 @@
             dp.src = userDetails.profileImage || "https://img.freepik.com/vecteurs-premium/icone-profil-avatar-par-defaut-image-utilisateur-medias-sociaux-icone-avatar-gris-silhouette-profil-vide-illustration-vectorielle_561158-3407.jpg?semt=ais_hybrid&w=740&q=80";
         }
 
+        let changeDp = document.getElementById("changeDp");
 
         changeDp.addEventListener("click", () => {
-            axios.get('http://localhost:8080/api/update-profile', {
+            axios.get(`${BASE_URL}/api/update-profile`, {
                 headers: {
                     Authorization: `Bearer ${localStorage.getItem("token")}`,
                 },
@@ -249,7 +252,7 @@
                 address: editAddress.value
             };
 
-            axios.put("http://localhost:8080/api/customer/update", payload, {
+            axios.put(`${BASE_URL}/api/customer/update`, payload, {
                 headers: {
                     Authorization: `Bearer ${localStorage.getItem("token")}`,
                 },
@@ -259,6 +262,21 @@
                     editModal.classList.add("hidden");
                 })
                 .catch(err => console.log(err));
+        });
+
+
+        let logOut = document.getElementById("logOut");
+        logOut.addEventListener("click",()=>{
+  
+            let res = confirm("Do you want to log out ?");
+
+            if(res){
+                localStorage.removeItem("isLogged");
+
+                setTimeout(()=>{
+                    location.href = "./login.html";
+                },1000);
+            }
         });
     </script>
 

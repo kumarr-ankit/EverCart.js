@@ -13,6 +13,7 @@
     crossorigin="anonymous" referrerpolicy="no-referrer" />
 
   <script src="https://cdn.jsdelivr.net/npm/axios/dist/axios.min.js"></script>
+  <script src="../config.js"></script>
 
 
 
@@ -188,12 +189,11 @@
       <div class="seller-box">
         <div class="seller-title">Seller Details</div>
 
-        <div class="seller-row" id="sellerName">Sold By: <span>John Doe Store</span></div>
-        <div class="seller-row" id="soldDate">Sold On: <span>2024/12/21</span></div>
-        <div class="seller-row" id="selllerEmail">Seller Email: <span>JohnDoe@email.com</span></div>
-
-        <div class="seller-address" id="sellerAdd">
-          Seller Address: <span>12, Robert Colony, New York, USA</span>
+        <div class="seller-row" >Sold By: <span id="sellerName">John Doe Store</span></div>
+        <div class="seller-row" >Sold On: <span id="soldOn">2024/12/21</span></div>
+        <div class="seller-row">Seller Email: <span  id="selllerEmail">JohnDoe@email.com</span></div>
+        <div class="seller-address" >
+          Seller Address: <span id="sellerAdd">12, Robert Colony, New York, USA</span>
         </div>
       </div>
 
@@ -213,109 +213,8 @@
 
 
 
-  <script>
-    // optional: enable simple star selection UI (no backend)
-    (function () {
-      const stars = document.querySelectorAll('.star-btn');
-      const valSpan = document.querySelector('.selected-value');
-      let current = 0;
-      stars.forEach(s => {
-        s.addEventListener('click', () => {
-          current = Number(s.dataset.value);
-          stars.forEach(x => x.classList.toggle('active', Number(x.dataset.value) <= current));
-          if (valSpan) valSpan.textContent = current + ' / 5';
-        });
-      });
-      // clear button
-      const clearBtn = document.querySelector('.clear-review');
-      if (clearBtn) clearBtn.addEventListener('click', () => {
-        stars.forEach(x => x.classList.remove('active'));
-        current = 0;
-        if (valSpan) valSpan.textContent = '0';
-        const ta = document.querySelector('.review-input');
-        if (ta) ta.value = '';
-      });
-      // submit (demo)
-      const submit = document.querySelector('.submit-review');
-      if (submit) submit.addEventListener('click', () => {
-        const ta = document.querySelector('.review-input');
-        const text = ta ? ta.value.trim() : '';
-        if (current === 0) return alert('Please give a rating (1-5 stars).');
-        if (!text) return alert('Please write a short review.');
-        alert('Thanks! Your review is submitted (demo only).');
-        // reset demo
-        clearBtn.click();
-      });
-    })();
 
-
-
-
-
-
-
-
-  </script>
-
-  <script>
-    /* -------------------------
-       1) Read ?id= from URL
-    -------------------------- */
-    const params = new URLSearchParams(window.location.search);
-    const productId = params.get("id");
-
-    /* -------------------------
-       2) Fetch product details
-    -------------------------- */
-    axios.get(`http://localhost:8080/product?id=${productId}`, {
-      auth: {
-        username: "user",
-        password: "327f1964-7575-4a71-b6c4-55807f50f105"
-      }
-    })
-      .then(res => {
-        let p = res.data;
-
-        // Fallback: if array comes, take first item
-        if (Array.isArray(p)) p = p[0];
-
-        updateUI(p);
-      })
-      .catch(err => console.log(err));
-
-
-    /* -------------------------
-       3) Update the DOM
-    -------------------------- */
-    function updateUI(p) {
-
-      console.log(p)
-      // Image
-      document.querySelector("#main-img").src = p.image != "" ? p.image : "https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcSYwqMb2UZZAUNdo12xYR7vRGxmYHXXNaPhXg&s";
-
-      // Title
-      document.querySelector(".title").textContent = p.productName;
-
-      // Description
-      document.querySelector(".desc").textContent = p.desc;
-
-      // Base price
-      document.querySelector(".price").textContent = "₹" + p.basePrice;
-
-      gstText.innerText = p.gst + "%";
-
-      // GST (18%)
-      const gst = (p.basePrice * p.gst / 100).toFixed(2);
-      document.querySelectorAll(".price")[1].textContent = "₹" +
-        gst;
-
-      // Total
-      const total = (p.basePrice + Number(gst)).toFixed(2);
-      document.querySelector(".total-value").textContent = "₹" + total;
-    }
-  </script>
-
-
+<script type="module" src="../js/product.js"></script>
 </body>
 
 </html>
