@@ -15,7 +15,7 @@ if (isLogged) {
 
 // Fetch products
 axios
-  .get("http://localhost:8080/products", {
+  .get("https://evercart.zeabur.app/products", {
     headers: {
       Authorization: `Bearer ${localStorage.getItem("token")}`,
     },
