@@ -8,7 +8,8 @@
 
     <link rel="stylesheet" href="../css/partner-login.css" />
     <link rel="shortcut icon" href="https://img.icons8.com/?size=100&id=j3XI41kBOIXY&format=png&color=636363">
-
+    <script src="../config.js"></script>
+    <script src="https://cdn.jsdelivr.net/npm/axios/dist/axios.min.js"></script>
     <style>
         /* PREMIUM SWITCH — SAME AS CUSTOMER PAGE */
         .switch-wrapper {
@@ -64,20 +65,20 @@
             </div>
 
             <h1 class="title">Partner Login</h1>
-           
-            <form>
+
+            <form onsubmit="loginPartner(event)">
 
                 <div class="input-group">
                     <label>Partner Code / Username</label>
-                    <input type="text" placeholder="Enter Partner ID" required />
+                    <input type="text" name="email" placeholder="Enter Partner ID" required />
                 </div>
 
                 <div class="input-group">
                     <label>Password</label>
-                    <input type="password" placeholder="Enter Password" required />
+                    <input type="password" name="password" placeholder="Enter Password" required />
                 </div>
 
-                <button class="login-btn" onclick="window.location.href=`home.html`; event.preventDefault()">Login</button>
+                <button class="login-btn" id="login-btn">Login</button>
 
                 <a href="#" class="forgot">Forgot Password?</a>
 
@@ -92,6 +93,7 @@
 
     </div>
 
+    <script src="../js/partner-login.js"></script>
 </body>
 
 </html>

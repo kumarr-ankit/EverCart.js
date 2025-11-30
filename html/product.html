@@ -80,8 +80,8 @@
 
       <!-- Buttons -->
       <div class="buttons">
-        <button class="add-cart">Add to Cart</button>
-        <button class="buy-now" onclick="window.location=`../html/checkout.html`">Buy Now</button>
+        <button class="add-cart" id="add-cart">Add to Cart</button>
+        <button class="buy-now" id="buy-now">Buy Now</button>
       </div>
 
     </div>
@@ -209,7 +209,22 @@
 
 
 
+<script>
+  let status= localStorage.getItem("isLogged");
+  let isLogged = document.getElementById("isLogged");
+ 
+  let you =  document.getElementById("you");
+  
 
+  if(status){
+    isLogged.style.display = 'none';
+  
+     you.style.display = 'block';
+  }else{
+    isLogged.style.display = 'block';
+     you.style.display = 'none';
+  }
+</script>
 
 
 

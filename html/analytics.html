@@ -6,6 +6,7 @@
   <title>Analytics — Partner Dashboard</title>
   <link rel="shortcut icon" href="https://img.icons8.com/?size=100&id=j3XI41kBOIXY&format=png&color=636363" type="image/x-icon">
   <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.0/css/all.min.css">
+  <script src="https://cdn.jsdelivr.net/npm/axios/dist/axios.min.js"></script>
   <style>
     /* RESET */
     * {
@@ -36,6 +37,7 @@
       text-align: center;
       margin-bottom: 25px;
       font-size: 22px;
+      color: #4fa3ff;
     }
 
     .menu {
@@ -93,6 +95,23 @@
       font-size: 14px;
     }
 
+    /* Loading */
+    .loading {
+      text-align: center;
+      padding: 80px 20px;
+      color: #666;
+    }
+
+    .loading i {
+      font-size: 36px;
+      margin-bottom: 16px;
+      animation: spin 1s linear infinite;
+    }
+
+    @keyframes spin {
+      to { transform: rotate(360deg); }
+    }
+
     /* Container */
     .container {
       padding: 30px;
@@ -114,6 +133,12 @@
       border-radius: 12px;
       border: 1px solid #222;
       text-align: center;
+      transition: all 0.3s ease;
+    }
+
+    .stat-card:hover {
+      transform: translateY(-3px);
+      border-color: #333;
     }
 
     .stat-card .label {
@@ -125,6 +150,7 @@
     .stat-card h2 {
       font-size: 32px;
       margin: 0;
+      color: #4fa3ff;
     }
 
     /* Main Grid */
@@ -148,6 +174,7 @@
     .box h3 {
       font-size: 18px;
       margin-bottom: 20px;
+      color: #fff;
     }
 
     /* Placeholder */
@@ -180,8 +207,34 @@
     }
 
     .list li span {
-      color: #ccc;
+      color: #4fa3ff;
+      font-weight: 600;
+    }
+
+    .list .product-name {
+      color: #eee;
       font-weight: 500;
+    }
+
+    /* Empty State */
+    .empty-state {
+      text-align: center;
+      padding: 40px;
+      color: #666;
+    }
+
+    .empty-state i {
+      font-size: 48px;
+      margin-bottom: 16px;
+    }
+
+    /* Growth Badge */
+    .growth {
+      color: #22c55e;
+    }
+
+    .growth.negative {
+      color: #ef4444;
     }
 
     /* Responsive */
@@ -238,7 +291,7 @@
 
   <!-- Sidebar -->
   <aside class="sidebar">
-    <h2 class="logo">EC Partner</h2>
+    <h2 class="logo">Partner Portal</h2>
 
     <ul class="menu">
       <li><a href="partner-home.html"><i class="fas fa-home"></i> Dashboard</a></li>
@@ -247,7 +300,7 @@
       <li><a href="partner-notifications.html"><i class="fas fa-bell"></i> Notifications</a></li>
       <li><a href="analytics.html" class="active"><i class="fas fa-chart-line"></i> Analytics</a></li>
       <li><a href="partner-settings.html"><i class="fas fa-cog"></i> Settings</a></li>
-  </ul>
+    </ul>
   </aside>
 
   <!-- Main Content -->
@@ -257,29 +310,35 @@
       <p class="sub">Monitor your business performance at a glance</p>
     </header>
 
-    <div class="container">
+    <!-- Loading State -->
+    <div id="loadingState" class="loading">
+      <i class="fa fa-spinner"></i>
+      <p>Loading analytics...</p>
+    </div>
+
+    <div id="mainContent" class="container" style="display: none;">
 
       <!-- Stats -->
       <div class="stats-grid">
 
         <div class="stat-card">
           <p class="label">Total Revenue</p>
-          <h2>₹ 48,500</h2>
+          <h2 id="totalRevenue">₹0</h2>
         </div>
 
         <div class="stat-card">
           <p class="label">Total Orders</p>
-          <h2>124</h2>
+          <h2 id="totalOrders">0</h2>
         </div>
 
         <div class="stat-card">
           <p class="label">Active Customers</p>
-          <h2>37</h2>
+          <h2 id="activeCustomers">0</h2>
         </div>
 
         <div class="stat-card">
-          <p class="label">Growth</p>
-          <h2>+12%</h2>
+          <p class="label">Monthly Growth</p>
+          <h2 id="growth" class="growth">0%</h2>
         </div>
       </div>
 
@@ -287,31 +346,40 @@
       <div class="main-grid">
 
         <div class="box big">
-          <h3>📈 Monthly Revenue</h3>
-          <div class="placeholder">Chart Placeholder</div>
-        </div>
-
-        <div class="box">
-          <h3>📊 Customer Growth</h3>
-          <div class="placeholder">Chart Placeholder</div>
-        </div>
-
-        <div class="box">
-          <h3>🛒 Orders Summary</h3>
+          <h3>📈 Monthly Performance</h3>
           <ul class="list">
-            <li>Shipped <span>84</span></li>
-            <li>Delivered <span>29</span></li>
-            <li>Pending <span>11</span></li>
+            <li>Monthly Orders <span id="monthlyOrders">0</span></li>
+            <li>Monthly Revenue <span id="monthlyRevenue">₹0</span></li>
+            <li>Monthly Earnings <span id="monthlyEarnings">₹0</span></li>
+            <li>New Customers <span id="newCustomers">0</span></li>
           </ul>
+        </div>
+
+        <div class="box">
+          <h3>📊 Customer Metrics</h3>
+          <ul class="list">
+            <li>Total Customers <span id="totalCustomersBox">0</span></li>
+            <li>Active Customers <span id="activeCustomersBox">0</span></li>
+            <li>Monthly New <span id="monthlyNew">0</span></li>
+          </ul>
+        </div>
+
+        <div class="box">
+          <h3>🛒 Order Status</h3>
+          <div id="orderStatus"></div>
         </div>
 
         <div class="box big">
           <h3>⭐ Top Products</h3>
+          <div id="topProducts"></div>
+        </div>
+
+        <div class="box">
+          <h3>💰 Earnings Summary</h3>
           <ul class="list">
-            <li>Product A <span>122 orders</span></li>
-            <li>Product B <span>98 orders</span></li>
-            <li>Product C <span>85 orders</span></li>
-            <li>Product D <span>79 orders</span></li>
+            <li>Total Earnings <span id="totalEarnings">₹0</span></li>
+            <li>Total Products <span id="totalProducts">0</span></li>
+            <li>Products Sold <span id="productsSold">0</span></li>
           </ul>
         </div>
 
@@ -319,6 +387,139 @@
 
     </div>
   </main>
+
+  <script>
+    const BASE_URL = window.CONFIG?.BASE_URL || 'http://localhost:8080';
+
+    function formatCurrency(value) {
+      return '₹' + Number(value || 0).toLocaleString('en-IN', { maximumFractionDigits: 0 });
+    }
+
+    function calculateGrowth(current, previous) {
+      if (!previous || previous === 0) return 0;
+      return (((current - previous) / previous) * 100).toFixed(1);
+    }
+
+    async function loadAnalytics() {
+      try {
+        const token = localStorage.getItem("partner-token");
+        const res = await axios.get(`${BASE_URL}/api/partner/profile`, {
+          headers: { Authorization: `Bearer ${token}` }
+        });
+
+        const data = res.data;
+
+        // Update stats
+        document.getElementById('totalRevenue').textContent = formatCurrency(data.totalPurchaseValue);
+        document.getElementById('totalOrders').textContent = data.totalOrders || 0;
+        document.getElementById('activeCustomers').textContent = data.activeCustomers || 0;
+
+        // Calculate growth (simplified - comparing monthly to total)
+        const growth = data.totalOrders > 0 
+          ? ((data.monthlyOrders / data.totalOrders) * 100).toFixed(1) 
+          : 0;
+        const growthElement = document.getElementById('growth');
+        growthElement.textContent = `${growth > 0 ? '+' : ''}${growth}%`;
+        growthElement.className = growth >= 0 ? 'growth' : 'growth negative';
+
+        // Update monthly performance
+        document.getElementById('monthlyOrders').textContent = data.monthlyOrders || 0;
+        document.getElementById('monthlyRevenue').textContent = formatCurrency(data.monthlyRevenue);
+        document.getElementById('monthlyEarnings').textContent = formatCurrency(data.monthlyEarnings);
+        document.getElementById('newCustomers').textContent = data.monthlyNewCustomers || 0;
+
+        // Update customer metrics
+        document.getElementById('totalCustomersBox').textContent = data.totalCustomers || 0;
+        document.getElementById('activeCustomersBox').textContent = data.activeCustomers || 0;
+        document.getElementById('monthlyNew').textContent = data.monthlyNewCustomers || 0;
+
+        // Update earnings
+        document.getElementById('totalEarnings').textContent = formatCurrency(data.totalEarnings);
+        document.getElementById('totalProducts').textContent = data.totalProducts || 0;
+        document.getElementById('productsSold').textContent = data.soldProducts?.length || 0;
+
+        // Render order status
+        renderOrderStatus(data.orders || []);
+
+        // Render top products
+        renderTopProducts(data.topProducts || []);
+
+        // Show content
+        document.getElementById("loadingState").style.display = "none";
+        document.getElementById("mainContent").style.display = "block";
+
+      } catch (err) {
+        console.error('Error:', err);
+        document.getElementById("loadingState").innerHTML = `
+          <i class="fa fa-exclamation-circle" style="color: #ef4444;"></i>
+          <p style="color: #ef4444;">Failed to load analytics</p>
+        `;
+      }
+    }
+
+    function renderOrderStatus(orders) {
+      const statusContainer = document.getElementById('orderStatus');
+      
+      if (!orders || orders.length === 0) {
+        statusContainer.innerHTML = `
+          <div class="empty-state">
+            <i class="fa fa-box"></i>
+            <p>No orders yet</p>
+          </div>
+        `;
+        return;
+      }
+
+      // Count orders by status
+      const statusCounts = {
+        PENDING: 0,
+        SHIPPED: 0,
+        DELIVERED: 0,
+        CANCELLED: 0
+      };
+
+      orders.forEach(order => {
+        if (statusCounts[order.status] !== undefined) {
+          statusCounts[order.status]++;
+        }
+      });
+
+      statusContainer.innerHTML = `
+        <ul class="list">
+          <li>Pending <span>${statusCounts.PENDING}</span></li>
+          <li>Shipped <span>${statusCounts.SHIPPED}</span></li>
+          <li>Delivered <span>${statusCounts.DELIVERED}</span></li>
+          <li>Cancelled <span>${statusCounts.CANCELLED}</span></li>
+        </ul>
+      `;
+    }
+
+    function renderTopProducts(topProducts) {
+      const container = document.getElementById('topProducts');
+
+      if (!topProducts || topProducts.length === 0) {
+        container.innerHTML = `
+          <div class="empty-state">
+            <i class="fa fa-star"></i>
+            <p>No products data available</p>
+          </div>
+        `;
+        return;
+      }
+
+      const html = topProducts.slice(0, 5).map(product => `
+        <li>
+          <span class="product-name">${product.productName || 'Unknown Product'}</span>
+          <span>${product.totalSales || 0} sales</span>
+        </li>
+      `).join('');
+
+      container.innerHTML = `<ul class="list">${html}</ul>`;
+    }
+
+    // Load data on page load
+    loadAnalytics();
+  </script>
 
 </body>
 </html>

@@ -7,9 +7,11 @@
     <title>Partner Registration — EverCart</title>
 
     <link rel="stylesheet" href="../css/partner-register.css" />
-    <link rel="shortcut icon"
-        href="https://img.icons8.com/?size=100&id=j3XI41kBOIXY&format=png&color=636363"
+    <link rel="shortcut icon" href="https://img.icons8.com/?size=100&id=j3XI41kBOIXY&format=png&color=636363"
         type="image/x-icon">
+    <script src="https://cdn.jsdelivr.net/npm/axios/dist/axios.min.js"></script>
+
+    <script src="../config.js"></script>
 </head>
 
 <body>
@@ -44,6 +46,10 @@
                     <input type="text" name="partnerId" placeholder="EC-P12345" required />
                 </div>
 
+                <div class="input-group">
+                    <label>Enter your upi payment </label>
+                    <input type="text" name="upi" placeholder="john@oksbi" required />
+                </div>
                 <div class="input-group">
                     <label>Password</label>
                     <input type="password" name="password" placeholder="••••••••" required />

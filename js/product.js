@@ -1,7 +1,12 @@
 /* ===========================
-      CONFIG (global)
+      GLOBAL CONFIG
 =========================== */
 let BASE_URL = window.CONFIG.BASE_URL;
+let soldOn = "";
+let totalPrice = 0;
+let partnerUpi = "";
+let sellerNameGlobal = "";   // <-- fixed (global reference)
+
 
 /* ===========================
       STAR RATING UI
@@ -42,51 +47,48 @@ function loadUI() {
       const ta = document.querySelector(".review-input");
       const text = ta ? ta.value.trim() : "";
 
-      if (current === 0) return alert("Please give a rating (1-5 stars).");
-      if (!text) return alert("Please write a short review.");
+      if (current === 0) return alert("Please give a rating.");
+      if (!text) return alert("Please write a review.");
 
-      alert("Thanks! Your review is submitted (demo only).");
+      alert("Thanks! (Demo)");
 
       if (clearBtn) clearBtn.click();
     });
   }
 }
 
+
 /* ===========================
-      1) Read ?id= from URL
+      READ product id
 =========================== */
 const params = new URLSearchParams(window.location.search);
 const productId = params.get("id");
 
+
 /* ===========================
-      2) Fetch product details
+      FETCH PRODUCT DETAILS
 =========================== */
 axios
   .get(`${BASE_URL}/product?id=${productId}`, {
-    auth: {
-      username: "user",
-      password: "327f1964-7575-4a71-b6c4-55807f50f105",
-    },
+    headers: { Authorization: `Bearer ${localStorage.getItem("token")}` },
   })
   .then((res) => {
-    let p = res.data;
-
-    if (Array.isArray(p)) p = p[0];
-
+    let p = Array.isArray(res.data) ? res.data[0] : res.data;
     updateUI(p);
   })
   .catch((err) => console.error(err));
 
+
 /* ===========================
-      3) Update the DOM
+      UPDATE DOM
 =========================== */
 function updateUI(p) {
-  console.log(p);
+  if (!p) return;
 
   let sellerId = p.sellerId || "1";
   loadSeller(sellerId);
 
-  // Image
+  /* --- Image --- */
   const mainImg = document.querySelector("#main-img");
   if (mainImg) {
     mainImg.src =
@@ -95,59 +97,142 @@ function updateUI(p) {
         : "https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcSYwqMb2UZZAUNdo12xYR7vRGxmYHXXNaPhXg&s";
   }
 
-  // Title
-  const titleEl = document.querySelector(".title");
-  if (titleEl) titleEl.textContent = p.productName;
+  soldOn = p.soldOn;
 
-  // Description
-  const descEl = document.querySelector(".desc");
-  if (descEl) descEl.textContent = p.desc;
+  if (document.querySelector(".title")) {
+    document.querySelector(".title").textContent = p.productName;
+  }
 
-  // Base Price
-  const priceEl = document.querySelector(".price");
-  if (priceEl) priceEl.textContent = "₹" + p.basePrice;
+  if (document.querySelector(".desc")) {
+    document.querySelector(".desc").textContent = p.desc;
+  }
 
-  // GST %
+  /* --- Base Price --- */
+  if (document.querySelector(".price")) {
+    document.querySelector(".price").textContent = "₹" + p.basePrice;
+  }
+
+  /* --- GST % --- */
   const gstText = document.querySelector(".gst-value");
   if (gstText) gstText.innerText = p.gst + "%";
 
-  // GST amount
-  const gst = ((p.basePrice * p.gst) / 100).toFixed(2);
+  /* --- GST Amount --- */
+  const gstAmount = ((p.basePrice * p.gst) / 100).toFixed(2);
 
   const priceList = document.querySelectorAll(".price");
-  if (priceList[1]) priceList[1].textContent = "₹" + gst;
+  if (priceList[1]) priceList[1].textContent = "₹" + gstAmount;
 
-  // Total
-  const total = (p.basePrice + Number(gst)).toFixed(2);
+  /* --- TOTAL PRICE --- */
+  totalPrice = (p.basePrice + Number(gstAmount)).toFixed(2);
+
   const totalEl = document.querySelector(".total-value");
-  if (totalEl) totalEl.textContent = "₹" + total;
+  if (totalEl) totalEl.textContent = "₹" + totalPrice;
 }
 
+
+/* ===========================
+      LOAD SELLER DETAILS
+=========================== */
 function loadSeller(sellerId) {
-  console.log(sellerId);
   axios
     .get(`${BASE_URL}/api/details/${sellerId}`, {
-      headers: {
-        Authorization: `Bearer ${localStorage.getItem("token")}`,
-      },
+      headers: { Authorization: `Bearer ${localStorage.getItem("token")}` },
     })
     .then((res) => {
-      console.log(res.data);
+      let d = res.data;
 
-      let details = res.data;
-
-      let sellerName = document.getElementById("sellerName");
-      let sellerAddress = document.getElementById("sellerAdd");
-
+      /* DOM elements */
+      let nm = document.getElementById("sellerName");
+      let addr = document.getElementById("sellerAdd");
       let email = document.getElementById("selllerEmail");
-      let soldOn = document.getElementById("soldOn");
-      //let soldBy = document.getElementById("soldBy");
-      sellerName.innerText = details.storeName || "John Doe General Store";
-      sellerAddress.innerText = details.businessAddress || "123, Colony , Usa";
-      email.innerText = details.email || "xyz@email.com";
-   soldOn.innerText = details.soldOn|| "12-12-2025";
+      let soldOnText = document.getElementById("soldOn");
+
+      nm.innerText = d.storeName || "General Store";
+      addr.innerText = d.businessAddress || "Unknown Address";
+      email.innerText = d.email || "contact@email.com";
+      soldOnText.innerText = soldOn || "—";
+
+      partnerUpi = d.upi || null;
+
+      // FIX: Save global seller name for checkout
+      sellerNameGlobal = d.ownerName || d.storeName || "Seller";
     })
-    .catch((error) => {
-      console.log(error);
-    });
+    .catch((error) => console.error(error));
 }
+
+
+/* ===========================
+      ADD TO CART
+=========================== */
+let addCart = document.getElementById("add-cart");
+
+addCart.addEventListener("click", () => {
+  let status = localStorage.getItem("isLogged");
+  if (!status) return (location.href = "./login.html");
+
+  axios
+    .get(`${BASE_URL}/api/customer/profile`, {
+      headers: { Authorization: `Bearer ${localStorage.getItem("token")}` },
+    })
+    .then((res) => {
+      let userId = res.data.customer.id;
+
+      axios
+        .post(
+          `${BASE_URL}/products/add-cart/${productId}?q=1&user=${userId}`,
+          {},
+          {
+            headers: {
+              Authorization: `Bearer ${localStorage.getItem("token")}`,
+            },
+          }
+        )
+        .then(() => {
+          addCart.innerText = "Added to Cart";
+          addCart.style.backgroundColor = "#00ae06ff";
+        })
+        .catch(console.error);
+    })
+    .catch(console.error);
+});
+
+
+/* ===========================
+      BUY NOW
+=========================== */
+let buyNow = document.getElementById("buy-now");
+
+buyNow.addEventListener("click", () => {
+  let status = localStorage.getItem("isLogged");
+  if (!status) return (location.href = "./login.html");
+
+  axios
+    .get(`${BASE_URL}/api/customer/profile`, {
+      headers: { Authorization: `Bearer ${localStorage.getItem("token")}` },
+    })
+    .then((res) => {
+      let userId = res.data.customer.id;
+
+      axios
+        .post(
+          `${BASE_URL}/products/buy/${productId}?q=1&user=${userId}`,
+          {},
+          {
+            headers: {
+              Authorization: `Bearer ${localStorage.getItem("token")}`,
+            },
+          }
+        )
+        .then(() => {
+          buyNow.innerText = "...";
+          buyNow.style.backgroundColor = "#ffee00ff";
+
+          let utm = "product";
+
+          // ⬇ FIX: use global seller name
+          location.href = `./checkout.html?total=${totalPrice}&utm=${utm}&payment=${partnerUpi}&seller=${sellerNameGlobal}`;
+        })
+        .catch(console.error);
+    })
+    .catch(console.error);
+});

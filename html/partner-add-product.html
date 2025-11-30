@@ -5,7 +5,7 @@
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Add Product | Partner Panel</title>
-    <link rel="stylesheet" href="../../css/partner-add-product.css">
+    <link rel="stylesheet" href="../css/partner-add-product.css">
     <link rel="shortcut icon" href="https://img.icons8.com/?size=100&id=j3XI41kBOIXY&format=png&color=636363"
         type="image/x-icon">
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0/css/all.min.css">
@@ -22,9 +22,8 @@
             <li><a href="partner-analytics.html"><i class="fa fa-chart-line"></i> Analytics</a></li>
             <li><a href="partner-notifications.html"><i class="fa fa-bell"></i> Notifications</a></li>
             <li><a href="partner-earnings.html"><i class="fa fa-wallet"></i> Earnings</a></li>
-            <li><a href="partner-payouts.html"><i class="fa fa-money-bill"></i> Payouts</a></li>
             <li class="active"><a href="#"><i class="fa fa-plus"></i> Add Product</a></li>
-            <li><a href="../partner-settings.html"><i class="fa fa-cog"></i> Settings</a></li>
+            <li><a href="partner-settings.html"><i class="fa fa-cog"></i> Settings</a></li>
         </ul>
     </aside>
 
@@ -84,7 +83,7 @@
                     <script>
                         imgInput.onchange = evt => {
                             const file = evt.target.files[0];
-                              if (!file) return;
+                            if (!file) return;
                             preview.src = URL.createObjectURL(file);
                         };
                     </script>
@@ -109,18 +108,26 @@
             e.preventDefault();
 
             const formData = new FormData(form); // gathers all inputs + file
-            formData.append('sellerId',"a1b2c3d4e5f67890abcdef1234567890");
-          
-            formData.forEach(el=>{
-                console.log(el.name , el.valueOf(el.name));
-            })
+            formData.append('sellerId', localStorage.getItem('partnerId'));
+           
+
+         
+
+           
 
             try {
                 const res = await axios.post(
                     "http://localhost:8080/product/add",
                     formData,
                     {
-                        headers: { "Content-Type": "multipart/form-data" }
+                        headers: {
+                            "Content-Type": "multipart/form-data",
+                            Authorization: `Bearer ${localStorage.getItem("partner-token")}`,
+
+
+                        },
+
+
                     }
                 );
 

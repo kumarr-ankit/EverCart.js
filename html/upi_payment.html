@@ -4,28 +4,27 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-        <link rel="shortcut icon" href="https://img.icons8.com/?size=100&id=j3XI41kBOIXY&format=png&color=636363"
+    <link rel="shortcut icon" href="https://img.icons8.com/?size=100&id=j3XI41kBOIXY&format=png&color=636363"
         type="image/x-icon">
     <title>UPI Payment</title>
 
     <style>
-
-        *{
+        * {
             margin: 0;
             padding: 0;
             box-sizing: border-box;
         }
+
         body {
-            margin: 0;
-            padding: 0;
             font-family: Arial, sans-serif;
             background: #121212;
             color: #fff;
+            padding: 20px;
         }
 
         .container {
             max-width: 450px;
-            margin: 40px auto;
+            margin: 0 auto;
             background: #1E1E1E;
             padding: 25px;
             border-radius: 15px;
@@ -35,16 +34,16 @@
         .title {
             font-size: 22px;
             font-weight: bold;
-            margin-bottom: 20px;
             text-align: center;
+            margin-bottom: 20px;
         }
 
         .order-box {
             background: #232323;
             padding: 18px;
             border-radius: 10px;
-            margin-bottom: 20px;
             border: 1px solid #333;
+            margin-bottom: 20px;
         }
 
         .row {
@@ -62,26 +61,51 @@
             margin: 20px 0;
         }
 
-        .upi-apps {
-            display: flex;
-            justify-content: space-between;
-            margin: 20px 0;
+        /* Payment Options Section */
+        .pay-box {
+            margin-top: 20px;
         }
 
-        .upi-apps img {
-            width: 60px;
-            height: 60px;
+        .option {
+            display: flex;
+            align-items: center;
+            background: #232323;
             padding: 12px;
             border-radius: 12px;
             cursor: pointer;
             border: 1px solid #333;
-            background-color: #ffffff;
+            margin-bottom: 12px;
+            transition: 0.25s;
+            gap: 14px;
         }
 
-         .upi-apps img:hover{
-                background-color: #d1d1d1;
-         }
+        .option:hover {
+            background: #2e2e2e;
+        }
 
+        .option img {
+            width: 45px;
+            height: 45px;
+            background: #fff;
+            padding: 8px;
+            border-radius: 10px;
+        }
+
+        /* Hide default radio */
+        input[type="radio"] {
+            display: none;
+        }
+
+        /* Selected state */
+        input[type="radio"]:checked+label {
+            border: 1px solid #4caf50;
+            background: #2b2b2b;
+        }
+
+        .option-text {
+            font-size: 16px;
+            font-weight: 500;
+        }
 
         button {
             width: 100%;
@@ -92,7 +116,7 @@
             font-size: 17px;
             border-radius: 8px;
             cursor: pointer;
-            margin-top: 10px;
+            margin-top: 15px;
         }
 
         button:hover {
@@ -104,50 +128,74 @@
 <body>
 
     <div class="container">
+
         <div class="title">UPI Payment</div>
 
         <div class="order-box">
-            <div class="row">
-                <span>Order ID:</span>
-                <span>#ORD123456</span>
-            </div>
-
-            <div class="row">
-                <span>Total Items:</span>
-                <span>3</span>
-            </div>
-
-            <div class="row">
-                <span>GST:</span>
-                <span>₹19</span>
-            </div>
-
-            <div class="row">
-                <span>Delivery:</span>
-                <span>FREE</span>
-            </div>
+            <div class="row"><span>Order ID:</span><span>#ORD123456</span></div>
+            <div class="row"><span>Total Items:</span><span id="item">3</span></div>
+            <div class="row"><span>GST:</span><span id="gst">₹19</span></div>
+            <div class="row"><span>Delivery:</span><span>FREE</span></div>
         </div>
 
-        <div class="amount">₹ 1,299.00</div>
+        <div class="amount">₹<span id="amount">5000</span></div>
 
-        <div class="title" style="font-size: 18px;">Pay Using</div>
+        <div class="title" style="font-size: 18px;">Choose Payment Method</div>
 
-        <div class="upi-apps">
-            <img src="../src/assets/gpay.svg">
-            <img src="../src/assets/phone.svg">
+        <form class="pay-box" id="pay">
 
-            <img src="https://img.icons8.com/?size=100&id=L4fVTj2H2Fcl&format=png&color=000000">
-            <img src="../src/assets/paytm.svg">
-            <img src="https://img.icons8.com/?size=100&id=So9Gvu5Hcyjh&format=png&color=000000">
 
-            <img width="80" height="80" src="https://img.icons8.com/dotty/80/money.png" alt="money" />
-        </div>
 
-        <button onclick="window.location.href='./order-success.html'">
-            Pay Now
-        </button>
+            <!-- upi -->
+            <input type="radio" id="bhim" name="upi" value="upi" required checked>
+            <label for="bhim" class="option">
+                <img src="https://img.icons8.com/?size=100&id=1AzdGyrT9jI0&format=png&color=000000">
+                <span class="option-text">BHIM UPI</span>
+            </label>
+
+            <!-- cash -->
+            <input type="radio" id="wallet" name="upi" value="cash" required readonly>
+            <label for="wallet" class="option">
+                <img src="https://img.icons8.com/dotty/80/money.png">
+                <span class="option-text">Cash On Delivery</span>
+            </label>
+            <button type="submit">Pay Now</button>
+        </form>
+
+
+
+
 
     </div>
+
+    <script>
+        let url = new URLSearchParams(window.location.search);
+        let total = url.get('total');
+        let payment = url.get('payment');
+        let seller = url.get('seller');
+
+        let utm = url.get('utm');
+        let bhim = document.getElementById("bhim");
+        
+
+        
+
+
+
+        console.log(total);
+        amount.innerText = total;
+        gst.innerText = url.get('gst') || 0.0;
+        item.innerText = url.get('item') || 0;
+        let pay = document.getElementById("pay");
+        pay.addEventListener("submit", () => {
+            event.preventDefault()
+            let data = new FormData(pay);
+
+            let method = data.get('upi');
+            window.location.href = `./qr.html?method=${method}&amount=${total}&utm=${utm}&payment=${payment}&seller=${seller}`;
+
+        })
+    </script>
 
 </body>
 

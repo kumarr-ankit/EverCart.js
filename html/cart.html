@@ -2,132 +2,615 @@
 <html lang="en">
 
 <head>
-  <meta charset="UTF-8">
-  <meta name="viewport" content="width=device-width, initial-scale=1.0">
-  <title>EverCart - Cart</title>
-  <link rel="stylesheet" href="../css/cart.css">
-  <link rel="shortcut icon" href="https://img.icons8.com/?size=100&id=j3XI41kBOIXY&format=png&color=636363"
-    type="image/x-icon">
-  <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/7.0.1/css/all.min.css"
-    integrity="sha512-2SwdPD6INVrV/lHTZbO2nodKhrnDdJK9/kg2XD1r9uGqPo1cUbujc+IYdlYdEErWNu69gVcYgdxlmVmzTWnetw=="
-    crossorigin="anonymous" referrerpolicy="no-referrer" />
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>EverCart - Cart</title>
+
+    <!-- Font Awesome & Axios -->
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.1/css/all.min.css">
+    <script src="https://cdn.jsdelivr.net/npm/axios/dist/axios.min.js"></script>
+
+    <!-- Config -->
+    <script src="../config.js"></script>
+
+    <style>
+        /* --- RESET & GLOBAL DARK THEME --- */
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+            font-family: Arial, sans-serif;
+        }
+
+        body {
+            background-color: #000 !important; /* Force Black Background */
+            color: white !important;
+            overflow-x: hidden;
+            min-height: 100vh;
+        }
+
+        a {
+            text-decoration: none;
+            color: inherit;
+        }
+
+        /* --- NAVBAR (Matches Home.css) --- */
+        .navbar {
+            width: 100%;
+            padding: 18px 20px;
+            background: #0d0d0d;
+            border-bottom: 1px solid #222;
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            position: sticky;
+            top: 0;
+            z-index: 100;
+        }
+
+        .logo {
+            width: 42px;
+            height: 42px;
+            display: flex;
+            justify-content: center;
+            align-items: center;
+        }
+
+        .logo img {
+            height: 40px;
+        }
+
+        .nav-links {
+            list-style: none;
+            display: flex;
+            gap: 20px;
+            align-items: center;
+        }
+
+        .nav-links li a {
+            display: flex;
+            align-items: center;
+            gap: 8px;
+            font-weight: normal;
+            color: white;
+            transition: 0.2s;
+        }
+
+        .nav-links li a:hover {
+            color: #bbb;
+        }
+
+        /* Navbar Login Button */
+        .btn {
+            padding: 8px 16px;
+            border: 1px solid white;
+            background: transparent;
+            color: white !important;
+            border-radius: 6px;
+            transition: 0.2s;
+        }
+
+        .btn:hover {
+            background: white;
+            color: black !important;
+        }
+
+        /* --- LAYOUT CONTAINER --- */
+        .container {
+            max-width: 1200px;
+            margin: 40px auto;
+            padding: 0 20px;
+            display: flex;
+            gap: 20px;
+            align-items: flex-start;
+        }
+
+        /* --- CART ITEMS LIST --- */
+        .cart-items {
+            flex: 2;
+            display: flex;
+            flex-direction: column;
+            gap: 15px;
+            width: 100%;
+        }
+
+        /* --- ITEM CARD (Matches Home Card Style) --- */
+        .item-card {
+            background: #111;
+            border: 1px solid #222;
+            padding: 20px;
+            border-radius: 14px;
+            display: flex;
+            gap: 20px;
+            transition: 0.3s;
+            position: relative;
+        }
+
+        .item-card:hover {
+            border-color: white;
+            transform: translateY(-2px);
+            box-shadow: 0px 4px 10px rgba(255, 255, 255, 0.05);
+        }
+
+        .item-img {
+            width: 120px;
+            height: 120px;
+            object-fit: contain;
+            background: white; /* White bg for product visibility */
+            padding: 10px;
+            border-radius: 8px;
+        }
+
+        .item-info {
+            flex: 1;
+            display: flex;
+            flex-direction: column;
+            justify-content: space-between;
+        }
+
+        .item-title {
+            font-size: 18px;
+            margin-bottom: 5px;
+            color: white;
+            font-weight: bold;
+        }
+
+        .seller {
+            font-size: 13px;
+            color: #888;
+            margin-bottom: 10px;
+        }
+
+        .price-row {
+            display: flex;
+            align-items: center;
+            gap: 20px;
+            margin-bottom: 10px;
+        }
+
+        .price {
+            font-size: 20px;
+            font-weight: bold;
+            color: #ddd;
+        }
+
+        .qty {
+            padding: 5px 10px;
+            background: #222;
+            color: white;
+            border: 1px solid #444;
+            border-radius: 6px;
+            font-size: 14px;
+            outline: none;
+        }
+
+        .actions {
+            margin-top: 10px;
+        }
+
+        .actions button {
+            background: none;
+            border: none;
+            font-size: 14px;
+            font-weight: bold;
+            cursor: pointer;
+            margin-right: 20px;
+            text-transform: uppercase;
+            color: #ccc;
+            transition: 0.2s;
+            padding: 0;
+        }
+
+        .actions button:hover {
+            color: white;
+            text-decoration: underline;
+        }
+
+        .remove-btn:hover {
+            color: #ff4d4d !important;
+        }
+
+        /* --- PRICE DETAILS BOX --- */
+        .price-box {
+            flex: 1;
+            background: #111;
+            border: 1px solid #222;
+            padding: 25px;
+            border-radius: 14px;
+            position: sticky;
+            top: 100px;
+            min-width: 300px;
+        }
+
+        .price-box h3 {
+            color: #888;
+            font-size: 16px;
+            font-weight: bold;
+            border-bottom: 1px solid #333;
+            padding-bottom: 15px;
+            margin-bottom: 20px;
+            text-transform: uppercase;
+        }
+
+        .price-row-line {
+            display: flex;
+            justify-content: space-between;
+            margin-bottom: 18px;
+            font-size: 15px;
+            color: #ccc;
+        }
+
+        .price-total {
+            display: flex;
+            justify-content: space-between;
+            font-size: 20px;
+            font-weight: bold;
+            border-top: 1px dashed #444;
+            padding-top: 20px;
+            margin-top: 10px;
+            margin-bottom: 25px;
+            color: white;
+        }
+
+        .order-btn {
+            width: 100%;
+            padding: 14px;
+            background: white;
+            color: black;
+            border: none;
+            font-weight: bold;
+            font-size: 16px;
+            border-radius: 6px;
+            cursor: pointer;
+            transition: 0.2s;
+            text-transform: uppercase;
+        }
+
+        .order-btn:hover {
+            background: #ddd;
+            transform: translateY(-2px);
+        }
+
+        /* --- EMPTY STATE (Centered) --- */
+        .empty-cart-state {
+            width: 100%;
+            background: #111;
+            padding: 80px 20px;
+            text-align: center;
+            border-radius: 14px;
+            border: 1px solid #222;
+            display: flex;
+            flex-direction: column;
+            align-items: center;
+            justify-content: center;
+            margin-top: 20px;
+        }
+
+        .empty-cart-state i {
+            color: #333;
+            margin-bottom: 25px;
+        }
+
+        .empty-cart-state h2 {
+            font-size: 28px;
+            color: white;
+            margin-bottom: 10px;
+        }
+
+        .empty-cart-state p {
+            color: #888;
+            margin-bottom: 30px;
+            font-size: 16px;
+        }
+
+        .shop-now-btn {
+            background-color: white;
+            color: black;
+            padding: 12px 35px;
+            font-size: 16px;
+            font-weight: bold;
+            border-radius: 6px;
+            transition: 0.2s;
+            display: inline-block;
+        }
+
+        .shop-now-btn:hover {
+            background-color: #ddd;
+            color: black;
+        }
+
+        /* --- RESPONSIVE --- */
+        @media (max-width: 850px) {
+            .container {
+                flex-direction: column;
+            }
+            .price-box {
+                width: 100%;
+                position: static;
+                margin-top: 20px;
+            }
+            .item-card {
+                flex-direction: column;
+                align-items: center;
+                text-align: center;
+            }
+            .item-info {
+                width: 100%;
+                align-items: center;
+            }
+            .price-row {
+                justify-content: center;
+            }
+        }
+
+        @media (max-width: 600px) {
+            .navbar {
+                flex-direction: column;
+                gap: 15px;
+            }
+            .nav-links {
+                flex-wrap: wrap;
+                justify-content: center;
+            }
+        }
+    </style>
 </head>
 
 <body>
 
-  <header class="navbar">
-    <h1 class="logo"><img src="https://img.icons8.com/?size=100&id=j3XI41kBOIXY&format=png&color=636363" alt=""
-        srcset=""></h1>
+    <!-- AUTH CHECK SCRIPT -->
+    <script>
+        // Check local storage for login status
+        let status = localStorage.getItem("isLogged");
+        if (!status) {
+            console.warn("User not logged in. Redirect logic would go here.");
+            // location.href = './login.html'; 
+        }
+    </script>
 
-    <ul class="nav-links">
-      <li><a href="../html/home.html"><i class="fa-solid fa-house fa-xl"></i>Home</a></li>
-      <li><a href="../html/notification.html"><i class="fa-solid fa-bell fa-xl"></i>Notifications</a></li>
-
-      <li><a href="../html/account.html" id="you"><i class="fa-solid fa-user fa-xl"></i>Profile</a></li>
-      <li><a href="login.html" class="btn" id="isLogged" title="Login">Login</a></li>
-    </ul>
-  </header>
-
-  <div class="container">
-
-    <!-- LEFT SIDE CART ITEMS -->
-    <div class="cart-items">
-
-      <!-- ITEM CARD -->
-      <div class="item-card">
-        <img src="https://via.placeholder.com/140" class="item-img">
-
-        <div class="item-info">
-          <h2 class="item-title">Wireless Headphones</h2>
-          <p class="seller">Seller: EverCart Retail</p>
-
-          <div class="price-row">
-            <span class="price">₹1,499</span>
-            <select class="qty">
-              <option>1</option>
-              <option>2</option>
-              <option>3</option>
-            </select>
-          </div>
-
-          <div class="actions">
-            <button class="link-btn">Save for later</button>
-            <button class="link-btn">Remove</button>
-          </div>
+    <!-- HEADER -->
+    <header class="navbar">
+        <div class="logo">
+            <a href="../html/home.html">
+                <img src="https://img.icons8.com/?size=100&id=j3XI41kBOIXY&format=png&color=636363" alt="Logo">
+            </a>
         </div>
-      </div>
 
-      <!-- ITEM CARD -->
-      <div class="item-card">
-        <img src="https://via.placeholder.com/140" class="item-img">
+        <ul class="nav-links">
+            <li><a href="../html/home.html"><i class="fa-solid fa-house fa-lg"></i> Home</a></li>
+            <li><a href="../html/notification.html"><i class="fa-solid fa-bell fa-lg"></i> Notifications</a></li>
+            <li><a href="../html/account.html" id="you"><i class="fa-solid fa-user fa-lg"></i> Profile</a></li>
+            <li><a href="login.html" class="btn" id="isLogged">Login</a></li>
+        </ul>
+    </header>
 
-        <div class="item-info">
-          <h2 class="item-title">Smartwatch Pro</h2>
-          <p class="seller">Seller: EverCart Tech</p>
+    <!-- MAIN CONTENT -->
+    <div class="container" id="mainContainer">
 
-          <div class="price-row">
-            <span class="price">₹2,299</span>
-            <select class="qty">
-              <option>1</option>
-              <option>2</option>
-              <option>3</option>
-            </select>
-          </div>
+        <!-- DYNAMIC CART ITEMS OR EMPTY MESSAGE GO HERE -->
+        <div class="cart-items"></div>
 
-          <div class="actions">
-            <button class="link-btn">Save for later</button>
-            <button class="link-btn">Remove</button>
-          </div>
+        <!-- RIGHT SIDE PRICE BLOCK -->
+        <div class="price-box" id="priceBox">
+            <h3>PRICE DETAILS</h3>
+            <div class="price-row-line">
+                <span>Total MRP</span>
+                <span id="totalMrp">₹0</span>
+            </div>
+            <div class="price-row-line">
+                <span>Discount</span>
+                <span style="color: #4caf50;">- ₹0</span>
+            </div>
+            <div class="price-row-line">
+                <span>Delivery Charges</span>
+                <span style="color: #4caf50;">Free</span>
+            </div>
+            <div class="price-total">
+                <span>Total Amount</span>
+                <span id="totalAmount">₹0</span>
+            </div>
+
+            <button class="order-btn" id="placeOrder">PLACE ORDER</button>
         </div>
-      </div>
 
     </div>
 
-    <!-- RIGHT SIDE PRICE DETAILS -->
-    <div class="price-box">
-      <h3>PRICE DETAILS</h3>
-      <div class="price-row-line">
-        <span>Total MRP</span>
-        <span>₹3,798</span>
-      </div>
-      <div class="price-row-line">
-        <span>Discount</span>
-        <span>- ₹200</span>
-      </div>
-      <div class="price-row-line">
-        <span>Delivery Charges</span>
-        <span>Free</span>
-      </div>
+    <!-- UI TOGGLE SCRIPT (Login vs Profile) -->
+    <script>
+        let isLoggedBtn = document.getElementById("isLogged");
+        let youLink = document.getElementById("you");
 
-      <hr>
+        if (status) {
+            if(isLoggedBtn) isLoggedBtn.style.display = 'none';
+            if(youLink) youLink.style.display = 'flex'; 
+        } else {
+            if(isLoggedBtn) isLoggedBtn.style.display = 'block';
+            if(youLink) youLink.style.display = 'none';
+        }
+    </script>
 
-      <div class="price-total">
-        <span>Total Amount</span>
-        <span>₹3,598</span>
-      </div>
+    <!-- MAIN LOGIC SCRIPT -->
+    <script>
+        console.log("Cart Script Loaded - Dark Mode Active");
 
-      <button class="order-btn">Place Order</button>
-    </div>
+        let partnerUpi = "cart";
 
-  </div>
+        // 1. SETUP BASE URL
+        let BASE_URL = (window.CONFIG && window.CONFIG.BASE_URL) ? window.CONFIG.BASE_URL : "http://localhost:3000"; 
+        
+        const cartContainer = document.querySelector(".cart-items");
+        const priceBox = document.getElementById("priceBox");
+        const placeOrderBtn = document.getElementById("placeOrder");
+        const mainContainer = document.getElementById("mainContainer");
+        let totalPrice = 0;
 
-  <script>
-    const container = document.querySelector(".products");
-    const loginBtn = document.getElementById("isLogged");
-    const youBtn = document.getElementById("you");
+        // 2. RENDER CART ITEM
+        function renderCartItem(product, quantity) {
+            const img = product.image || "https://via.placeholder.com/150";
+            const name = product.productName || "Unknown Product";
+            const seller = product.sellerId || "EverCart Seller";
+            const price = product.basePrice || 0;
 
-    const isLogged = localStorage.getItem("everCart-isLogged");
+            return `
+            <div class="item-card" data-id="${product.id}">
+              <img src="${img}" class="item-img" alt="${name}">
+              
+              <div class="item-info">
+                <div>
+                    <h2 class="item-title">${name}</h2>
+                    <p class="seller">Seller: ${seller}</p>
+                </div>
+                
+                <div class="price-row">
+                  <span class="price">₹${price}</span>
+                  <select class="qty" data-id="${product.id}">
+                    ${[1, 2, 3, 4, 5].map(n => 
+                        `<option value="${n}" ${n == quantity ? "selected" : ""}>Qty: ${n}</option>`
+                    ).join("")}
+                  </select>
+                </div>
+                
+                <div class="actions">
+                  <button class="link-btn">Save for later</button>
+                  <button class="remove-btn" data-id="${product.id}">Remove</button>
+                </div>
+              </div>
+            </div>
+            `;
+        }
 
-    // Handle login display
-    if (isLogged) {
-      loginBtn.style.display = "none";
-      youBtn.style.display = "block";
-    } else {
-      loginBtn.style.display = "block";
-      youBtn.style.display = "none";
-    }
+        // 3. RENDER EMPTY STATE
+        function renderEmptyState() {
+            return `
+            <div class="empty-cart-state">
+                <i class="fa-solid fa-cart-shopping fa-6x"></i>
+                <h2>Your Cart is Empty</h2>
+                <p>Looks like you haven't added anything to your cart yet.</p>
+                <a href="../html/home.html" class="shop-now-btn">Shop Now</a>
+            </div>
+            `;
+        }
 
-  </script>
+        // 4. CALCULATE TOTALS
+        function updatePricing() {
+            let total = 0;
+            const cards = document.querySelectorAll(".item-card");
+            
+            cards.forEach(card => {
+                const priceEl = card.querySelector(".price");
+                const qtyEl = card.querySelector(".qty");
+                
+                if (priceEl && qtyEl) {
+                    const val = Number(priceEl.textContent.replace("₹", ""));
+                    const qty = Number(qtyEl.value);
+                    total += (val * qty);
+                }
+            });
+
+            const mrp = document.getElementById("totalMrp");
+            const totalAmt = document.getElementById("totalAmount");
+
+            if (mrp) mrp.textContent = "₹" + total;
+            if (totalAmt) totalAmt.textContent = "₹" + total;
+            totalPrice = total;
+        }
+
+        // 5. ATTACH EVENTS
+        function attachCardEvents() {
+            const cards = document.querySelectorAll(".item-card");
+            cards.forEach((card) => {
+                card.onclick = (e) => {
+                    // Navigate only if not clicking interactive elements
+                    if(e.target.tagName !== 'SELECT' && e.target.tagName !== 'BUTTON'){
+                        const id = card.getAttribute("data-id");
+                        goProduct(id);
+                    }
+                };
+            });
+
+            const selects = document.querySelectorAll(".qty");
+            selects.forEach(sel => {
+                sel.addEventListener('change', updatePricing);
+            });
+            
+            // Add Remove Button Logic (Visual Only for Demo)
+            const removeBtns = document.querySelectorAll(".remove-btn");
+            removeBtns.forEach(btn => {
+                btn.onclick = (e) => {
+                    e.stopPropagation(); // Stop card click
+                    const card = btn.closest(".item-card");
+                    card.remove();
+                    updatePricing();
+                    // If no cards left, show empty state
+                    if(document.querySelectorAll(".item-card").length === 0) {
+                        showEmpty();
+                    }
+                }
+            });
+        }
+
+        function goProduct(id) {
+            location.href = `../html/product.html?id=${id}`;
+        }
+        
+        function showEmpty() {
+            if (priceBox) priceBox.style.display = "none";
+            if (mainContainer) mainContainer.style.display = 'block'; 
+            cartContainer.innerHTML = renderEmptyState();
+        }
+
+        // 6. FETCH DATA
+        axios.get(`${BASE_URL}/api/customer/profile`, {
+            headers: {
+                Authorization: `Bearer ${localStorage.getItem("token")}`,
+            },
+        })
+        .then((res) => {
+            let cart = res.data?.customer?.cart;
+
+            // --- EMPTY CART CHECK ---
+            if (!cart || cart.length === 0) {
+                showEmpty();
+            } else {
+                // --- CART HAS ITEMS ---
+                if (priceBox) priceBox.style.display = "block";
+
+                const promises = cart.map(item => {
+                    return axios.get(`${BASE_URL}/product?id=${item.productID}`, {
+                        headers: { Authorization: `Bearer ${localStorage.getItem("token")}` }
+                    }).then(pRes => ({ ...pRes.data, quantity: item.quantity })); 
+                });
+
+                Promise.all(promises).then(products => {
+                    products.forEach(product => {
+                         cartContainer.innerHTML += renderCartItem(product, product.quantity);
+                    });
+                    attachCardEvents();
+                    updatePricing();
+                }).catch(err => {
+                    console.error("Error fetching product details", err);
+                    showEmpty(); // Fallback
+                });
+            }
+        })
+        .catch((err) => {
+            console.error("Profile Fetch Error:", err);
+            // Default to empty state if API fails or user not logged in
+            showEmpty();
+        });
+
+
+        // 7. PLACE ORDER
+        if(placeOrderBtn) {
+            placeOrderBtn.addEventListener("click", () => {
+                if(totalPrice > 0) {
+                  let utm = "cart";
+                    location.href = `./checkout.html?total=${totalPrice}&utm=${utm}&payment=${partnerUpi}`;
+                } else {
+                    alert("Cart is empty");
+                }
+            });
+        }
+    </script>
 </body>
-
 </html>

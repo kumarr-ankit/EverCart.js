@@ -10,6 +10,7 @@
     <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.8/dist/js/bootstrap.bundle.min.js"
         integrity="sha384-FKyoEForCGlyvwx9Hj09JcYn3nv7wiPVlz7YYwJrWVcXK/BmnVDxM+D2scQbITxI"
         crossorigin="anonymous"></script>
+    <script src="https://cdn.jsdelivr.net/npm/axios/dist/axios.min.js"></script>
     <link rel="shortcut icon" href="https://img.icons8.com/?size=100&id=j3XI41kBOIXY&format=png&color=636363"
         type="image/x-icon">
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.0/css/all.min.css">
@@ -43,6 +44,7 @@
             text-align: center;
             margin-bottom: 25px;
             font-size: 22px;
+            color: #4fa3ff;
         }
 
         .menu {
@@ -87,6 +89,23 @@
             margin-bottom: 30px;
         }
 
+        /* Loading */
+        .loading {
+            text-align: center;
+            padding: 60px;
+            color: #666;
+        }
+
+        .loading i {
+            font-size: 36px;
+            margin-bottom: 16px;
+            animation: spin 1s linear infinite;
+        }
+
+        @keyframes spin {
+            to { transform: rotate(360deg); }
+        }
+
         /* Card */
         .card {
             background: #111;
@@ -116,6 +135,7 @@
             border-radius: 50%;
             background: #1a1a1a;
             border: 2px solid #333;
+            object-fit: cover;
         }
 
         /* Field */
@@ -237,6 +257,26 @@
             background: #ff3333;
         }
 
+        /* Status Badge */
+        .status-badge {
+            display: inline-block;
+            padding: 4px 10px;
+            border-radius: 6px;
+            font-size: 12px;
+            font-weight: 600;
+            margin-left: 10px;
+        }
+
+        .status-approved {
+            background: rgba(34, 197, 94, 0.15);
+            color: #22c55e;
+        }
+
+        .status-pending {
+            background: rgba(234, 179, 8, 0.15);
+            color: #eab308;
+        }
+
         /* Responsive */
         @media (max-width: 768px) {
             .sidebar {
@@ -278,7 +318,7 @@
 
     <!-- Sidebar -->
     <aside class="sidebar">
-        <h2 class="logo">EC Partner</h2>
+        <h2 class="logo">Partner Portal</h2>
 
         <ul class="menu">
             <li><a href="partner-home.html"><i class="fas fa-home"></i> Dashboard</a></li>
@@ -295,102 +335,161 @@
 
         <h1 class="title">Partner Settings</h1>
 
-        <!-- Profile -->
-        <section class="card">
-            <h2 class="section-title">Profile Settings</h2>
+        <!-- Loading State -->
+        <div id="loadingState" class="loading">
+            <i class="fa fa-spinner"></i>
+            <p>Loading settings...</p>
+        </div>
 
-            <div class="profile-row">
-                <img src="https://img.icons8.com/?size=100&id=r_Vph1MWIfJQ&format=png&color=000000" class="profile-pic"
-                    alt="Profile" />
-                <button class="btn-outline">Change Photo</button>
-            </div>
+        <!-- Main Content -->
+        <div id="mainContent" style="display: none;">
 
-            <div class="field">
-                <label>Partner Name</label>
-                <input type="text" value="Rohit Enterprises">
-            </div>
+            <!-- Profile -->
+            <section class="card">
+                <h2 class="section-title">
+                    Profile Settings
+                    <span id="verificationBadge"></span>
+                </h2>
 
-            <div class="field">
-                <label>Business Email</label>
-                <input type="email" value="partner@rohit.com">
-            </div>
+                <div class="profile-row">
+                    <img id="profileImage" src="https://img.icons8.com/?size=100&id=r_Vph1MWIfJQ&format=png&color=000000" 
+                        class="profile-pic" alt="Profile" />
+                    <button class="btn-outline">Change Photo</button>
+                </div>
 
-            <div class="field">
-                <label>Phone Number</label>
-                <input type="text" value="+91 9876543210">
-            </div>
+                <div class="field">
+                    <label>Owner Name</label>
+                    <input type="text" id="ownerName" value="">
+                </div>
 
-            <button class="btn-primary">Save Changes</button>
-        </section>
+                <div class="field">
+                    <label>Store Name</label>
+                    <input type="text" id="storeName" value="">
+                </div>
 
-        <!-- Business Info -->
-        <section class="card">
-            <h2 class="section-title">Business Information</h2>
+                <div class="field">
+                    <label>Business Email</label>
+                    <input type="email" id="email" value="">
+                </div>
 
-            <div class="field">
-                <label>Partner Code</label>
-                <input type="text" disabled value="EC-PTR-49831">
-            </div>
+                <div class="field">
+                    <label>Phone Number</label>
+                    <input type="text" id="phone" value="">
+                </div>
 
-            <div class="field">
-                <label>Business Address</label>
-                <textarea>123 Market Road, Delhi</textarea>
-            </div>
+                <button class="btn-primary" onclick="saveProfile()">Save Changes</button>
+            </section>
 
-            <button class="btn-primary">Update Business Info</button>
-        </section>
+            <!-- Business Info -->
+            <section class="card">
+                <h2 class="section-title">Business Information</h2>
 
-        <!-- Password -->
-        <section class="card">
-            <h2 class="section-title">Security</h2>
+                <div class="field">
+                    <label>Partner Code</label>
+                    <input type="text" disabled id="partnerCode" value="">
+                </div>
 
-            <div class="field">
-                <label>Current Password</label>
-                <input type="password" placeholder="Enter current password">
-            </div>
+                <div class="field">
+                    <label>GST Number</label>
+                    <input type="text" id="gstNumber" value="">
+                </div>
 
-            <div class="field">
-                <label>New Password</label>
-                <input type="password" placeholder="Create new password">
-            </div>
+                <div class="field">
+                    <label>UPI ID</label>
+                    <input type="text" id="upi" value="">
+                </div>
 
-            <button class="btn-primary">Update Password</button>
-        </section>
+                <div class="field">
+                    <label>Business Address</label>
+                    <textarea id="businessAddress"></textarea>
+                </div>
 
-        <!-- Notifications -->
-        <section class="card">
-            <h2 class="section-title">Notifications</h2>
+                <button class="btn-primary" onclick="saveBusinessInfo()">Update Business Info</button>
+            </section>
 
-            <div class="toggle-row">
-                <label>Order Updates</label>
-                <input type="checkbox" checked />
-            </div>
+            <!-- Bank Details -->
+            <section class="card">
+                <h2 class="section-title">Bank Account Details</h2>
 
-            <div class="toggle-row">
-                <label>Customer Joined Alerts</label>
-                <input type="checkbox" checked />
-            </div>
+                <div class="field">
+                    <label>Account Name</label>
+                    <input type="text" id="accountName" value="">
+                </div>
 
-            <div class="toggle-row">
-                <label>Performance Reports</label>
-                <input type="checkbox" />
-            </div>
-        </section>
+                <div class="field">
+                    <label>Account Number</label>
+                    <input type="text" id="accountNumber" value="">
+                </div>
 
-        <!-- Legal -->
-        <section class="card">
-            <h2 class="section-title">Legal</h2>
+                <div class="field">
+                    <label>IFSC Code</label>
+                    <input type="text" id="ifsc" value="">
+                </div>
 
-            <a class="link" href="privacy.html">Privacy Policy</a>
-            <a class="link" href="terms.html">Terms & Conditions</a>
-        </section>
+                <div class="field">
+                    <label>Bank Name</label>
+                    <input type="text" id="bankName" value="">
+                </div>
 
+                <div class="field">
+                    <label>Branch</label>
+                    <input type="text" id="branch" value="">
+                </div>
 
+                <button class="btn-primary" onclick="saveBankDetails()">Update Bank Details</button>
+            </section>
 
+            <!-- Password -->
+            <section class="card">
+                <h2 class="section-title">Security</h2>
 
-        <button type="button" class="btn btn-primary" id="liveToastBtn">Log out</button>
+                <div class="field">
+                    <label>Current Password</label>
+                    <input type="password" id="currentPassword" placeholder="Enter current password">
+                </div>
 
-        <div class="toast-container position-fixed bottom-0  end-4 p-3">
+                <div class="field">
+                    <label>New Password</label>
+                    <input type="password" id="newPassword" placeholder="Create new password">
+                </div>
+
+                <button class="btn-primary" onclick="updatePassword()">Update Password</button>
+            </section>
+
+            <!-- Notifications -->
+            <section class="card">
+                <h2 class="section-title">Notifications</h2>
+
+                <div class="toggle-row">
+                    <label>Order Updates</label>
+                    <input type="checkbox" checked />
+                </div>
+
+                <div class="toggle-row">
+                    <label>Customer Joined Alerts</label>
+                    <input type="checkbox" checked />
+                </div>
+
+                <div class="toggle-row">
+                    <label>Performance Reports</label>
+                    <input type="checkbox" />
+                </div>
+            </section>
+
+            <!-- Legal -->
+            <section class="card">
+                <h2 class="section-title">Legal</h2>
+
+                <a class="link" href="privacy.html">Privacy Policy</a>
+                <a class="link" href="terms.html">Terms & Conditions</a>
+            </section>
+
+            <button type="button" class="btn btn-primary" id="liveToastBtn">Log out</button>
+
+        </div>
+
+        <!-- Toast -->
+        <div class="toast-container position-fixed bottom-0 end-4 p-3">
             <div id="liveToast" class="toast" role="alert" aria-live="assertive" aria-atomic="true">
                 <div class="toast-header">
                    <i class="fa-solid fa-circle-exclamation" style="color: #ffc400;"></i>
@@ -399,28 +498,211 @@
                     <button type="button" class="btn-close" data-bs-dismiss="toast" aria-label="Close"></button>
                 </div>
                 <div class="toast-body">
-                    Are you sure to log out ? Click below to log out.
-
-                    <button class="logout-btn" onclick="location=`partner-login.html`">Logout</button>
-
-
+                    Are you sure to log out? Click below to log out.
+                    <button class="logout-btn" onclick="handleLogout()">Logout</button>
                 </div>
             </div>
         </div>
 
-        <script>
-            const toastTrigger = document.getElementById('liveToastBtn')
-            const toastLiveExample = document.getElementById('liveToast')
-
-            if (toastTrigger) {
-                const toastBootstrap = bootstrap.Toast.getOrCreateInstance(toastLiveExample)
-                toastTrigger.addEventListener('click', () => {
-                    toastBootstrap.show()
-                })
-            }
-        </script>
+        <!-- Success Toast -->
+        <div class="toast-container position-fixed top-0 end-0 p-3">
+            <div id="successToast" class="toast" role="alert" aria-live="assertive" aria-atomic="true">
+                <div class="toast-header">
+                   <i class="fa-solid fa-check-circle" style="color: #22c55e;"></i>
+                    <strong class="me-auto">Success</strong>
+                    <small>now</small>
+                    <button type="button" class="btn-close" data-bs-dismiss="toast" aria-label="Close"></button>
+                </div>
+                <div class="toast-body" id="successMessage">
+                    Changes saved successfully!
+                </div>
+            </div>
+        </div>
 
     </main>
+
+    <script>
+        const BASE_URL = window.CONFIG?.BASE_URL || 'http://localhost:8080';
+        let partnerData = null;
+
+        // Toast setup
+        const toastTrigger = document.getElementById('liveToastBtn');
+        const toastLiveExample = document.getElementById('liveToast');
+        const successToastElement = document.getElementById('successToast');
+
+        if (toastTrigger) {
+            const toastBootstrap = bootstrap.Toast.getOrCreateInstance(toastLiveExample);
+            toastTrigger.addEventListener('click', () => {
+                toastBootstrap.show();
+            });
+        }
+
+        function showSuccessToast(message) {
+            document.getElementById('successMessage').textContent = message;
+            const successToast = bootstrap.Toast.getOrCreateInstance(successToastElement);
+            successToast.show();
+        }
+
+        function getStatusBadge(status) {
+            const map = {
+                'APPROVED': '<span class="status-badge status-approved"><i class="fa fa-check-circle"></i> Verified</span>',
+                'PENDING': '<span class="status-badge status-pending"><i class="fa fa-clock"></i> Pending</span>'
+            };
+            return map[status] || map['PENDING'];
+        }
+
+        // Load partner data
+        async function loadPartner() {
+            try {
+                const token = localStorage.getItem("partner-token");
+                const res = await axios.get(`${BASE_URL}/api/partner/profile`, {
+                    headers: { Authorization: `Bearer ${token}` }
+                });
+
+                partnerData = res.data;
+
+                // Fill profile section
+                document.getElementById('ownerName').value = partnerData.ownerName || '';
+                document.getElementById('storeName').value = partnerData.storeName || '';
+                document.getElementById('email').value = partnerData.email || '';
+                document.getElementById('phone').value = partnerData.phone || '';
+                document.getElementById('profileImage').src = partnerData.profileImage || 'https://img.icons8.com/?size=100&id=r_Vph1MWIfJQ&format=png&color=000000';
+                document.getElementById('verificationBadge').innerHTML = getStatusBadge(partnerData.verificationStatus);
+
+                // Fill business info
+                document.getElementById('partnerCode').value = partnerData.partnerCode || '';
+                document.getElementById('gstNumber').value = partnerData.gstNumber || '';
+                document.getElementById('upi').value = partnerData.upi || '';
+                document.getElementById('businessAddress').value = partnerData.businessAddress || '';
+
+                // Fill bank details
+                if (partnerData.bankDetails) {
+                    document.getElementById('accountName').value = partnerData.bankDetails.accountName || '';
+                    document.getElementById('accountNumber').value = partnerData.bankDetails.accountNumber || '';
+                    document.getElementById('ifsc').value = partnerData.bankDetails.ifsc || '';
+                    document.getElementById('bankName').value = partnerData.bankDetails.bankName || '';
+                    document.getElementById('branch').value = partnerData.bankDetails.branch || '';
+                }
+
+                // Show content
+                document.getElementById("loadingState").style.display = "none";
+                document.getElementById("mainContent").style.display = "block";
+
+            } catch (err) {
+                console.error('Error:', err);
+                document.getElementById("loadingState").innerHTML = `
+                    <i class="fa fa-exclamation-circle" style="color: #ef4444;"></i>
+                    <p style="color: #ef4444;">Failed to load settings</p>
+                `;
+            }
+        }
+
+        // Save profile
+        async function saveProfile() {
+            try {
+                const token = localStorage.getItem("partner-token");
+                const data = {
+                    ownerName: document.getElementById('ownerName').value,
+                    storeName: document.getElementById('storeName').value,
+                    email: document.getElementById('email').value,
+                    phone: document.getElementById('phone').value
+                };
+
+                await axios.put(`${BASE_URL}/api/partner/update`, data, {
+                    headers: { Authorization: `Bearer ${token}` }
+                });
+
+                showSuccessToast('Profile updated successfully!');
+                loadPartner(); // Reload data
+            } catch (err) {
+                console.error('Error:', err);
+                alert('Failed to update profile');
+            }
+        }
+
+        // Save business info
+        async function saveBusinessInfo() {
+            try {
+                const token = localStorage.getItem("partner-token");
+                const data = {
+                    gstNumber: document.getElementById('gstNumber').value,
+                    upi: document.getElementById('upi').value,
+                    businessAddress: document.getElementById('businessAddress').value
+                };
+
+                await axios.put(`${BASE_URL}/api/partner/update`, data, {
+                    headers: { Authorization: `Bearer ${token}` }
+                });
+
+                showSuccessToast('Business information updated successfully!');
+                loadPartner(); // Reload data
+            } catch (err) {
+                console.error('Error:', err);
+                alert('Failed to update business information');
+            }
+        }
+
+        // Save bank details
+        async function saveBankDetails() {
+            try {
+                const token = localStorage.getItem("partner-token");
+                const bankDetails = {
+                    accountName: document.getElementById('accountName').value,
+                    accountNumber: document.getElementById('accountNumber').value,
+                    ifsc: document.getElementById('ifsc').value,
+                    bankName: document.getElementById('bankName').value,
+                    branch: document.getElementById('branch').value
+                };
+
+                await axios.put(`${BASE_URL}/api/partner/update`, { bankDetails }, {
+                    headers: { Authorization: `Bearer ${token}` }
+                });
+
+                showSuccessToast('Bank details updated successfully!');
+                loadPartner(); // Reload data
+            } catch (err) {
+                console.error('Error:', err);
+                alert('Failed to update bank details');
+            }
+        }
+
+        // Update password
+        async function updatePassword() {
+            const currentPassword = document.getElementById('currentPassword').value;
+            const newPassword = document.getElementById('newPassword').value;
+
+            if (!currentPassword || !newPassword) {
+                alert('Please fill in both password fields');
+                return;
+            }
+
+            try {
+                const token = localStorage.getItem("partner-token");
+                await axios.put(`${BASE_URL}/api/partner/password`, {
+                    currentPassword,
+                    newPassword
+                }, {
+                    headers: { Authorization: `Bearer ${token}` }
+                });
+
+                showSuccessToast('Password updated successfully!');
+                document.getElementById('currentPassword').value = '';
+                document.getElementById('newPassword').value = '';
+            } catch (err) {
+                console.error('Error:', err);
+                alert('Failed to update password');
+            }
+        }
+
+        // Handle logout
+        function handleLogout() {
+            localStorage.removeItem('partner-token');
+            window.location.href = 'partner-login.html';
+        }
+
+        // Load data on page load
+        loadPartner();
+    </script>
 
 </body>
 

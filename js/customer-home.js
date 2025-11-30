@@ -6,7 +6,7 @@ const youBtn = document.getElementById("you");
 
 const isLogged = localStorage.getItem("isLogged");
 
-// Handle login display
+
 if (isLogged) {
   loginBtn.style.display = "none";
   youBtn.style.display = "block";
@@ -15,7 +15,6 @@ if (isLogged) {
   youBtn.style.display = "none";
 }
 
-// Fetch products
 axios
   .get(`${BASE_URL}/products`, {
     headers: {
@@ -30,9 +29,9 @@ axios
   })
   .catch((err) => console.log(err));
 
-// Render products cleanly
+
 function renderProducts(products) {
-  container.innerHTML = ""; 
+  container.innerHTML = "";
 
   products.forEach((p) => {
     const cardWrapper = document.createElement("div");
@@ -62,22 +61,59 @@ function renderProducts(products) {
   });
 }
 
-// EVENT DELEGATION — handles ALL cards efficiently
+
 container.addEventListener("click", (e) => {
   const card = e.target.closest(".card");
   if (!card) return;
 
   const id = card.dataset.id;
 
-  // 1. Card Image click → open product page
+
   if (e.target.classList.contains("img-box")) {
     location.href = `../html/product.html?id=${id}`;
   }
 
-  // 2. Add To Cart Button click
+
   if (e.target.classList.contains("add-cart")) {
-    e.target.innerText = "Remove From Cart";
-    e.target.disabled = true;
+    let status = localStorage.getItem("isLogged");
+
+    if (!status) {
+      location.href = "./login.html";
+    }
+
+    setTimeout(() => {
+      e.target.innerText = "added to cart";
+      e.target.disabled = true;
+    }, 1000);
+    axios
+      .get(`${BASE_URL}/api/customer/profile`, {
+        headers: {
+          Authorization: `Bearer ${localStorage.getItem("token")}`,
+        },
+      })
+      .then((res) => {
+        let userId = res.data.customer.id;
+        axios
+          .post(
+            `${BASE_URL}/products/add-cart/${id}?q=1&user=${userId}`,
+            {},
+            {
+              headers: {
+                Authorization: `Bearer ${localStorage.getItem("token")}`,
+              },
+            }
+          )
+          .then((res) => {
+            let data = res.data;
+            console.log(data);
+          })
+          .catch((error) => {
+            console.log(error);
+          });
+      })
+      .catch((error) => {
+        console.log(error);
+      });
 
     console.log("Product added to cart:", id);
   }

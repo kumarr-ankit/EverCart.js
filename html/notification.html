@@ -1,11 +1,12 @@
 <!DOCTYPE html>
 <html lang="en">
+
 <head>
   <meta charset="UTF-8" />
   <meta name="viewport" content="width=device-width, initial-scale=1.0" />
   <title>Notifications</title>
-      <link rel="shortcut icon" href="https://img.icons8.com/?size=100&id=j3XI41kBOIXY&format=png&color=636363"
-        type="image/x-icon">
+  <link rel="shortcut icon" href="https://img.icons8.com/?size=100&id=j3XI41kBOIXY&format=png&color=636363"
+    type="image/x-icon">
 
   <style>
     body {
@@ -79,6 +80,20 @@
 </head>
 
 <body>
+
+  <script>
+    let status = localStorage.getItem("isLogged");
+    let isLogged = document.getElementById("isLogged");
+
+    let you = document.getElementById("you");
+
+
+    if (status) {
+
+    } else {
+      location.href = './login.html';
+    }
+  </script>
   <div class="container">
     <h2>Notifications</h2>
 
@@ -119,5 +134,8 @@
     </div>
 
   </div>
+
+
 </body>
+
 </html>

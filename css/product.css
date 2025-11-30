@@ -18,6 +18,7 @@ body {
     background: #0d0d0d;
     border-bottom: 1px solid #222;
     display: flex;
+    align-items: center;
     justify-content: space-between;
     align-items: center;
 }
@@ -37,6 +38,7 @@ body {
 .nav-links {
     list-style: none;
     display: flex;
+    align-items: center;
     gap: 25px;
 }
 

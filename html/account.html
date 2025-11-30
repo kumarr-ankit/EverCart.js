@@ -162,7 +162,7 @@
             console.log(res.data.customer)
             showUser(res.data.customer)
         }).catch(error => {
-
+            console.log(error)
         })
 
 
@@ -266,16 +266,16 @@
 
 
         let logOut = document.getElementById("logOut");
-        logOut.addEventListener("click",()=>{
-  
+        logOut.addEventListener("click", () => {
+
             let res = confirm("Do you want to log out ?");
 
-            if(res){
+            if (res) {
                 localStorage.removeItem("isLogged");
 
-                setTimeout(()=>{
+                setTimeout(() => {
                     location.href = "./login.html";
-                },1000);
+                }, 1000);
             }
         });
     </script>
